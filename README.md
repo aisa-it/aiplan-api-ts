@@ -1,3 +1,4 @@
+[![NPM Downloads](https://img.shields.io/npm/v/aiplan-api-ts)](https://www.npmjs.com/package/aiplan-api-ts) [![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
 # Aiplan API
 Автоматически сгенерированная библиотека доступа к API АИПлана.
 
