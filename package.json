@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "axios": "^1.7.9"
+  },
+  "name": "aiplan-api-ts",
+  "version": "1.37.0",
+  "description": "AIPlan TS API",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aisa-it/aiplan-api-ts.git"
+  },
+  "keywords": [
+    "http",
+    "api",
+    "aiplan"
+  ],
+  "author": "Egor Sheff <egor.shevtsov@aisa.ru>",
+  "license": "MPL-2.0",
+  "private": false
+}
