@@ -35,6 +35,49 @@ export class Workspace<
   SecurityDataType = unknown,
 > extends HttpClient<SecurityDataType> {
   /**
+   * @description Возвращает список активностей верхнего уровня с поддержкой пагинации
+   *
+   * @tags Workspace
+   * @name GeRootActivityList
+   * @summary Активности: получение активностей верхнего уровня
+   * @request GET:/api/auth/admin/activities/
+   * @secure
+   */
+  geRootActivityList = (
+    query?: {
+      /**
+       * День выборки активностей
+       * @default """"
+       */
+      day?: string;
+      /**
+       * Смещение для пагинации
+       * @default -1
+       */
+      offset?: number;
+      /**
+       * Количество результатов на странице
+       * @default 100
+       */
+      limit?: number;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<
+      DaoPaginationResponse & {
+        result?: DtoEntityActivityFull[];
+      },
+      AiplanDefinedError
+    >({
+      path: `/api/auth/admin/activities/`,
+      method: "GET",
+      query: query,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
    * @description Возвращает информацию о последнем посещенном рабочем пространстве пользователя. Если ID последнего рабочего пространства отсутствует, возвращает пустые данные.
    *
    * @tags Workspace
@@ -278,33 +321,12 @@ export class Workspace<
       ...params,
     });
   /**
-   * @description удаление интеграции из пространства
-   *
-   * @tags Workspace
-   * @name DeleteIntegrationFromWorkspace
-   * @summary Пространство (интеграции): удаление интеграции
-   * @request POST:/api/auth/workspaces/{workspaceSlug}/integrations/:name/
-   * @secure
-   */
-  deleteIntegrationFromWorkspace = (
-    workspaceSlug: string,
-    name: string,
-    params: RequestParams = {},
-  ) =>
-    this.request<void, AiplanDefinedError>({
-      path: `/api/auth/workspaces/${workspaceSlug}/integrations/${name}/`,
-      method: "POST",
-      secure: true,
-      type: ContentType.Json,
-      ...params,
-    });
-  /**
    * @description добавление интеграции в пространство
    *
    * @tags Workspace
    * @name AddIntegrationToWorkspace
    * @summary Пространство (интеграции): добавление интеграции
-   * @request POST:/api/auth/workspaces/{workspaceSlug}/integrations/add/:name/
+   * @request POST:/api/auth/workspaces/{workspaceSlug}/integrations/add/{name}/
    * @secure
    */
   addIntegrationToWorkspace = (
@@ -314,6 +336,27 @@ export class Workspace<
   ) =>
     this.request<void, AiplanDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/integrations/add/${name}/`,
+      method: "POST",
+      secure: true,
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
+   * @description удаление интеграции из пространства
+   *
+   * @tags Workspace
+   * @name DeleteIntegrationFromWorkspace
+   * @summary Пространство (интеграции): удаление интеграции
+   * @request POST:/api/auth/workspaces/{workspaceSlug}/integrations/{name}/
+   * @secure
+   */
+  deleteIntegrationFromWorkspace = (
+    workspaceSlug: string,
+    name: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<void, AiplanDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/integrations/${name}/`,
       method: "POST",
       secure: true,
       type: ContentType.Json,

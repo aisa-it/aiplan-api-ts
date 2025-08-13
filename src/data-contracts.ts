@@ -362,6 +362,8 @@ export interface DtoDocComment {
   reaction_summary?: Record<string, number>;
   reactions?: DtoCommentReaction[];
   updated_at?: string;
+  updated_by_id?: string;
+  url?: string;
 }
 
 export interface DtoDocFavorites {
@@ -391,16 +393,13 @@ export interface DtoEntityActivityFull {
   id?: string;
   issue_detail?: DtoIssueLight | null;
   new_entity_detail?: any;
-  /** todo Legacy:  rewrite to AffectedUser */
   new_identifier?: string | null;
   new_value?: string;
   old_entity_detail?: any;
-  /** todo Legacy:  rewrite to AffectedUser */
   old_identifier?: string | null;
   old_value?: string | null;
   project_detail?: DtoProjectLight | null;
   state_lag_ms?: number;
-  target_user?: DtoUserLight | null;
   verb?: string;
   workspace_detail?: DtoWorkspaceLight | null;
 }
@@ -985,6 +984,8 @@ export interface JiraProjectCategory {
 }
 
 export interface NotificationsNotificationDetailResponse {
+  doc?: DtoDocLight;
+  form?: DtoFormLight;
   issue?: DtoIssueLight;
   issue_comment?: DtoIssueCommentLight;
   project?: DtoProjectLight;
@@ -998,6 +999,10 @@ export interface NotificationsNotificationResponse {
   detail?: NotificationsNotificationDetailResponse;
   id?: string;
   type?: string;
+  /**
+   * NewEntity any                        `json:"new_entity,omitempty"`
+   * OldEntity any                        `json:"old_entity,omitempty"`
+   */
   viewed?: boolean;
 }
 

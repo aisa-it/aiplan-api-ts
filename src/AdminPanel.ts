@@ -670,18 +670,18 @@ export class AdminPanel<
    * @description Метод позволяет обновить роль участника рабочего пространства. Если участник отсутствует, он будет создан.
    *
    * @tags AdminPanel
-   * @name AuthWorkspacesMembersCreate
+   * @name AuthAdminWorkspacesMembersCreate
    * @summary Пользователи: Обновить роль участника пространства
-   * @request POST:/api/auth/workspaces/{workspaceId}/members/{userId}
+   * @request POST:/api/auth/admin/workspaces/{workspaceId}/members/{userId}
    */
-  authWorkspacesMembersCreate = (
+  authAdminWorkspacesMembersCreate = (
     workspaceId: string,
     userId: string,
     body: AiplanRoleUpdRequest,
     params: RequestParams = {},
   ) =>
     this.request<void, AiplanDefinedError>({
-      path: `/api/auth/workspaces/${workspaceId}/members/${userId}`,
+      path: `/api/auth/admin/workspaces/${workspaceId}/members/${userId}`,
       method: "POST",
       body: body,
       type: ContentType.Json,
@@ -691,17 +691,17 @@ export class AdminPanel<
    * @description Удаляет участника рабочего пространства, а также все его связи с проектами внутри данного пространства.
    *
    * @tags AdminPanel
-   * @name AuthWorkspacesMembersDelete
+   * @name AuthAdminWorkspacesMembersDelete
    * @summary Пользователи: Удалить участника пространства
-   * @request DELETE:/api/auth/workspaces/{workspaceId}/members/{userId}
+   * @request DELETE:/api/auth/admin/workspaces/{workspaceId}/members/{userId}
    */
-  authWorkspacesMembersDelete = (
+  authAdminWorkspacesMembersDelete = (
     workspaceId: string,
     userId: string,
     params: RequestParams = {},
   ) =>
     this.request<void, AiplanDefinedError>({
-      path: `/api/auth/workspaces/${workspaceId}/members/${userId}`,
+      path: `/api/auth/admin/workspaces/${workspaceId}/members/${userId}`,
       method: "DELETE",
       type: ContentType.Json,
       ...params,
@@ -710,11 +710,11 @@ export class AdminPanel<
    * @description Метод обновляет роль участника проекта в рамках рабочего пространства. Если участник не найден в проекте, он будет создан. Проверяется, что участник является членом рабочего пространства.
    *
    * @tags AdminPanel
-   * @name AuthWorkspacesProjectsMembersCreate
+   * @name AuthAdminWorkspacesProjectsMembersCreate
    * @summary Пользователи: Обновить роль участника проекта
-   * @request POST:/api/auth/workspaces/{workspaceId}/projects/{projectId}/members/{userId}
+   * @request POST:/api/auth/admin/workspaces/{workspaceId}/projects/{projectId}/members/{userId}
    */
-  authWorkspacesProjectsMembersCreate = (
+  authAdminWorkspacesProjectsMembersCreate = (
     workspaceId: string,
     userId: string,
     projectId: string,
@@ -722,7 +722,7 @@ export class AdminPanel<
     params: RequestParams = {},
   ) =>
     this.request<void, AiplanDefinedError>({
-      path: `/api/auth/workspaces/${workspaceId}/projects/${projectId}/members/${userId}`,
+      path: `/api/auth/admin/workspaces/${workspaceId}/projects/${projectId}/members/${userId}`,
       method: "POST",
       body: body,
       type: ContentType.Json,
@@ -732,18 +732,18 @@ export class AdminPanel<
    * @description Метод удаляет участника проекта из рабочего пространства. Если участник не найден в проекте, возвращается ошибка.
    *
    * @tags AdminPanel
-   * @name AuthWorkspacesProjectsMembersDelete
+   * @name AuthAdminWorkspacesProjectsMembersDelete
    * @summary Пользователи: Удалить участника проекта
-   * @request DELETE:/api/auth/workspaces/{workspaceId}/projects/{projectId}/members/{userId}
+   * @request DELETE:/api/auth/admin/workspaces/{workspaceId}/projects/{projectId}/members/{userId}
    */
-  authWorkspacesProjectsMembersDelete = (
+  authAdminWorkspacesProjectsMembersDelete = (
     workspaceId: string,
     userId: string,
     projectId: string,
     params: RequestParams = {},
   ) =>
     this.request<void, AiplanDefinedError>({
-      path: `/api/auth/workspaces/${workspaceId}/projects/${projectId}/members/${userId}`,
+      path: `/api/auth/admin/workspaces/${workspaceId}/projects/${projectId}/members/${userId}`,
       method: "DELETE",
       type: ContentType.Json,
       ...params,
