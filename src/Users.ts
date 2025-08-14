@@ -11,7 +11,6 @@
  */
 
 import {
-  AiplanDefinedError,
   AiplanEmailCaptchaRequest,
   AiplanLoginRequest,
   AiplanPasswordRequest,
@@ -25,6 +24,7 @@ import {
   DtoUser,
   DtoUserFeedback,
   DtoUserLight,
+  ErrdefsDefinedError,
   TypesActivityTable,
   TypesViewProps,
 } from "./data-contracts";
@@ -46,7 +46,7 @@ export class Users<
     data: AiplanPasswordRequest,
     params: RequestParams = {},
   ) =>
-    this.request<AiplanPasswordResponse, AiplanDefinedError>({
+    this.request<AiplanPasswordResponse, ErrdefsDefinedError>({
       path: `/api/auth/change-my-password/`,
       method: "POST",
       body: data,
@@ -67,7 +67,7 @@ export class Users<
     data: AiplanEmailCaptchaRequest,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/forgot-password/`,
       method: "POST",
       body: data,
@@ -88,7 +88,7 @@ export class Users<
     data: AiplanPasswordRequest,
     params: RequestParams = {},
   ) =>
-    this.request<AiplanPasswordResponse, AiplanDefinedError>({
+    this.request<AiplanPasswordResponse, ErrdefsDefinedError>({
       path: `/api/auth/reset-password/${uidb64}/${token}/`,
       method: "POST",
       body: data,
@@ -110,7 +110,7 @@ export class Users<
     data: AiplanPasswordRequest,
     params: RequestParams = {},
   ) =>
-    this.request<AiplanPasswordResponse, AiplanDefinedError>({
+    this.request<AiplanPasswordResponse, ErrdefsDefinedError>({
       path: `/api/auth/reset-user-password/${uidb64}/`,
       method: "POST",
       body: data,
@@ -129,7 +129,7 @@ export class Users<
    * @secure
    */
   signOutEverywhere = (params: RequestParams = {}) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/sign-out-everywhere/`,
       method: "POST",
       secure: true,
@@ -145,7 +145,7 @@ export class Users<
    * @secure
    */
   signOut = (params: RequestParams = {}) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/sign-out/`,
       method: "POST",
       secure: true,
@@ -185,7 +185,7 @@ export class Users<
       DaoPaginationResponse & {
         result?: DtoEntityActivityFull[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/users/${userId}/activities/`,
       method: "GET",
@@ -204,7 +204,7 @@ export class Users<
    * @secure
    */
   getCurrentUser = (params: RequestParams = {}) =>
-    this.request<DtoUser, AiplanDefinedError>({
+    this.request<DtoUser, ErrdefsDefinedError>({
       path: `/api/auth/users/me/`,
       method: "GET",
       secure: true,
@@ -224,7 +224,7 @@ export class Users<
     data: AiplanUserUpdateRequest,
     params: RequestParams = {},
   ) =>
-    this.request<DtoUser, AiplanDefinedError>({
+    this.request<DtoUser, ErrdefsDefinedError>({
       path: `/api/auth/users/me/`,
       method: "PATCH",
       body: data,
@@ -270,7 +270,7 @@ export class Users<
       DaoPaginationResponse & {
         result?: DtoEntityActivityFull[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/users/me/activities/`,
       method: "GET",
@@ -301,7 +301,7 @@ export class Users<
     },
     params: RequestParams = {},
   ) =>
-    this.request<TypesActivityTable, AiplanDefinedError>({
+    this.request<TypesActivityTable, ErrdefsDefinedError>({
       path: `/api/auth/users/me/activities/table/`,
       method: "GET",
       query: query,
@@ -326,7 +326,7 @@ export class Users<
     },
     params: RequestParams = {},
   ) =>
-    this.request<DtoProjectLight[], AiplanDefinedError>({
+    this.request<DtoProjectLight[], ErrdefsDefinedError>({
       path: `/api/auth/users/me/all/projects/`,
       method: "GET",
       query: query,
@@ -353,7 +353,7 @@ export class Users<
     },
     params: RequestParams = {},
   ) =>
-    this.request<DtoUser, AiplanDefinedError>({
+    this.request<DtoUser, ErrdefsDefinedError>({
       path: `/api/auth/users/me/avatar/`,
       method: "POST",
       body: data,
@@ -372,7 +372,7 @@ export class Users<
    * @secure
    */
   deleteCurrentUserAvatar = (params: RequestParams = {}) =>
-    this.request<DtoUser, AiplanDefinedError>({
+    this.request<DtoUser, ErrdefsDefinedError>({
       path: `/api/auth/users/me/avatar/`,
       method: "DELETE",
       secure: true,
@@ -389,7 +389,7 @@ export class Users<
    * @secure
    */
   getMyFeedback = (params: RequestParams = {}) =>
-    this.request<DtoUserFeedback, AiplanDefinedError>({
+    this.request<DtoUserFeedback, ErrdefsDefinedError>({
       path: `/api/auth/users/me/feedback/`,
       method: "GET",
       secure: true,
@@ -409,7 +409,7 @@ export class Users<
     data: AiplanPostFeedbackRequest,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/users/me/feedback/`,
       method: "POST",
       body: data,
@@ -427,7 +427,7 @@ export class Users<
    * @secure
    */
   deleteMyFeedback = (params: RequestParams = {}) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/users/me/feedback/`,
       method: "DELETE",
       secure: true,
@@ -443,7 +443,7 @@ export class Users<
    * @secure
    */
   updateUserOnBoard = (data: DtoUser, params: RequestParams = {}) =>
-    this.request<DtoUser, void | AiplanDefinedError>({
+    this.request<DtoUser, void | ErrdefsDefinedError>({
       path: `/api/auth/users/me/onboard/`,
       method: "POST",
       body: data,
@@ -462,7 +462,7 @@ export class Users<
    * @secure
    */
   getMyAuthToken = (params: RequestParams = {}) =>
-    this.request<string, AiplanDefinedError>({
+    this.request<string, ErrdefsDefinedError>({
       path: `/api/auth/users/me/token/`,
       method: "GET",
       secure: true,
@@ -478,7 +478,7 @@ export class Users<
    * @secure
    */
   resetMyAuthToken = (params: RequestParams = {}) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/users/me/token/reset/`,
       method: "POST",
       secure: true,
@@ -494,7 +494,7 @@ export class Users<
    * @secure
    */
   updateUserViewProps = (data: TypesViewProps, params: RequestParams = {}) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/users/me/view-props/`,
       method: "POST",
       body: data,
@@ -512,7 +512,7 @@ export class Users<
    * @secure
    */
   getUser = (userId: string, params: RequestParams = {}) =>
-    this.request<DtoUserLight, AiplanDefinedError>({
+    this.request<DtoUserLight, ErrdefsDefinedError>({
       path: `/api/auth/users/${userId}`,
       method: "GET",
       secure: true,
@@ -539,7 +539,7 @@ export class Users<
     },
     params: RequestParams = {},
   ) =>
-    this.request<TypesActivityTable, AiplanDefinedError>({
+    this.request<TypesActivityTable, ErrdefsDefinedError>({
       path: `/api/auth/users/${userId}/activities/table/`,
       method: "GET",
       query: query,
@@ -557,7 +557,7 @@ export class Users<
    * @request GET:/api/captcha
    */
   requestCaptcha = (params: RequestParams = {}) =>
-    this.request<AltchaChallenge, AiplanDefinedError>({
+    this.request<AltchaChallenge, ErrdefsDefinedError>({
       path: `/api/captcha`,
       method: "GET",
       type: ContentType.Json,
@@ -573,7 +573,7 @@ export class Users<
    * @request POST:/api/sign-in
    */
   emailLogin = (data: AiplanLoginRequest, params: RequestParams = {}) =>
-    this.request<Record<string, any>, AiplanDefinedError>({
+    this.request<Record<string, any>, ErrdefsDefinedError>({
       path: `/api/sign-in`,
       method: "POST",
       body: data,
@@ -590,7 +590,7 @@ export class Users<
    * @request POST:/api/sign-up/
    */
   signUp = (data: AiplanEmailCaptchaRequest, params: RequestParams = {}) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/sign-up/`,
       method: "POST",
       body: data,

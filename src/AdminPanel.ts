@@ -11,7 +11,6 @@
  */
 
 import {
-  AiplanDefinedError,
   AiplanRequestMessage,
   AiplanRoleUpdRequest,
   AiplanUserCreateRequest,
@@ -24,6 +23,7 @@ import {
   DtoUserLight,
   DtoWorkspace,
   DtoWorkspaceWithCount,
+  ErrdefsDefinedError,
   IssuesImportImportStatus,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
@@ -66,7 +66,7 @@ export class AdminPanel<
       DaoPaginationResponse & {
         result?: DtoUserFeedback[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/admin/feedbacks`,
       method: "GET",
@@ -86,7 +86,7 @@ export class AdminPanel<
    * @secure
    */
   exportFeedbackList = (params: RequestParams = {}) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/admin/feedbacks/export`,
       method: "GET",
       secure: true,
@@ -103,7 +103,7 @@ export class AdminPanel<
    * @secure
    */
   getRunningImportList = (params: RequestParams = {}) =>
-    this.request<IssuesImportImportStatus[], AiplanDefinedError>({
+    this.request<IssuesImportImportStatus[], ErrdefsDefinedError>({
       path: `/api/auth/admin/imports/`,
       method: "GET",
       secure: true,
@@ -149,7 +149,7 @@ export class AdminPanel<
       DaoPaginationResponse & {
         result?: DtoProject[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/admin/projects/${workspaceId}`,
       method: "GET",
@@ -169,7 +169,7 @@ export class AdminPanel<
    * @secure
    */
   createReleaseNote = (data: DtoReleaseNoteLight, params: RequestParams = {}) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/admin/release-notes`,
       method: "POST",
       body: data,
@@ -187,7 +187,7 @@ export class AdminPanel<
    * @secure
    */
   deleteReleaseNote = (noteId: string, params: RequestParams = {}) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/admin/release-notes/${noteId}`,
       method: "DELETE",
       secure: true,
@@ -208,7 +208,7 @@ export class AdminPanel<
     data: DtoReleaseNoteLight,
     params: RequestParams = {},
   ) =>
-    this.request<DtoReleaseNoteLight, AiplanDefinedError>({
+    this.request<DtoReleaseNoteLight, ErrdefsDefinedError>({
       path: `/api/auth/admin/release-notes/${noteId}`,
       method: "PATCH",
       body: data,
@@ -245,7 +245,7 @@ export class AdminPanel<
       DaoPaginationResponse & {
         result?: DtoTariffication[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/admin/tariffication/`,
       method: "GET",
@@ -265,7 +265,7 @@ export class AdminPanel<
    * @secure
    */
   createUserTariff = (tariff: DtoTariffication, params: RequestParams = {}) =>
-    this.request<DtoTariffication, AiplanDefinedError>({
+    this.request<DtoTariffication, ErrdefsDefinedError>({
       path: `/api/auth/admin/tariffication/`,
       method: "POST",
       body: tariff,
@@ -284,7 +284,7 @@ export class AdminPanel<
    * @secure
    */
   getUserTariff = (userId: string, params: RequestParams = {}) =>
-    this.request<DtoTariffication, AiplanDefinedError>({
+    this.request<DtoTariffication, ErrdefsDefinedError>({
       path: `/api/auth/admin/tariffication/${userId}`,
       method: "GET",
       secure: true,
@@ -306,7 +306,7 @@ export class AdminPanel<
     tariff: DtoTariffication,
     params: RequestParams = {},
   ) =>
-    this.request<DtoTariffication, AiplanDefinedError>({
+    this.request<DtoTariffication, ErrdefsDefinedError>({
       path: `/api/auth/admin/tariffication/${userId}`,
       method: "PUT",
       body: tariff,
@@ -325,7 +325,7 @@ export class AdminPanel<
    * @secure
    */
   deleteUserTariff = (userId: string, params: RequestParams = {}) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/admin/tariffication/${userId}`,
       method: "DELETE",
       secure: true,
@@ -342,7 +342,7 @@ export class AdminPanel<
    * @secure
    */
   reloadTemplates = (params: RequestParams = {}) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/admin/templates/reset/`,
       method: "POST",
       secure: true,
@@ -386,7 +386,7 @@ export class AdminPanel<
       DaoPaginationResponse & {
         result?: DtoUserLight[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/admin/users`,
       method: "GET",
@@ -406,7 +406,7 @@ export class AdminPanel<
    * @secure
    */
   createUser = (data: AiplanUserCreateRequest, params: RequestParams = {}) =>
-    this.request<DtoUserLight, AiplanDefinedError>({
+    this.request<DtoUserLight, ErrdefsDefinedError>({
       path: `/api/auth/admin/users`,
       method: "POST",
       body: data,
@@ -428,7 +428,7 @@ export class AdminPanel<
     data: AiplanRequestMessage,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/admin/users/message/`,
       method: "POST",
       body: data,
@@ -446,7 +446,7 @@ export class AdminPanel<
    * @secure
    */
   getUserById = (userId: string, params: RequestParams = {}) =>
-    this.request<DtoUserLight, AiplanDefinedError>({
+    this.request<DtoUserLight, ErrdefsDefinedError>({
       path: `/api/auth/admin/users/${userId}`,
       method: "GET",
       secure: true,
@@ -464,7 +464,7 @@ export class AdminPanel<
    * @secure
    */
   deleteUser = (userId: string, params: RequestParams = {}) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/admin/users/${userId}`,
       method: "DELETE",
       secure: true,
@@ -485,7 +485,7 @@ export class AdminPanel<
     data: Record<string, any>,
     params: RequestParams = {},
   ) =>
-    this.request<DtoUserLight, AiplanDefinedError>({
+    this.request<DtoUserLight, ErrdefsDefinedError>({
       path: `/api/auth/admin/users/${userId}`,
       method: "PATCH",
       body: data,
@@ -504,7 +504,7 @@ export class AdminPanel<
    * @secure
    */
   getUserFeedback = (userId: string, params: RequestParams = {}) =>
-    this.request<DtoUserFeedback, AiplanDefinedError>({
+    this.request<DtoUserFeedback, ErrdefsDefinedError>({
       path: `/api/auth/admin/users/${userId}/feedback`,
       method: "GET",
       secure: true,
@@ -555,7 +555,7 @@ export class AdminPanel<
       DaoPaginationResponse & {
         result?: DtoWorkspace[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/admin/users/${userId}/workspaces`,
       method: "GET",
@@ -609,7 +609,7 @@ export class AdminPanel<
       DaoPaginationResponse & {
         result?: DtoProjectLight[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/admin/users/${userId}/workspaces/${workspaceId}`,
       method: "GET",
@@ -656,7 +656,7 @@ export class AdminPanel<
       DaoPaginationResponse & {
         result?: DtoWorkspaceWithCount[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/admin/workspaces`,
       method: "GET",
@@ -680,7 +680,7 @@ export class AdminPanel<
     body: AiplanRoleUpdRequest,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/admin/workspaces/${workspaceId}/members/${userId}`,
       method: "POST",
       body: body,
@@ -700,7 +700,7 @@ export class AdminPanel<
     userId: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/admin/workspaces/${workspaceId}/members/${userId}`,
       method: "DELETE",
       type: ContentType.Json,
@@ -721,7 +721,7 @@ export class AdminPanel<
     body: AiplanRoleUpdRequest,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/admin/workspaces/${workspaceId}/projects/${projectId}/members/${userId}`,
       method: "POST",
       body: body,
@@ -742,7 +742,7 @@ export class AdminPanel<
     projectId: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/admin/workspaces/${workspaceId}/projects/${projectId}/members/${userId}`,
       method: "DELETE",
       type: ContentType.Json,

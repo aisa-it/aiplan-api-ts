@@ -11,7 +11,6 @@
  */
 
 import {
-  AiplanDefinedError,
   AiplanReqAnswer,
   AiplanReqForm,
   AiplanRespAnswers,
@@ -20,6 +19,7 @@ import {
   DtoForm,
   DtoFormAnswer,
   DtoFormLight,
+  ErrdefsDefinedError,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
@@ -36,7 +36,7 @@ export class Forms<
    * @secure
    */
   getFormAuth = (formSlug: string, params: RequestParams = {}) =>
-    this.request<DtoForm, AiplanDefinedError>({
+    this.request<DtoForm, ErrdefsDefinedError>({
       path: `/api/auth/forms/${formSlug}/`,
       method: "GET",
       secure: true,
@@ -57,7 +57,7 @@ export class Forms<
     answer: AiplanReqAnswer[],
     params: RequestParams = {},
   ) =>
-    this.request<AiplanRespAnswers, AiplanDefinedError>({
+    this.request<AiplanRespAnswers, ErrdefsDefinedError>({
       path: `/api/auth/forms/${formSlug}/answer/`,
       method: "POST",
       body: answer,
@@ -84,7 +84,7 @@ export class Forms<
     },
     params: RequestParams = {},
   ) =>
-    this.request<DtoAttachment, AiplanDefinedError>({
+    this.request<DtoAttachment, ErrdefsDefinedError>({
       path: `/api/auth/forms/${formSlug}/form-attachments/`,
       method: "POST",
       body: data,
@@ -103,7 +103,7 @@ export class Forms<
    * @secure
    */
   getFormList = (workspaceSlug: string, params: RequestParams = {}) =>
-    this.request<DtoFormLight[], AiplanDefinedError>({
+    this.request<DtoFormLight[], ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/forms/`,
       method: "GET",
       secure: true,
@@ -124,7 +124,7 @@ export class Forms<
     form: AiplanReqForm,
     params: RequestParams = {},
   ) =>
-    this.request<DtoForm, AiplanDefinedError>({
+    this.request<DtoForm, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/forms/`,
       method: "POST",
       body: form,
@@ -147,7 +147,7 @@ export class Forms<
     formSlug: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/forms/${formSlug}/`,
       method: "DELETE",
       secure: true,
@@ -168,7 +168,7 @@ export class Forms<
     form: AiplanReqForm,
     params: RequestParams = {},
   ) =>
-    this.request<DtoForm, AiplanDefinedError>({
+    this.request<DtoForm, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/forms/${formSlug}/`,
       method: "PATCH",
       body: form,
@@ -207,7 +207,7 @@ export class Forms<
       (DaoPaginationResponse & {
         result?: DtoFormAnswer[];
       })[],
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/workspaces/${workspaceSlug}/forms/${formSlug}/answers/`,
       method: "GET",
@@ -231,7 +231,7 @@ export class Forms<
     answerSeq: string,
     params: RequestParams = {},
   ) =>
-    this.request<DtoFormAnswer, AiplanDefinedError>({
+    this.request<DtoFormAnswer, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/forms/${formSlug}/answers/${answerSeq}/`,
       method: "GET",
       secure: true,
@@ -247,7 +247,7 @@ export class Forms<
    * @request GET:/api/forms/{formSlug}/
    */
   getFormNoAuth = (formSlug: string, params: RequestParams = {}) =>
-    this.request<DtoForm, AiplanDefinedError>({
+    this.request<DtoForm, ErrdefsDefinedError>({
       path: `/api/forms/${formSlug}/`,
       method: "GET",
       format: "json",
@@ -266,7 +266,7 @@ export class Forms<
     answer: AiplanReqAnswer[],
     params: RequestParams = {},
   ) =>
-    this.request<AiplanRespAnswers, AiplanDefinedError>({
+    this.request<AiplanRespAnswers, ErrdefsDefinedError>({
       path: `/api/forms/${formSlug}/answer/`,
       method: "POST",
       body: answer,

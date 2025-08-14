@@ -14,7 +14,6 @@ import {
   AiplanAddProjectToFavoritesRequest,
   AiplanCheckProjectIdentifierAvailabilityResponse,
   AiplanCreateProjectRequest,
-  AiplanDefinedError,
   AiplanFilterParams,
   AiplanGetRulesLogfilterRequest,
   AiplanJoinProjectsRequest,
@@ -33,6 +32,7 @@ import {
   DtoRulesLog,
   DtoStateLight,
   DtoUserLight,
+  ErrdefsDefinedError,
   TypesViewProps,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
@@ -69,7 +69,7 @@ export class Projects<
       DaoPaginationResponse & {
         result?: DtoLabelLight[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/filters/labels/`,
       method: "POST",
@@ -109,7 +109,7 @@ export class Projects<
       DaoPaginationResponse & {
         result?: DtoUserLight[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/filters/members/`,
       method: "POST",
@@ -149,7 +149,7 @@ export class Projects<
       DaoPaginationResponse & {
         result?: DtoStateLight[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/filters/states/`,
       method: "POST",
@@ -179,7 +179,7 @@ export class Projects<
   ) =>
     this.request<
       AiplanCheckProjectIdentifierAvailabilityResponse,
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/workspaces/${workspaceSlug}/project-identifiers`,
       method: "GET",
@@ -206,7 +206,7 @@ export class Projects<
     },
     params: RequestParams = {},
   ) =>
-    this.request<DtoProjectLight[], AiplanDefinedError>({
+    this.request<DtoProjectLight[], ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects`,
       method: "GET",
       query: query,
@@ -229,7 +229,7 @@ export class Projects<
     request: AiplanCreateProjectRequest,
     params: RequestParams = {},
   ) =>
-    this.request<DtoProject, AiplanDefinedError>({
+    this.request<DtoProject, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects`,
       method: "POST",
       body: request,
@@ -252,7 +252,7 @@ export class Projects<
     projects: AiplanJoinProjectsRequest,
     params: RequestParams = {},
   ) =>
-    this.request<AiplanJoinProjectsSuccessResponse, AiplanDefinedError>({
+    this.request<AiplanJoinProjectsSuccessResponse, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/join/`,
       method: "POST",
       body: projects,
@@ -274,7 +274,7 @@ export class Projects<
     projectId: string,
     params: RequestParams = {},
   ) =>
-    this.request<DtoProject, AiplanDefinedError>({
+    this.request<DtoProject, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}`,
       method: "GET",
       secure: true,
@@ -296,7 +296,7 @@ export class Projects<
     projectId: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}`,
       method: "DELETE",
       secure: true,
@@ -318,7 +318,7 @@ export class Projects<
     project: DtoProject,
     params: RequestParams = {},
   ) =>
-    this.request<DtoProject, AiplanDefinedError>({
+    this.request<DtoProject, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}`,
       method: "PATCH",
       body: project,
@@ -357,7 +357,7 @@ export class Projects<
       DaoPaginationResponse & {
         result?: DtoEntityActivityFull[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/activities`,
       method: "GET",
@@ -385,7 +385,7 @@ export class Projects<
     },
     params: RequestParams = {},
   ) =>
-    this.request<DtoLabelLight[], AiplanDefinedError>({
+    this.request<DtoLabelLight[], ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issue-labels`,
       method: "GET",
       query: query,
@@ -407,7 +407,7 @@ export class Projects<
     data: DtoLabelLight,
     params: RequestParams = {},
   ) =>
-    this.request<DtoLabelLight, AiplanDefinedError>({
+    this.request<DtoLabelLight, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issue-labels`,
       method: "POST",
       body: data,
@@ -431,7 +431,7 @@ export class Projects<
     labelId: string,
     params: RequestParams = {},
   ) =>
-    this.request<DtoLabelLight, AiplanDefinedError>({
+    this.request<DtoLabelLight, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issue-labels/${labelId}`,
       method: "GET",
       secure: true,
@@ -452,7 +452,7 @@ export class Projects<
     labelId: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issue-labels/${labelId}`,
       method: "DELETE",
       secure: true,
@@ -474,7 +474,7 @@ export class Projects<
     data: DtoLabelLight,
     params: RequestParams = {},
   ) =>
-    this.request<DtoLabelLight, AiplanDefinedError>({
+    this.request<DtoLabelLight, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issue-labels/${labelId}`,
       method: "PATCH",
       body: data,
@@ -498,7 +498,7 @@ export class Projects<
     notificationSettings: AiplanProjectNotificationRequest,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/me/notifications/`,
       method: "POST",
       body: notificationSettings,
@@ -557,7 +557,7 @@ export class Projects<
         my_entity?: DtoProjectMemberLight;
         result?: DtoProjectMemberLight[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/members`,
       method: "GET",
@@ -582,7 +582,7 @@ export class Projects<
     memberId: DtoProjectMember,
     params: RequestParams = {},
   ) =>
-    this.request<DtoProjectMemberLight, AiplanDefinedError>({
+    this.request<DtoProjectMemberLight, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/members/add`,
       method: "POST",
       body: memberId,
@@ -605,7 +605,7 @@ export class Projects<
     memberId: string,
     params: RequestParams = {},
   ) =>
-    this.request<DtoProjectMemberLight, AiplanDefinedError>({
+    this.request<DtoProjectMemberLight, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/members/${memberId}`,
       method: "GET",
       secure: true,
@@ -628,7 +628,7 @@ export class Projects<
     memberId: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/members/${memberId}`,
       method: "DELETE",
       secure: true,
@@ -650,7 +650,7 @@ export class Projects<
     role: Record<string, number>,
     params: RequestParams = {},
   ) =>
-    this.request<DtoProjectMemberLight, AiplanDefinedError>({
+    this.request<DtoProjectMemberLight, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/members/${memberId}`,
       method: "PATCH",
       body: role,
@@ -673,7 +673,7 @@ export class Projects<
     projectId: string,
     params: RequestParams = {},
   ) =>
-    this.request<DtoProjectMember, AiplanDefinedError>({
+    this.request<DtoProjectMember, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/project-members/me`,
       method: "GET",
       secure: true,
@@ -694,7 +694,7 @@ export class Projects<
     view_props: TypesViewProps,
     params: RequestParams = {},
   ) =>
-    this.request<string, AiplanDefinedError>({
+    this.request<string, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/project-views`,
       method: "POST",
       body: view_props,
@@ -733,7 +733,7 @@ export class Projects<
       DaoPaginationResponse & {
         result?: DtoRulesLog[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/rules-log`,
       method: "POST",
@@ -762,7 +762,7 @@ export class Projects<
     },
     params: RequestParams = {},
   ) =>
-    this.request<Record<string, DtoStateLight[]>, AiplanDefinedError>({
+    this.request<Record<string, DtoStateLight[]>, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/states`,
       method: "GET",
       query: query,
@@ -784,7 +784,7 @@ export class Projects<
     data: DtoStateLight,
     params: RequestParams = {},
   ) =>
-    this.request<DtoStateLight, AiplanDefinedError>({
+    this.request<DtoStateLight, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/states`,
       method: "POST",
       body: data,
@@ -808,7 +808,7 @@ export class Projects<
     stateId: string,
     params: RequestParams = {},
   ) =>
-    this.request<DtoStateLight, AiplanDefinedError>({
+    this.request<DtoStateLight, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/states/${stateId}`,
       method: "GET",
       secure: true,
@@ -829,7 +829,7 @@ export class Projects<
     stateId: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/states/${stateId}`,
       method: "DELETE",
       secure: true,
@@ -851,7 +851,7 @@ export class Projects<
     data: AiplanUpdateStateRequest,
     params: RequestParams = {},
   ) =>
-    this.request<DtoStateLight, AiplanDefinedError>({
+    this.request<DtoStateLight, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/states/${stateId}`,
       method: "PATCH",
       body: data,
@@ -890,7 +890,7 @@ export class Projects<
       DaoPaginationResponse & {
         result?: DtoIssueTemplate[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/templates`,
       method: "GET",
@@ -915,7 +915,7 @@ export class Projects<
     data: DtoIssueTemplate,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/templates`,
       method: "POST",
       body: data,
@@ -938,7 +938,7 @@ export class Projects<
     templateId: string,
     params: RequestParams = {},
   ) =>
-    this.request<DtoIssueTemplate, AiplanDefinedError>({
+    this.request<DtoIssueTemplate, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/templates/${templateId}`,
       method: "GET",
       secure: true,
@@ -959,7 +959,7 @@ export class Projects<
     templateId: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/templates/${templateId}`,
       method: "DELETE",
       secure: true,
@@ -982,7 +982,7 @@ export class Projects<
     data: DtoIssueTemplate,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/templates/${templateId}`,
       method: "PATCH",
       body: data,
@@ -1000,7 +1000,7 @@ export class Projects<
    * @secure
    */
   getFavoriteProjects = (workspaceSlug: string, params: RequestParams = {}) =>
-    this.request<DtoProjectFavorites[], AiplanDefinedError>({
+    this.request<DtoProjectFavorites[], ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/user-favorite-projects/`,
       method: "GET",
       secure: true,
@@ -1020,7 +1020,7 @@ export class Projects<
     project: AiplanAddProjectToFavoritesRequest,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/user-favorite-projects/`,
       method: "POST",
       body: project,
@@ -1042,7 +1042,7 @@ export class Projects<
     projectId: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/user-favorite-projects/${projectId}`,
       method: "DELETE",
       secure: true,

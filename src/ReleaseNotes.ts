@@ -10,7 +10,7 @@
  * ---------------------------------------------------------------
  */
 
-import { AiplanDefinedError, DtoReleaseNoteLight } from "./data-contracts";
+import { DtoReleaseNoteLight, ErrdefsDefinedError } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
 export class ReleaseNotes<
@@ -26,7 +26,7 @@ export class ReleaseNotes<
    * @secure
    */
   getReleaseNote = (noteId: string, params: RequestParams = {}) =>
-    this.request<DtoReleaseNoteLight, AiplanDefinedError>({
+    this.request<DtoReleaseNoteLight, ErrdefsDefinedError>({
       path: `/api/auth/admin/release-notes/${noteId}`,
       method: "GET",
       secure: true,
@@ -44,7 +44,7 @@ export class ReleaseNotes<
    * @secure
    */
   getRecentReleaseNoteList = (noteId: string, params: RequestParams = {}) =>
-    this.request<DtoReleaseNoteLight[], AiplanDefinedError>({
+    this.request<DtoReleaseNoteLight[], ErrdefsDefinedError>({
       path: `/api/auth/auth/release-notes/${noteId}`,
       method: "GET",
       secure: true,
@@ -62,7 +62,7 @@ export class ReleaseNotes<
    * @secure
    */
   getProductUpdateList = (params: RequestParams = {}) =>
-    this.request<DtoReleaseNoteLight[], AiplanDefinedError>({
+    this.request<DtoReleaseNoteLight[], ErrdefsDefinedError>({
       path: `/api/auth/release-notes/`,
       method: "GET",
       secure: true,

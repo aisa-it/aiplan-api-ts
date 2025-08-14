@@ -12,7 +12,6 @@
 
 import {
   AiplanAddDocToFavoritesRequest,
-  AiplanDefinedError,
   AiplanReactionRequest,
   DaoPaginationResponse,
   DtoAttachment,
@@ -24,6 +23,7 @@ import {
   DtoEntityActivityFull,
   DtoHistoryBody,
   DtoHistoryBodyLight,
+  ErrdefsDefinedError,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
@@ -45,7 +45,7 @@ export class Docs<
     attachmentId: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/forms/${formSlug}/form-attachments/${attachmentId}`,
       method: "DELETE",
       secure: true,
@@ -62,7 +62,7 @@ export class Docs<
    * @secure
    */
   getRootDocList = (workspaceSlug: string, params: RequestParams = {}) =>
-    this.request<DtoDocLight[], AiplanDefinedError>({
+    this.request<DtoDocLight[], ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/`,
       method: "GET",
       secure: true,
@@ -92,7 +92,7 @@ export class Docs<
     },
     params: RequestParams = {},
   ) =>
-    this.request<DtoDoc, AiplanDefinedError>({
+    this.request<DtoDoc, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/`,
       method: "POST",
       body: data,
@@ -111,7 +111,7 @@ export class Docs<
    * @secure
    */
   getDoc = (workspaceSlug: string, docId: string, params: RequestParams = {}) =>
-    this.request<DtoDoc, AiplanDefinedError>({
+    this.request<DtoDoc, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/`,
       method: "GET",
       secure: true,
@@ -142,7 +142,7 @@ export class Docs<
     },
     params: RequestParams = {},
   ) =>
-    this.request<DtoDoc, AiplanDefinedError>({
+    this.request<DtoDoc, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/`,
       method: "POST",
       body: data,
@@ -165,7 +165,7 @@ export class Docs<
     docId: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/`,
       method: "DELETE",
       secure: true,
@@ -195,7 +195,7 @@ export class Docs<
     },
     params: RequestParams = {},
   ) =>
-    this.request<DtoDoc, AiplanDefinedError>({
+    this.request<DtoDoc, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/`,
       method: "PATCH",
       body: data,
@@ -234,7 +234,7 @@ export class Docs<
       DaoPaginationResponse & {
         result?: DtoEntityActivityFull[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/activities/`,
       method: "GET",
@@ -258,7 +258,7 @@ export class Docs<
     docId: string,
     params: RequestParams = {},
   ) =>
-    this.request<DtoDocLight[], AiplanDefinedError>({
+    this.request<DtoDocLight[], ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/child/`,
       method: "GET",
       secure: true,
@@ -296,7 +296,7 @@ export class Docs<
       DaoPaginationResponse & {
         result?: DtoDocComment[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/comments/`,
       method: "GET",
@@ -329,7 +329,7 @@ export class Docs<
     },
     params: RequestParams = {},
   ) =>
-    this.request<DtoDocComment, AiplanDefinedError>({
+    this.request<DtoDocComment, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/comments/`,
       method: "POST",
       body: data,
@@ -353,7 +353,7 @@ export class Docs<
     commentId: string,
     params: RequestParams = {},
   ) =>
-    this.request<DtoDocComment, AiplanDefinedError>({
+    this.request<DtoDocComment, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/comments/${commentId}/`,
       method: "GET",
       secure: true,
@@ -375,7 +375,7 @@ export class Docs<
     commentId: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/comments/${commentId}/`,
       method: "DELETE",
       secure: true,
@@ -406,7 +406,7 @@ export class Docs<
     },
     params: RequestParams = {},
   ) =>
-    this.request<DtoDocComment, AiplanDefinedError>({
+    this.request<DtoDocComment, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/comments/${commentId}/`,
       method: "PATCH",
       body: data,
@@ -431,7 +431,7 @@ export class Docs<
     data: AiplanReactionRequest,
     params: RequestParams = {},
   ) =>
-    this.request<DtoCommentReaction, AiplanDefinedError>({
+    this.request<DtoCommentReaction, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/comments/${commentId}/reactions/`,
       method: "POST",
       body: data,
@@ -456,7 +456,7 @@ export class Docs<
     reaction: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/comments/${commentId}/reactions/${reaction}/`,
       method: "DELETE",
       secure: true,
@@ -477,7 +477,7 @@ export class Docs<
     docId: string,
     params: RequestParams = {},
   ) =>
-    this.request<DtoAttachment[], AiplanDefinedError>({
+    this.request<DtoAttachment[], ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/doc-attachments/`,
       method: "GET",
       secure: true,
@@ -503,7 +503,7 @@ export class Docs<
     },
     params: RequestParams = {},
   ) =>
-    this.request<DtoAttachment, AiplanDefinedError>({
+    this.request<DtoAttachment, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/doc-attachments/`,
       method: "POST",
       body: data,
@@ -527,7 +527,7 @@ export class Docs<
     attachmentId: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/doc-attachments/${attachmentId}`,
       method: "DELETE",
       secure: true,
@@ -564,7 +564,7 @@ export class Docs<
       DaoPaginationResponse & {
         result?: DtoHistoryBodyLight[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/history/`,
       method: "GET",
@@ -589,7 +589,7 @@ export class Docs<
     versionId: string,
     params: RequestParams = {},
   ) =>
-    this.request<DtoHistoryBody, AiplanDefinedError>({
+    this.request<DtoHistoryBody, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/history/${versionId}`,
       method: "GET",
       secure: true,
@@ -612,7 +612,7 @@ export class Docs<
     versionId: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/history/${versionId}`,
       method: "PATCH",
       secure: true,
@@ -633,7 +633,7 @@ export class Docs<
     docId: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/move/`,
       method: "POST",
       secure: true,
@@ -650,7 +650,7 @@ export class Docs<
    * @secure
    */
   getFavoriteDocList = (workspaceSlug: string, params: RequestParams = {}) =>
-    this.request<DtoDocFavorites[], AiplanDefinedError>({
+    this.request<DtoDocFavorites[], ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/user-favorite-docs/`,
       method: "GET",
       secure: true,
@@ -672,7 +672,7 @@ export class Docs<
     project: AiplanAddDocToFavoritesRequest,
     params: RequestParams = {},
   ) =>
-    this.request<DtoDocFavorites, AiplanDefinedError>({
+    this.request<DtoDocFavorites, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/user-favorite-docs/`,
       method: "POST",
       body: project,
@@ -695,7 +695,7 @@ export class Docs<
     docId: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/user-favorite-docs/${docId}`,
       method: "DELETE",
       secure: true,

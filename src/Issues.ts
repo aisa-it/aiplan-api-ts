@@ -11,7 +11,6 @@
  */
 
 import {
-  AiplanDefinedError,
   AiplanIssueCreateRequest,
   AiplanIssueLinkRequest,
   AiplanLinkedIssuesIds,
@@ -27,6 +26,7 @@ import {
   DtoIssueLight,
   DtoIssueLinkLight,
   DtoIssueSearchResult,
+  ErrdefsDefinedError,
   TypesIssuesListFilters,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
@@ -79,7 +79,7 @@ export class Issues<
     },
     params: RequestParams = {},
   ) =>
-    this.request<DtoIssueSearchResult, AiplanDefinedError>({
+    this.request<DtoIssueSearchResult, ErrdefsDefinedError>({
       path: `/api/auth/issues/search`,
       method: "POST",
       query: query,
@@ -123,7 +123,7 @@ export class Issues<
     },
     params: RequestParams = {},
   ) =>
-    this.request<AiplanNewIssueID, Record<string, any> | AiplanDefinedError>({
+    this.request<AiplanNewIssueID, Record<string, any> | ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/issues/migrate`,
       method: "POST",
       query: query,
@@ -166,7 +166,7 @@ export class Issues<
     },
     params: RequestParams = {},
   ) =>
-    this.request<void, Record<string, any> | AiplanDefinedError>({
+    this.request<void, Record<string, any> | ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/issues/migrate/byLabel`,
       method: "POST",
       query: query,
@@ -189,7 +189,7 @@ export class Issues<
     issuesIds: string[],
     params: RequestParams = {},
   ) =>
-    this.request<Record<string, string>, AiplanDefinedError>({
+    this.request<Record<string, string>, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/bulk-delete-issues`,
       method: "DELETE",
       body: issuesIds,
@@ -213,7 +213,7 @@ export class Issues<
     issue: AiplanIssueCreateRequest,
     params: RequestParams = {},
   ) =>
-    this.request<AiplanNewIssueID, AiplanDefinedError>({
+    this.request<AiplanNewIssueID, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/`,
       method: "POST",
       body: issue,
@@ -237,7 +237,7 @@ export class Issues<
     issueIdOrSeq: string,
     params: RequestParams = {},
   ) =>
-    this.request<DtoIssue, AiplanDefinedError>({
+    this.request<DtoIssue, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}`,
       method: "GET",
       secure: true,
@@ -260,7 +260,7 @@ export class Issues<
     issueIdOrSeq: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}`,
       method: "DELETE",
       secure: true,
@@ -288,7 +288,7 @@ export class Issues<
     },
     params: RequestParams = {},
   ) =>
-    this.request<DtoIssue, AiplanDefinedError>({
+    this.request<DtoIssue, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}`,
       method: "PATCH",
       body: data,
@@ -330,7 +330,7 @@ export class Issues<
       DaoPaginationResponse & {
         result?: DtoEntityActivityFull[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/activities`,
       method: "GET",
@@ -371,7 +371,7 @@ export class Issues<
       DaoPaginationResponse & {
         result?: DtoIssue[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/blockers-issues/available`,
       method: "GET",
@@ -412,7 +412,7 @@ export class Issues<
       DaoPaginationResponse & {
         result?: DtoIssue[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/blocks-issues/available`,
       method: "GET",
@@ -453,7 +453,7 @@ export class Issues<
       DaoPaginationResponse & {
         result?: DtoIssueComment[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/comments`,
       method: "GET",
@@ -484,7 +484,7 @@ export class Issues<
     },
     params: RequestParams = {},
   ) =>
-    this.request<DtoIssueComment, AiplanDefinedError>({
+    this.request<DtoIssueComment, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/comments`,
       method: "POST",
       body: data,
@@ -509,7 +509,7 @@ export class Issues<
     commentId: string,
     params: RequestParams = {},
   ) =>
-    this.request<DtoIssueComment, AiplanDefinedError>({
+    this.request<DtoIssueComment, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/comments/${commentId}`,
       method: "GET",
       secure: true,
@@ -532,7 +532,7 @@ export class Issues<
     commentId: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/comments/${commentId}`,
       method: "DELETE",
       secure: true,
@@ -561,7 +561,7 @@ export class Issues<
     },
     params: RequestParams = {},
   ) =>
-    this.request<DtoIssueComment, AiplanDefinedError>({
+    this.request<DtoIssueComment, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/comments/${commentId}`,
       method: "PATCH",
       body: data,
@@ -587,7 +587,7 @@ export class Issues<
     data: Record<string, string>,
     params: RequestParams = {},
   ) =>
-    this.request<DtoCommentReaction, AiplanDefinedError>({
+    this.request<DtoCommentReaction, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/comments/${commentId}/reactions`,
       method: "POST",
       body: data,
@@ -613,7 +613,7 @@ export class Issues<
     reaction: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/comments/${commentId}/reactions/${reaction}`,
       method: "DELETE",
       secure: true,
@@ -635,7 +635,7 @@ export class Issues<
     issueIdOrSeq: string,
     params: RequestParams = {},
   ) =>
-    this.request<any[], AiplanDefinedError>({
+    this.request<any[], ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/history`,
       method: "GET",
       secure: true,
@@ -662,7 +662,7 @@ export class Issues<
       (DaoPaginationResponse & {
         result?: DtoAttachment[];
       })[],
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/issue-attachments`,
       method: "GET",
@@ -690,7 +690,7 @@ export class Issues<
     },
     params: RequestParams = {},
   ) =>
-    this.request<DtoAttachment, AiplanDefinedError>({
+    this.request<DtoAttachment, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/issue-attachments`,
       method: "POST",
       body: data,
@@ -718,7 +718,7 @@ export class Issues<
     },
     params: RequestParams = {},
   ) =>
-    this.request<File, AiplanDefinedError>({
+    this.request<File, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/issue-attachments/all/`,
       method: "GET",
       body: data,
@@ -742,7 +742,7 @@ export class Issues<
     attachmentId: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/issue-attachments/${attachmentId}`,
       method: "DELETE",
       secure: true,
@@ -764,7 +764,7 @@ export class Issues<
     issueIdOrSeq: string,
     params: RequestParams = {},
   ) =>
-    this.request<DtoIssueLinkLight[], AiplanDefinedError>({
+    this.request<DtoIssueLinkLight[], ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/issue-links`,
       method: "GET",
       secure: true,
@@ -788,7 +788,7 @@ export class Issues<
     data: AiplanIssueLinkRequest,
     params: RequestParams = {},
   ) =>
-    this.request<DtoIssueLinkLight, AiplanDefinedError>({
+    this.request<DtoIssueLinkLight, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/issue-links`,
       method: "POST",
       body: data,
@@ -813,7 +813,7 @@ export class Issues<
     linkId: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/issue-links/${linkId}`,
       method: "DELETE",
       secure: true,
@@ -837,7 +837,7 @@ export class Issues<
     data: AiplanIssueLinkRequest,
     params: RequestParams = {},
   ) =>
-    this.request<DtoIssueLinkLight, AiplanDefinedError>({
+    this.request<DtoIssueLinkLight, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/issue-links/${linkId}`,
       method: "PATCH",
       body: data,
@@ -861,7 +861,7 @@ export class Issues<
     issueIdOrSeq: string,
     params: RequestParams = {},
   ) =>
-    this.request<DtoIssue[], AiplanDefinedError>({
+    this.request<DtoIssue[], ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/linked-issues`,
       method: "GET",
       secure: true,
@@ -885,7 +885,7 @@ export class Issues<
     data: AiplanLinkedIssuesIds,
     params: RequestParams = {},
   ) =>
-    this.request<DtoIssueLight[], AiplanDefinedError>({
+    this.request<DtoIssueLight[], ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/linked-issues`,
       method: "POST",
       body: data,
@@ -925,7 +925,7 @@ export class Issues<
       DaoPaginationResponse & {
         result?: DtoIssue[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/linked-issues/available/`,
       method: "GET",
@@ -966,7 +966,7 @@ export class Issues<
       DaoPaginationResponse & {
         result?: DtoIssue[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/parent-issues/available`,
       method: "GET",
@@ -991,7 +991,7 @@ export class Issues<
     issueIdOrSeq: string,
     params: RequestParams = {},
   ) =>
-    this.request<AiplanResponseSubIssueList, AiplanDefinedError>({
+    this.request<AiplanResponseSubIssueList, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/sub-issues`,
       method: "GET",
       secure: true,
@@ -1015,7 +1015,7 @@ export class Issues<
     data: AiplanSubIssuesIds,
     params: RequestParams = {},
   ) =>
-    this.request<DtoIssueLight[], AiplanDefinedError>({
+    this.request<DtoIssueLight[], ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/sub-issues`,
       method: "POST",
       body: data,
@@ -1055,7 +1055,7 @@ export class Issues<
       DaoPaginationResponse & {
         result?: DtoIssue[];
       },
-      AiplanDefinedError
+      ErrdefsDefinedError
     >({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/sub-issues/available`,
       method: "GET",
@@ -1081,7 +1081,7 @@ export class Issues<
     subIssueId: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/sub-issues/${subIssueId}/down`,
       method: "POST",
       secure: true,
@@ -1104,7 +1104,7 @@ export class Issues<
     subIssueId: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/sub-issues/${subIssueId}/up`,
       method: "POST",
       secure: true,

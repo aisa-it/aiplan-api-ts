@@ -11,9 +11,9 @@
  */
 
 import {
-  AiplanDefinedError,
   AiplanJiraInfoRequest,
   EntityJiraInfo,
+  ErrdefsDefinedError,
   IssuesImportImportStatus,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
@@ -31,7 +31,7 @@ export class Integrations<
    * @secure
    */
   cancelJiraImport = (importId: string, params: RequestParams = {}) =>
-    this.request<void, AiplanDefinedError>({
+    this.request<void, ErrdefsDefinedError>({
       path: `/api/auth/import/jira/cancel/${importId}`,
       method: "POST",
       secure: true,
@@ -48,7 +48,7 @@ export class Integrations<
    * @secure
    */
   getJiraInfo = (data: AiplanJiraInfoRequest, params: RequestParams = {}) =>
-    this.request<EntityJiraInfo, AiplanDefinedError>({
+    this.request<EntityJiraInfo, ErrdefsDefinedError>({
       path: `/api/auth/import/jira/info`,
       method: "POST",
       body: data,
@@ -71,7 +71,7 @@ export class Integrations<
     data: AiplanJiraInfoRequest,
     params: RequestParams = {},
   ) =>
-    this.request<Record<string, string>, AiplanDefinedError>({
+    this.request<Record<string, string>, ErrdefsDefinedError>({
       path: `/api/auth/import/jira/start/${projectKey}`,
       method: "POST",
       body: data,
@@ -90,7 +90,7 @@ export class Integrations<
    * @secure
    */
   getMyImportList = (params: RequestParams = {}) =>
-    this.request<Record<string, any>, AiplanDefinedError>({
+    this.request<Record<string, any>, ErrdefsDefinedError>({
       path: `/api/auth/import/jira/status`,
       method: "GET",
       secure: true,
@@ -108,7 +108,7 @@ export class Integrations<
    * @secure
    */
   getJiraImportStatus = (importId: string, params: RequestParams = {}) =>
-    this.request<IssuesImportImportStatus, AiplanDefinedError>({
+    this.request<IssuesImportImportStatus, ErrdefsDefinedError>({
       path: `/api/auth/import/jira/status/${importId}`,
       method: "GET",
       secure: true,
@@ -125,7 +125,7 @@ export class Integrations<
    * @request GET:/api/auth/notification-bot-link/
    */
   getTgBotLink = (params: RequestParams = {}) =>
-    this.request<Record<string, boolean>, AiplanDefinedError>({
+    this.request<Record<string, boolean>, ErrdefsDefinedError>({
       path: `/api/auth/notification-bot-link/`,
       method: "GET",
       format: "json",
@@ -141,7 +141,7 @@ export class Integrations<
    * @secure
    */
   redirectToMinioFile = (fileName: string, params: RequestParams = {}) =>
-    this.request<any, void | AiplanDefinedError>({
+    this.request<any, void | ErrdefsDefinedError>({
       path: `/api/file/${fileName}`,
       method: "GET",
       secure: true,

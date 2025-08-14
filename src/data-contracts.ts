@@ -57,12 +57,6 @@ export interface AiplanCreateWorkspaceRequest {
   slug?: string;
 }
 
-export interface AiplanDefinedError {
-  code?: number;
-  error?: string;
-  ru_error?: string;
-}
-
 export interface AiplanEmailCaptchaRequest {
   captcha_payload: string;
   email: string;
@@ -907,6 +901,12 @@ export interface EntityPrioritiesMapping {
   medium_id?: string;
   null_id?: string;
   urgent_id?: string;
+}
+
+export interface ErrdefsDefinedError {
+  code?: number;
+  error?: string;
+  ru_error?: string;
 }
 
 export interface IntegrationsIntegration {
