@@ -903,7 +903,7 @@ export interface EntityPrioritiesMapping {
   urgent_id?: string;
 }
 
-export interface ErrdefsDefinedError {
+export interface ApierrorsDefinedError {
   code?: number;
   error?: string;
   ru_error?: string;

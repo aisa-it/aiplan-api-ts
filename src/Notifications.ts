@@ -13,8 +13,8 @@
 import {
   AiplanNotificationIdResponse,
   AiplanNotificationViewRequest,
+  ApierrorsDefinedError,
   DaoPaginationResponse,
-  ErrdefsDefinedError,
   NotificationsNotificationResponse,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
@@ -50,7 +50,7 @@ export class Notifications<
       DaoPaginationResponse & {
         result?: NotificationsNotificationResponse[];
       },
-      ErrdefsDefinedError
+      ApierrorsDefinedError
     >({
       path: `/api/auth/users/me/notifications`,
       method: "GET",
@@ -73,7 +73,7 @@ export class Notifications<
     data: AiplanNotificationViewRequest,
     params: RequestParams = {},
   ) =>
-    this.request<AiplanNotificationIdResponse, ErrdefsDefinedError>({
+    this.request<AiplanNotificationIdResponse, ApierrorsDefinedError>({
       path: `/api/auth/users/me/notifications`,
       method: "POST",
       body: data,
@@ -92,7 +92,7 @@ export class Notifications<
    * @secure
    */
   deleteMyNotifications = (params: RequestParams = {}) =>
-    this.request<void, ErrdefsDefinedError>({
+    this.request<void, ApierrorsDefinedError>({
       path: `/api/auth/users/me/notifications`,
       method: "DELETE",
       secure: true,

@@ -18,6 +18,7 @@ import {
   AiplanRequestMessage,
   AiplanRequestRoleMember,
   AiplanResponseLastWorkspace,
+  ApierrorsDefinedError,
   DaoPaginationResponse,
   DtoEntityActivityFull,
   DtoStateLight,
@@ -25,7 +26,6 @@ import {
   DtoWorkspaceFavorites,
   DtoWorkspaceMember,
   DtoWorkspaceWithCount,
-  ErrdefsDefinedError,
   IntegrationsIntegration,
   TypesActivityTable,
 } from "./data-contracts";
@@ -67,7 +67,7 @@ export class Workspace<
       DaoPaginationResponse & {
         result?: DtoEntityActivityFull[];
       },
-      ErrdefsDefinedError
+      ApierrorsDefinedError
     >({
       path: `/api/auth/admin/activities/`,
       method: "GET",
@@ -87,7 +87,7 @@ export class Workspace<
    * @secure
    */
   getLastVisitedWorkspace = (params: RequestParams = {}) =>
-    this.request<AiplanResponseLastWorkspace, ErrdefsDefinedError>({
+    this.request<AiplanResponseLastWorkspace, ApierrorsDefinedError>({
       path: `/api/auth/users/last-visited-workspace`,
       method: "GET",
       secure: true,
@@ -110,7 +110,7 @@ export class Workspace<
     },
     params: RequestParams = {},
   ) =>
-    this.request<DtoWorkspaceWithCount[], ErrdefsDefinedError>({
+    this.request<DtoWorkspaceWithCount[], ApierrorsDefinedError>({
       path: `/api/auth/users/me/workspaces/`,
       method: "GET",
       query: query,
@@ -129,7 +129,7 @@ export class Workspace<
    * @secure
    */
   getFavoriteWorkspaceList = (params: RequestParams = {}) =>
-    this.request<DtoWorkspaceFavorites[], ErrdefsDefinedError>({
+    this.request<DtoWorkspaceFavorites[], ApierrorsDefinedError>({
       path: `/api/auth/users/user-favorite-workspaces/`,
       method: "GET",
       secure: true,
@@ -149,7 +149,7 @@ export class Workspace<
     workspace: AiplanRequestAddFavorite,
     params: RequestParams = {},
   ) =>
-    this.request<string, ErrdefsDefinedError>({
+    this.request<string, ApierrorsDefinedError>({
       path: `/api/auth/users/user-favorite-workspaces/`,
       method: "POST",
       body: workspace,
@@ -171,7 +171,7 @@ export class Workspace<
     workspaceId: string,
     params: RequestParams = {},
   ) =>
-    this.request<string, ErrdefsDefinedError>({
+    this.request<string, ApierrorsDefinedError>({
       path: `/api/auth/users/user-favorite-workspaces/${workspaceId}`,
       method: "DELETE",
       secure: true,
@@ -192,7 +192,7 @@ export class Workspace<
     request: AiplanCreateWorkspaceRequest,
     params: RequestParams = {},
   ) =>
-    this.request<DtoWorkspace, ErrdefsDefinedError>({
+    this.request<DtoWorkspace, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/`,
       method: "POST",
       body: request,
@@ -211,7 +211,7 @@ export class Workspace<
    * @secure
    */
   getWorkspace = (workspaceSlug: string, params: RequestParams = {}) =>
-    this.request<DtoWorkspace, ErrdefsDefinedError>({
+    this.request<DtoWorkspace, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}`,
       method: "GET",
       secure: true,
@@ -228,7 +228,7 @@ export class Workspace<
    * @secure
    */
   deleteWorkspace = (workspaceSlug: string, params: RequestParams = {}) =>
-    this.request<void, ErrdefsDefinedError>({
+    this.request<void, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}`,
       method: "DELETE",
       secure: true,
@@ -249,7 +249,7 @@ export class Workspace<
     workspace: DtoWorkspace,
     params: RequestParams = {},
   ) =>
-    this.request<DtoWorkspace, ErrdefsDefinedError>({
+    this.request<DtoWorkspace, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}`,
       method: "PATCH",
       body: workspace,
@@ -292,7 +292,7 @@ export class Workspace<
       DaoPaginationResponse & {
         result?: DtoEntityActivityFull[];
       },
-      ErrdefsDefinedError
+      ApierrorsDefinedError
     >({
       path: `/api/auth/workspaces/${workspaceSlug}/activities`,
       method: "GET",
@@ -312,7 +312,7 @@ export class Workspace<
    * @secure
    */
   getIntegrationList = (workspaceSlug: string, params: RequestParams = {}) =>
-    this.request<IntegrationsIntegration[], ErrdefsDefinedError>({
+    this.request<IntegrationsIntegration[], ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/integrations/`,
       method: "GET",
       secure: true,
@@ -334,7 +334,7 @@ export class Workspace<
     name: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, ErrdefsDefinedError>({
+    this.request<void, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/integrations/add/${name}/`,
       method: "POST",
       secure: true,
@@ -355,7 +355,7 @@ export class Workspace<
     name: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, ErrdefsDefinedError>({
+    this.request<void, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/integrations/${name}/`,
       method: "POST",
       secure: true,
@@ -376,7 +376,7 @@ export class Workspace<
     invite: AiplanRequestMembersInvite,
     params: RequestParams = {},
   ) =>
-    this.request<Record<string, any>, ErrdefsDefinedError>({
+    this.request<Record<string, any>, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/invite`,
       method: "POST",
       body: invite,
@@ -398,7 +398,7 @@ export class Workspace<
     workspaceSlug: string,
     params: RequestParams = {},
   ) =>
-    this.request<Record<string, string>, ErrdefsDefinedError>({
+    this.request<Record<string, string>, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/jitsi-token`,
       method: "GET",
       secure: true,
@@ -422,7 +422,7 @@ export class Workspace<
     },
     params: RequestParams = {},
   ) =>
-    this.request<DtoWorkspace, ErrdefsDefinedError>({
+    this.request<DtoWorkspace, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/logo`,
       method: "POST",
       body: data,
@@ -441,7 +441,7 @@ export class Workspace<
    * @secure
    */
   deleteWorkspaceLogo = (workspaceSlug: string, params: RequestParams = {}) =>
-    this.request<DtoWorkspace, ErrdefsDefinedError>({
+    this.request<DtoWorkspace, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/logo`,
       method: "DELETE",
       secure: true,
@@ -493,7 +493,7 @@ export class Workspace<
       DaoPaginationResponse & {
         result?: DtoWorkspaceMember[];
       },
-      ErrdefsDefinedError
+      ApierrorsDefinedError
     >({
       path: `/api/auth/workspaces/${workspaceSlug}/members`,
       method: "GET",
@@ -522,7 +522,7 @@ export class Workspace<
     },
     params: RequestParams = {},
   ) =>
-    this.request<Record<string, TypesActivityTable>, ErrdefsDefinedError>({
+    this.request<Record<string, TypesActivityTable>, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/members/activities/`,
       method: "GET",
       query: query,
@@ -545,7 +545,7 @@ export class Workspace<
     data: AiplanRequestMessage,
     params: RequestParams = {},
   ) =>
-    this.request<void, ErrdefsDefinedError>({
+    this.request<void, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/members/message/`,
       method: "POST",
       body: data,
@@ -567,7 +567,7 @@ export class Workspace<
     memberId: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, ErrdefsDefinedError>({
+    this.request<void, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/members/${memberId}`,
       method: "DELETE",
       secure: true,
@@ -589,7 +589,7 @@ export class Workspace<
     role: AiplanRequestRoleMember,
     params: RequestParams = {},
   ) =>
-    this.request<DtoWorkspaceMember, ErrdefsDefinedError>({
+    this.request<DtoWorkspaceMember, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/members/${memberId}`,
       method: "PATCH",
       body: role,
@@ -613,7 +613,7 @@ export class Workspace<
     email: AiplanRequestEmailMember,
     params: RequestParams = {},
   ) =>
-    this.request<void, ErrdefsDefinedError>({
+    this.request<void, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/members/${memberId}/set-email/`,
       method: "PATCH",
       body: email,
@@ -631,7 +631,7 @@ export class Workspace<
    * @secure
    */
   getWorkspaceStateList = (workspaceSlug: string, params: RequestParams = {}) =>
-    this.request<Record<string, DtoStateLight[]>, ErrdefsDefinedError>({
+    this.request<Record<string, DtoStateLight[]>, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/states/`,
       method: "GET",
       secure: true,
@@ -648,7 +648,7 @@ export class Workspace<
    * @secure
    */
   getWorkspaceToken = (workspaceSlug: string, params: RequestParams = {}) =>
-    this.request<string, ErrdefsDefinedError>({
+    this.request<string, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/token`,
       method: "GET",
       secure: true,
@@ -664,7 +664,7 @@ export class Workspace<
    * @secure
    */
   resetWorkspaceToken = (workspaceSlug: string, params: RequestParams = {}) =>
-    this.request<string, ErrdefsDefinedError>({
+    this.request<string, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/token/reset/`,
       method: "POST",
       secure: true,
@@ -681,7 +681,7 @@ export class Workspace<
    * @secure
    */
   getWorkspaceMemberMe = (workspaceSlug: string, params: RequestParams = {}) =>
-    this.request<DtoWorkspaceMember, ErrdefsDefinedError>({
+    this.request<DtoWorkspaceMember, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/workspace-members/me/`,
       method: "GET",
       secure: true,

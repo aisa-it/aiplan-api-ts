@@ -11,10 +11,10 @@
  */
 
 import {
+  ApierrorsDefinedError,
   DaoPaginationResponse,
   DtoSearchFilterFull,
   DtoSearchFilterLight,
-  ErrdefsDefinedError,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
@@ -51,7 +51,7 @@ export class SearchFilters<
       DaoPaginationResponse & {
         result?: DtoSearchFilterLight[];
       },
-      ErrdefsDefinedError
+      ApierrorsDefinedError
     >({
       path: `/api/auth/filters/`,
       method: "GET",
@@ -73,7 +73,7 @@ export class SearchFilters<
     data: DtoSearchFilterLight,
     params: RequestParams = {},
   ) =>
-    this.request<DtoSearchFilterFull, ErrdefsDefinedError>({
+    this.request<DtoSearchFilterFull, ApierrorsDefinedError>({
       path: `/api/auth/filters/`,
       method: "POST",
       body: data,
@@ -92,7 +92,7 @@ export class SearchFilters<
    * @secure
    */
   getSearchFilter = (filterId: string, params: RequestParams = {}) =>
-    this.request<DtoSearchFilterFull, ErrdefsDefinedError>({
+    this.request<DtoSearchFilterFull, ApierrorsDefinedError>({
       path: `/api/auth/filters/${filterId}/`,
       method: "GET",
       secure: true,
@@ -109,7 +109,7 @@ export class SearchFilters<
    * @secure
    */
   deleteSearchFilter = (filterId: string, params: RequestParams = {}) =>
-    this.request<void, ErrdefsDefinedError>({
+    this.request<void, ApierrorsDefinedError>({
       path: `/api/auth/filters/${filterId}/`,
       method: "DELETE",
       secure: true,
@@ -129,7 +129,7 @@ export class SearchFilters<
     data: DtoSearchFilterLight,
     params: RequestParams = {},
   ) =>
-    this.request<void, ErrdefsDefinedError>({
+    this.request<void, ApierrorsDefinedError>({
       path: `/api/auth/filters/${filterId}/`,
       method: "PATCH",
       body: data,
@@ -147,7 +147,7 @@ export class SearchFilters<
    * @secure
    */
   getMySearchFilterList = (params: RequestParams = {}) =>
-    this.request<DtoSearchFilterFull[], ErrdefsDefinedError>({
+    this.request<DtoSearchFilterFull[], ApierrorsDefinedError>({
       path: `/api/auth/users/me/filters/`,
       method: "GET",
       secure: true,
@@ -164,7 +164,7 @@ export class SearchFilters<
    * @secure
    */
   addSearchFilterToMe = (filterId: string, params: RequestParams = {}) =>
-    this.request<void, ErrdefsDefinedError>({
+    this.request<void, ApierrorsDefinedError>({
       path: `/api/auth/users/me/filters/${filterId}/`,
       method: "POST",
       secure: true,
@@ -180,7 +180,7 @@ export class SearchFilters<
    * @secure
    */
   deleteSearchFilterFromMe = (filterId: string, params: RequestParams = {}) =>
-    this.request<void, ErrdefsDefinedError>({
+    this.request<void, ApierrorsDefinedError>({
       path: `/api/auth/users/me/filters/${filterId}/`,
       method: "DELETE",
       secure: true,
