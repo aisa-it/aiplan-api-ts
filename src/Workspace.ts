@@ -202,7 +202,7 @@ export class Workspace<
       ...params,
     });
   /**
-   * @description Возвращает информацию о рабочем пространстве по его ID.
+   * @description Возвращает информацию о рабочем пространстве по его ID
    *
    * @tags Workspace
    * @name GetWorkspace

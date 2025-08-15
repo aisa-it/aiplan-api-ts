@@ -295,6 +295,12 @@ export interface AltchaChallenge {
   signature?: string;
 }
 
+export interface ApierrorsDefinedError {
+  code?: number;
+  error?: string;
+  ru_error?: string;
+}
+
 export interface DaoPaginationResponse {
   count?: number;
   limit?: number;
@@ -901,12 +907,6 @@ export interface EntityPrioritiesMapping {
   medium_id?: string;
   null_id?: string;
   urgent_id?: string;
-}
-
-export interface ApierrorsDefinedError {
-  code?: number;
-  error?: string;
-  ru_error?: string;
 }
 
 export interface IntegrationsIntegration {

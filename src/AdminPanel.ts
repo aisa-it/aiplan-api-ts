@@ -620,6 +620,88 @@ export class AdminPanel<
       ...params,
     });
   /**
+   * @description Метод позволяет обновить роль участника рабочего пространства. Если участник отсутствует, он будет создан.
+   *
+   * @tags AdminPanel
+   * @name AuthAdminUsersWorkspacesMemberCreate
+   * @summary Пользователи: Обновить роль участника пространства
+   * @request POST:/api/auth/admin/users/{userId}/workspaces/{workspaceId}/member/
+   */
+  authAdminUsersWorkspacesMemberCreate = (
+    workspaceId: string,
+    userId: string,
+    body: AiplanRoleUpdRequest,
+    params: RequestParams = {},
+  ) =>
+    this.request<void, ApierrorsDefinedError>({
+      path: `/api/auth/admin/users/${userId}/workspaces/${workspaceId}/member/`,
+      method: "POST",
+      body: body,
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
+   * @description Удаляет участника рабочего пространства, а также все его связи с проектами внутри данного пространства.
+   *
+   * @tags AdminPanel
+   * @name AuthAdminUsersWorkspacesMemberDelete
+   * @summary Пользователи: Удалить участника пространства
+   * @request DELETE:/api/auth/admin/users/{userId}/workspaces/{workspaceId}/member/
+   */
+  authAdminUsersWorkspacesMemberDelete = (
+    workspaceId: string,
+    userId: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<void, ApierrorsDefinedError>({
+      path: `/api/auth/admin/users/${userId}/workspaces/${workspaceId}/member/`,
+      method: "DELETE",
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
+   * @description Метод обновляет роль участника проекта в рамках рабочего пространства. Если участник не найден в проекте, он будет создан. Проверяется, что участник является членом рабочего пространства.
+   *
+   * @tags AdminPanel
+   * @name AuthAdminUsersWorkspacesProjectsMemberCreate
+   * @summary Пользователи: Обновить роль участника проекта
+   * @request POST:/api/auth/admin/users/{userId}/workspaces/{workspaceId}/projects/{projectId}/member/
+   */
+  authAdminUsersWorkspacesProjectsMemberCreate = (
+    workspaceId: string,
+    userId: string,
+    projectId: string,
+    body: AiplanRoleUpdRequest,
+    params: RequestParams = {},
+  ) =>
+    this.request<void, ApierrorsDefinedError>({
+      path: `/api/auth/admin/users/${userId}/workspaces/${workspaceId}/projects/${projectId}/member/`,
+      method: "POST",
+      body: body,
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
+   * @description Метод удаляет участника проекта из рабочего пространства. Если участник не найден в проекте, возвращается ошибка.
+   *
+   * @tags AdminPanel
+   * @name AuthAdminUsersWorkspacesProjectsMemberDelete
+   * @summary Пользователи: Удалить участника проекта
+   * @request DELETE:/api/auth/admin/users/{userId}/workspaces/{workspaceId}/projects/{projectId}/member/
+   */
+  authAdminUsersWorkspacesProjectsMemberDelete = (
+    workspaceId: string,
+    userId: string,
+    projectId: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<void, ApierrorsDefinedError>({
+      path: `/api/auth/admin/users/${userId}/workspaces/${workspaceId}/projects/${projectId}/member/`,
+      method: "DELETE",
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
    * @description Возвращает список всех рабочих пространств с поддержкой пагинации, сортировки и поиска
    *
    * @tags AdminPanel
@@ -664,88 +746,6 @@ export class AdminPanel<
       secure: true,
       type: ContentType.Json,
       format: "json",
-      ...params,
-    });
-  /**
-   * @description Метод позволяет обновить роль участника рабочего пространства. Если участник отсутствует, он будет создан.
-   *
-   * @tags AdminPanel
-   * @name AuthAdminWorkspacesMembersCreate
-   * @summary Пользователи: Обновить роль участника пространства
-   * @request POST:/api/auth/admin/workspaces/{workspaceId}/members/{userId}
-   */
-  authAdminWorkspacesMembersCreate = (
-    workspaceId: string,
-    userId: string,
-    body: AiplanRoleUpdRequest,
-    params: RequestParams = {},
-  ) =>
-    this.request<void, ApierrorsDefinedError>({
-      path: `/api/auth/admin/workspaces/${workspaceId}/members/${userId}`,
-      method: "POST",
-      body: body,
-      type: ContentType.Json,
-      ...params,
-    });
-  /**
-   * @description Удаляет участника рабочего пространства, а также все его связи с проектами внутри данного пространства.
-   *
-   * @tags AdminPanel
-   * @name AuthAdminWorkspacesMembersDelete
-   * @summary Пользователи: Удалить участника пространства
-   * @request DELETE:/api/auth/admin/workspaces/{workspaceId}/members/{userId}
-   */
-  authAdminWorkspacesMembersDelete = (
-    workspaceId: string,
-    userId: string,
-    params: RequestParams = {},
-  ) =>
-    this.request<void, ApierrorsDefinedError>({
-      path: `/api/auth/admin/workspaces/${workspaceId}/members/${userId}`,
-      method: "DELETE",
-      type: ContentType.Json,
-      ...params,
-    });
-  /**
-   * @description Метод обновляет роль участника проекта в рамках рабочего пространства. Если участник не найден в проекте, он будет создан. Проверяется, что участник является членом рабочего пространства.
-   *
-   * @tags AdminPanel
-   * @name AuthAdminWorkspacesProjectsMembersCreate
-   * @summary Пользователи: Обновить роль участника проекта
-   * @request POST:/api/auth/admin/workspaces/{workspaceId}/projects/{projectId}/members/{userId}
-   */
-  authAdminWorkspacesProjectsMembersCreate = (
-    workspaceId: string,
-    userId: string,
-    projectId: string,
-    body: AiplanRoleUpdRequest,
-    params: RequestParams = {},
-  ) =>
-    this.request<void, ApierrorsDefinedError>({
-      path: `/api/auth/admin/workspaces/${workspaceId}/projects/${projectId}/members/${userId}`,
-      method: "POST",
-      body: body,
-      type: ContentType.Json,
-      ...params,
-    });
-  /**
-   * @description Метод удаляет участника проекта из рабочего пространства. Если участник не найден в проекте, возвращается ошибка.
-   *
-   * @tags AdminPanel
-   * @name AuthAdminWorkspacesProjectsMembersDelete
-   * @summary Пользователи: Удалить участника проекта
-   * @request DELETE:/api/auth/admin/workspaces/{workspaceId}/projects/{projectId}/members/{userId}
-   */
-  authAdminWorkspacesProjectsMembersDelete = (
-    workspaceId: string,
-    userId: string,
-    projectId: string,
-    params: RequestParams = {},
-  ) =>
-    this.request<void, ApierrorsDefinedError>({
-      path: `/api/auth/admin/workspaces/${workspaceId}/projects/${projectId}/members/${userId}`,
-      method: "DELETE",
-      type: ContentType.Json,
       ...params,
     });
 }
