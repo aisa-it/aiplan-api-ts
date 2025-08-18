@@ -1068,7 +1068,10 @@ export interface TypesTheme {
 }
 
 export interface TypesUserSettings {
+  app_notification_mute?: boolean;
   deadline_notification?: number;
+  email_notification_mute?: boolean;
+  telegram_notification_mute?: boolean;
 }
 
 export interface TypesValidationRule {
