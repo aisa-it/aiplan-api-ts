@@ -35,24 +35,6 @@ export class ReleaseNotes<
       ...params,
     });
   /**
-   * @description Возвращает информацию о примечаниях к релизу
-   *
-   * @tags ReleaseNotes
-   * @name GetRecentReleaseNoteList
-   * @summary Релизы: получение примечаний к релизу начиная с указанной версии
-   * @request GET:/api/auth/auth/release-notes/{noteId}
-   * @secure
-   */
-  getRecentReleaseNoteList = (noteId: string, params: RequestParams = {}) =>
-    this.request<DtoReleaseNoteLight[], ApierrorsDefinedError>({
-      path: `/api/auth/auth/release-notes/${noteId}`,
-      method: "GET",
-      secure: true,
-      type: ContentType.Json,
-      format: "json",
-      ...params,
-    });
-  /**
    * @description Возвращает список обновлений
    *
    * @tags ReleaseNotes
@@ -66,6 +48,24 @@ export class ReleaseNotes<
       path: `/api/auth/release-notes/`,
       method: "GET",
       secure: true,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Возвращает информацию о примечаниях к релизу
+   *
+   * @tags ReleaseNotes
+   * @name GetRecentReleaseNoteList
+   * @summary Релизы: получение примечаний к релизу начиная с указанной версии
+   * @request GET:/api/auth/release-notes/{noteId}
+   * @secure
+   */
+  getRecentReleaseNoteList = (noteId: string, params: RequestParams = {}) =>
+    this.request<DtoReleaseNoteLight[], ApierrorsDefinedError>({
+      path: `/api/auth/release-notes/${noteId}`,
+      method: "GET",
+      secure: true,
+      type: ContentType.Json,
       format: "json",
       ...params,
     });
