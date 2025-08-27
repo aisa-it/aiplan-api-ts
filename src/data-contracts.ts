@@ -118,6 +118,12 @@ export interface AiplanIssueLinkRequest {
   url?: string;
 }
 
+export interface AiplanIssueLockResponse {
+  locked_by?: DtoUserLight;
+  locked_until?: string;
+  ok?: boolean;
+}
+
 export interface AiplanJiraInfoRequest {
   block_link_id?: string;
   jira_url?: string;

@@ -13,6 +13,7 @@
 import {
   AiplanIssueCreateRequest,
   AiplanIssueLinkRequest,
+  AiplanIssueLockResponse,
   AiplanLinkedIssuesIds,
   AiplanNewIssueID,
   AiplanResponseSubIssueList,
@@ -620,6 +621,52 @@ export class Issues<
       method: "DELETE",
       secure: true,
       type: ContentType.Json,
+      ...params,
+    });
+  /**
+   * @description Блокирует описание задачи за вызвавшим пользователем, так что только он сможет сохранять описание
+   *
+   * @tags Issues
+   * @name IssueDescriptionLock
+   * @summary Задачи: Блокировка описания задачи за пользователем
+   * @request POST:/api/auth/workspaces/{workspaceSlug}/projects/{projectId}/issues/{issueIdOrSeq}/description-lock
+   * @secure
+   */
+  issueDescriptionLock = (
+    workspaceSlug: string,
+    projectId: string,
+    issueIdOrSeq: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<
+      AiplanIssueLockResponse,
+      ApierrorsDefinedError | AiplanIssueLockResponse
+    >({
+      path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/description-lock`,
+      method: "POST",
+      secure: true,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Разблокирует описание задачи
+   *
+   * @tags Issues
+   * @name IssueDescriptionUnlock
+   * @summary Задачи: Разблокировка описания задачи
+   * @request POST:/api/auth/workspaces/{workspaceSlug}/projects/{projectId}/issues/{issueIdOrSeq}/description-unlock
+   * @secure
+   */
+  issueDescriptionUnlock = (
+    workspaceSlug: string,
+    projectId: string,
+    issueIdOrSeq: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<void, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/description-unlock`,
+      method: "POST",
+      secure: true,
       ...params,
     });
   /**
