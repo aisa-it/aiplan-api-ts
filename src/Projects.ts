@@ -685,7 +685,7 @@ export class Projects<
    * @tags Projects
    * @name UpdateProjectView
    * @summary Проекты: установка фильтров для просмотра проектов
-   * @request POST:/api/auth/workspaces/{workspaceSlug}/projects/{projectId}/project-views
+   * @request POST:/api/auth/workspaces/{workspaceSlug}/projects/{projectId}/project-views/
    * @secure
    */
   updateProjectView = (
@@ -695,7 +695,7 @@ export class Projects<
     params: RequestParams = {},
   ) =>
     this.request<string, ApierrorsDefinedError>({
-      path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/project-views`,
+      path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/project-views/`,
       method: "POST",
       body: view_props,
       secure: true,

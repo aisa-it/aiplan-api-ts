@@ -232,12 +232,12 @@ export interface AiplanUserUpdateRequest {
 }
 
 export interface AiplanProjectNotificationRequest {
-  notification_author_settings_app?: TypesNotificationSettings;
-  notification_author_settings_email?: TypesNotificationSettings;
-  notification_author_settings_tg?: TypesNotificationSettings;
-  notification_settings_app?: TypesNotificationSettings;
-  notification_settings_email?: TypesNotificationSettings;
-  notification_settings_tg?: TypesNotificationSettings;
+  notification_author_settings_app?: TypesProjectMemberNS;
+  notification_author_settings_email?: TypesProjectMemberNS;
+  notification_author_settings_tg?: TypesProjectMemberNS;
+  notification_settings_app?: TypesProjectMemberNS;
+  notification_settings_email?: TypesProjectMemberNS;
+  notification_settings_tg?: TypesProjectMemberNS;
 }
 
 export interface AiplanReqAnswer {
@@ -689,12 +689,12 @@ export interface DtoProjectMember {
   is_default_watcher?: boolean;
   member?: DtoUserLight | null;
   member_id?: string;
-  notification_author_settings_app?: TypesNotificationSettings;
-  notification_author_settings_email?: TypesNotificationSettings;
-  notification_author_settings_tg?: TypesNotificationSettings;
-  notification_settings_app?: TypesNotificationSettings;
-  notification_settings_email?: TypesNotificationSettings;
-  notification_settings_tg?: TypesNotificationSettings;
+  notification_author_settings_app?: TypesProjectMemberNS;
+  notification_author_settings_email?: TypesProjectMemberNS;
+  notification_author_settings_tg?: TypesProjectMemberNS;
+  notification_settings_app?: TypesProjectMemberNS;
+  notification_settings_email?: TypesProjectMemberNS;
+  notification_settings_tg?: TypesProjectMemberNS;
   project?: DtoProjectLight | null;
   project_id?: string;
   role?: number;
@@ -1044,7 +1044,7 @@ export interface TypesIssuesListFilters {
   workspaces?: string[];
 }
 
-export interface TypesNotificationSettings {
+export interface TypesProjectMemberNS {
   disable_assignees?: boolean;
   disable_attachments?: boolean;
   disable_blockedBy?: boolean;
@@ -1052,6 +1052,7 @@ export interface TypesNotificationSettings {
   disable_comments?: boolean;
   disable_deadline?: boolean;
   disable_desc?: boolean;
+  disable_issue_new?: boolean;
   disable_issue_transfer?: boolean;
   disable_labels?: boolean;
   disable_linked?: boolean;
@@ -1059,6 +1060,17 @@ export interface TypesNotificationSettings {
   disable_name?: boolean;
   disable_parent?: boolean;
   disable_priority?: boolean;
+  disable_project_default_assignee?: boolean;
+  disable_project_default_watcher?: boolean;
+  disable_project_identifier?: boolean;
+  disable_project_issue?: boolean;
+  disable_project_label?: boolean;
+  disable_project_member?: boolean;
+  disable_project_name?: boolean;
+  disable_project_owner?: boolean;
+  disable_project_public?: boolean;
+  disable_project_role?: boolean;
+  disable_project_status?: boolean;
   disable_state?: boolean;
   disable_sub_issue?: boolean;
   disable_targetDate?: boolean;
@@ -1099,6 +1111,7 @@ export interface TypesViewProps {
   activeTab?: string;
   autoSave?: boolean;
   columns_to_show?: string[];
+  draft?: boolean;
   filters?: TypesViewFilters;
   group_tables_hide?: Record<string, boolean>;
   issueView?: "list" | "kanban" | "calendar" | "gantt_chart";

@@ -1026,6 +1026,28 @@ export class Issues<
       ...params,
     });
   /**
+   * @description Возвращает PDF-файл в соответствии с заданными параметрами
+   *
+   * @tags Issues
+   * @name GetIssuePdf
+   * @summary Задачи: Получение PDF-файла задачи
+   * @request GET:/api/auth/workspaces/{workspaceSlug}/projects/{projectId}/issues/{issueIdOrSeq}/pdf
+   * @secure
+   */
+  getIssuePdf = (
+    workspaceSlug: string,
+    projectId: string,
+    issueIdOrSeq: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<File, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/pdf`,
+      method: "GET",
+      secure: true,
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
    * @description Возвращает список подзадач для указанной задачи с распределением по состояниям
    *
    * @tags Issues
