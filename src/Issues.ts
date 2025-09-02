@@ -58,6 +58,11 @@ export class Issues<
        */
       order_by?: string;
       /**
+       * Поле для группировки результатов
+       * @default """"
+       */
+      group_by?: string;
+      /**
        * Смещение для пагинации
        * @default -1
        */
