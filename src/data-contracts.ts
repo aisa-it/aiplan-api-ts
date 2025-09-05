@@ -429,6 +429,7 @@ export interface DtoForm {
   target_project_detail?: DtoProjectLight | null;
   target_project_id?: string | null;
   title: string;
+  url?: string;
   workspace?: string;
   workspace_detail?: DtoWorkspaceLight | null;
 }
@@ -453,6 +454,7 @@ export interface DtoFormLight {
   slug?: string;
   target_project_id?: string | null;
   title: string;
+  url?: string;
   workspace?: string;
 }
 
@@ -546,6 +548,7 @@ export interface DtoIssueCommentLight {
 export interface DtoIssueLight {
   id?: string;
   name?: string;
+  priority?: string | null;
   sequence_id?: number;
   short_url?: string;
   state?: string | null;
