@@ -646,6 +646,7 @@ export interface DtoProject {
   id?: string;
   identifier?: string;
   is_favorite?: boolean;
+  logo?: string | null;
   name?: string;
   name_highlighted?: string;
   project_lead?: string;
@@ -677,6 +678,7 @@ export interface DtoProjectLight {
   id?: string;
   identifier?: string;
   is_favorite?: boolean;
+  logo?: string | null;
   name?: string;
   name_highlighted?: string;
   project_lead?: string;
@@ -746,6 +748,8 @@ export interface DtoSearchFilterFull {
   id?: string;
   name?: string;
   public?: boolean;
+  short_url?: string;
+  url?: string;
 }
 
 export interface DtoSearchFilterLight {
@@ -754,6 +758,8 @@ export interface DtoSearchFilterLight {
   id?: string;
   name?: string;
   public?: boolean;
+  short_url?: string;
+  url?: string;
 }
 
 export interface DtoStateLight {
@@ -1066,14 +1072,15 @@ export interface TypesProjectMemberNS {
   disable_project_default_assignee?: boolean;
   disable_project_default_watcher?: boolean;
   disable_project_identifier?: boolean;
-  disable_project_issue?: boolean;
   disable_project_label?: boolean;
+  disable_project_logo?: boolean;
   disable_project_member?: boolean;
   disable_project_name?: boolean;
   disable_project_owner?: boolean;
   disable_project_public?: boolean;
   disable_project_role?: boolean;
   disable_project_status?: boolean;
+  disable_project_template?: boolean;
   disable_state?: boolean;
   disable_sub_issue?: boolean;
   disable_targetDate?: boolean;
