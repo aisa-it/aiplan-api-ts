@@ -879,6 +879,20 @@ export interface DtoWorkspaceMember {
   id?: string;
   member?: DtoUserLight;
   member_id?: string;
+  notification_author_settings_app?: TypesWorkspaceMemberNS;
+  notification_author_settings_email?: TypesWorkspaceMemberNS;
+  notification_author_settings_tg?: TypesWorkspaceMemberNS;
+  notification_settings_app?: TypesWorkspaceMemberNS;
+  notification_settings_email?: TypesWorkspaceMemberNS;
+  notification_settings_tg?: TypesWorkspaceMemberNS;
+  role?: number;
+}
+
+export interface DtoWorkspaceMemberLight {
+  editable_by_admin?: boolean;
+  id?: string;
+  member?: DtoUserLight;
+  member_id?: string;
   role?: number;
 }
 
@@ -1129,4 +1143,29 @@ export interface TypesViewProps {
   showEmptyGroups?: boolean;
   showOnlyActive?: boolean;
   showSubIssues?: boolean;
+}
+
+export interface TypesWorkspaceMemberNS {
+  disable_doc_attachment?: boolean;
+  disable_doc_comment?: boolean;
+  disable_doc_create?: boolean;
+  disable_doc_delete?: boolean;
+  disable_doc_desc?: boolean;
+  disable_doc_editor?: boolean;
+  disable_doc_move?: boolean;
+  disable_doc_reader?: boolean;
+  disable_doc_role?: boolean;
+  disable_doc_title?: boolean;
+  disable_doc_watchers?: boolean;
+  disable_workspace_desc?: boolean;
+  disable_workspace_doc?: boolean;
+  disable_workspace_form?: boolean;
+  disable_workspace_integration?: boolean;
+  disable_workspace_logo?: boolean;
+  disable_workspace_member?: boolean;
+  disable_workspace_name?: boolean;
+  disable_workspace_owner?: boolean;
+  disable_workspace_project?: boolean;
+  disable_workspace_role?: boolean;
+  disable_workspace_token?: boolean;
 }
