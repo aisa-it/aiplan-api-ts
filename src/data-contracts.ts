@@ -293,6 +293,15 @@ export interface AiplanRoleUpdRequest {
   role: number;
 }
 
+export interface AiplanWorkspaceNotificationRequest {
+  notification_author_settings_app?: TypesWorkspaceMemberNS;
+  notification_author_settings_email?: TypesWorkspaceMemberNS;
+  notification_author_settings_tg?: TypesWorkspaceMemberNS;
+  notification_settings_app?: TypesWorkspaceMemberNS;
+  notification_settings_email?: TypesWorkspaceMemberNS;
+  notification_settings_tg?: TypesWorkspaceMemberNS;
+}
+
 export interface AltchaChallenge {
   algorithm?: string;
   challenge?: string;
