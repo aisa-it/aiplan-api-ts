@@ -62,6 +62,15 @@ export interface AiplanEmailCaptchaRequest {
   email: string;
 }
 
+export interface AiplanEmailRequest {
+  new_email: string;
+}
+
+export interface AiplanEmailVerifyRequest {
+  code: string;
+  new_email: string;
+}
+
 export interface AiplanFilterParams {
   project_ids?: string[];
   search_query?: string;
@@ -1065,7 +1074,6 @@ export interface TypesIssuesListFilters {
   authored_by_me?: boolean;
   authors?: string[];
   labels?: string[];
-  only_active?: boolean;
   priorities?: string[];
   projects?: string[];
   search_query?: string;
@@ -1132,11 +1140,14 @@ export interface TypesValidationRule {
 }
 
 export interface TypesViewFilters {
+  assignedToMe?: boolean;
+  authoredToMe?: boolean;
   group_by?: string;
   orderDesc?: boolean;
   order_by?: string;
   projects?: string[];
   states?: string[];
+  watchedToMe?: boolean;
   workspaces?: string[];
 }
 
@@ -1160,9 +1171,7 @@ export interface TypesWorkspaceMemberNS {
   disable_doc_create?: boolean;
   disable_doc_delete?: boolean;
   disable_doc_desc?: boolean;
-  disable_doc_editor?: boolean;
   disable_doc_move?: boolean;
-  disable_doc_reader?: boolean;
   disable_doc_role?: boolean;
   disable_doc_title?: boolean;
   disable_doc_watchers?: boolean;
