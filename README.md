@@ -1,9 +1,12 @@
 [![NPM Downloads](https://img.shields.io/npm/v/@aisa-it/aiplan-api-ts)](https://www.npmjs.com/package/@aisa-it/aiplan-api-ts) [![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
+[![en](https://img.shields.io/badge/README-en-green.svg)](https://github.com/aisa-it/aiplan-api-ts/blob/main/README.md)
+[![ru](https://img.shields.io/badge/README-ru-green.svg)](https://github.com/aisa-it/aiplan-api-ts/blob/main/README.ru.md)
+
 # Aiplan API
 
-Автоматически сгенерированная библиотека доступа к API АИПлана.
+Automatically generated API access library for AIPlan.
 
-## 📦 Установка
+## 📦 Installation
 
 ```bash
 npm install @aisa-it/aiplan-api-ts
@@ -11,21 +14,23 @@ npm install @aisa-it/aiplan-api-ts
 yarn add @aisa-it/aiplan-api-ts
 ```
 
-## 🔧 Использование
+## 🔧 Usage
 
-### Инициализация клиента
+### Client Initialization
 
 ```javascript
 import { Users } from '@aisa-it/aiplan-api-ts/src/Users'
 
-const usersApi = new Users({ baseURL: 'https://domain.com' }) // явное указание адреса для запросов
+const usersApi = new Users({ baseURL: 'https://domain.com' }) // explicit URL specification for requests
 // или
-const usersApi = new Users() // запросы будут идти на тот адрес, где расположено само приложение
+const usersApi = new Users() // requests will be sent to the same address where the application is hosted
 ```
-При использовании второго способа могут возникать проблемы с локальной разработкой. Например, запросы будут уходить на localhost:9000
-Чтобы исправить это нужно настроить прокси.
-Пример прокси в Quasar(quasar.config.js)
 
+When using the second initialization method (without explicit baseURL), API requests will be sent to the same origin where the application is hosted. During local development, this typically means requests will be directed to `localhost:9000` (or your local dev server port), which may not be the intended API endpoint.
+
+To resolve this, you need to configure a proxy that will redirect API requests to the correct backend server during development.
+
+quasar.config.js
 ```javascript
     devServer: {
       proxy: {
@@ -37,7 +42,7 @@ const usersApi = new Users() // запросы будут идти на тот �
     },
 ```
 
-### Пример запроса
+### Request Example
 
 ```javascript
 import { DtoUser } from '@aisa-it/aiplan-api/data-contracts'
@@ -52,9 +57,9 @@ async function getUserInfo(): Promise<DtoUser> {
 }
 ```
 
-## 🚀 Релиз новой версии пакета
+## 🚀 Releasing a New Package Version
 
-`yarn version` повысит сам версию, сделает коммит и повесит тег текущей версии.
+`yarn version` will automatically increment the version, create a commit, and tag it with the current version.
 
 ```
 yarn version --minor
@@ -62,12 +67,12 @@ git push
 git push --tags
 ```
 
-### Правила версий
+### Versioning Rules
 
--   **major** - глобальные изменения, полностью несовместимые с прошлым API
--   **minor** - Переодические обновления текущего API. Сборка АИплана обновляет это число
--   **patch** - Мелкие косметические исправления
+-   **major** - Global changes that are completely incompatible with the previous API
+-   **minor** - Regular updates to the current API. The AIPlan build automatically increments the version number.
+-   **patch** - Minor fixes
 
-## 📜 Лицензия
+## 📜 License
 
-Этот проект распространяется под лицензией MPL-2.0 См. файл LICENSE для получения дополнительной информации.
+This project is distributed under the MPL-2.0 license. See the LICENSE file for more information.

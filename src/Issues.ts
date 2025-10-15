@@ -82,6 +82,11 @@ export class Issues<
        * @default false
        */
       only_count?: boolean;
+      /**
+       * Вернуть только активные задачи
+       * @default false
+       */
+      only_active?: boolean;
     },
     params: RequestParams = {},
   ) =>

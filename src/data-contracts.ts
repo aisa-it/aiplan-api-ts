@@ -62,6 +62,15 @@ export interface AiplanEmailCaptchaRequest {
   email: string;
 }
 
+export interface AiplanEmailRequest {
+  new_email: string;
+}
+
+export interface AiplanEmailVerifyRequest {
+  code: string;
+  new_email: string;
+}
+
 export interface AiplanFilterParams {
   project_ids?: string[];
   search_query?: string;
@@ -291,6 +300,15 @@ export interface AiplanResponseLastWorkspace {
 
 export interface AiplanRoleUpdRequest {
   role: number;
+}
+
+export interface AiplanWorkspaceNotificationRequest {
+  notification_author_settings_app?: TypesWorkspaceMemberNS;
+  notification_author_settings_email?: TypesWorkspaceMemberNS;
+  notification_author_settings_tg?: TypesWorkspaceMemberNS;
+  notification_settings_app?: TypesWorkspaceMemberNS;
+  notification_settings_email?: TypesWorkspaceMemberNS;
+  notification_settings_tg?: TypesWorkspaceMemberNS;
 }
 
 export interface AltchaChallenge {
@@ -646,6 +664,7 @@ export interface DtoProject {
   id?: string;
   identifier?: string;
   is_favorite?: boolean;
+  logo?: string | null;
   name?: string;
   name_highlighted?: string;
   project_lead?: string;
@@ -677,6 +696,7 @@ export interface DtoProjectLight {
   id?: string;
   identifier?: string;
   is_favorite?: boolean;
+  logo?: string | null;
   name?: string;
   name_highlighted?: string;
   project_lead?: string;
@@ -746,6 +766,8 @@ export interface DtoSearchFilterFull {
   id?: string;
   name?: string;
   public?: boolean;
+  short_url?: string;
+  url?: string;
 }
 
 export interface DtoSearchFilterLight {
@@ -754,6 +776,8 @@ export interface DtoSearchFilterLight {
   id?: string;
   name?: string;
   public?: boolean;
+  short_url?: string;
+  url?: string;
 }
 
 export interface DtoStateLight {
@@ -869,6 +893,20 @@ export interface DtoWorkspaceLight {
 }
 
 export interface DtoWorkspaceMember {
+  editable_by_admin?: boolean;
+  id?: string;
+  member?: DtoUserLight;
+  member_id?: string;
+  notification_author_settings_app?: TypesWorkspaceMemberNS;
+  notification_author_settings_email?: TypesWorkspaceMemberNS;
+  notification_author_settings_tg?: TypesWorkspaceMemberNS;
+  notification_settings_app?: TypesWorkspaceMemberNS;
+  notification_settings_email?: TypesWorkspaceMemberNS;
+  notification_settings_tg?: TypesWorkspaceMemberNS;
+  role?: number;
+}
+
+export interface DtoWorkspaceMemberLight {
   editable_by_admin?: boolean;
   id?: string;
   member?: DtoUserLight;
@@ -1036,7 +1074,6 @@ export interface TypesIssuesListFilters {
   authored_by_me?: boolean;
   authors?: string[];
   labels?: string[];
-  only_active?: boolean;
   priorities?: string[];
   projects?: string[];
   search_query?: string;
@@ -1066,14 +1103,15 @@ export interface TypesProjectMemberNS {
   disable_project_default_assignee?: boolean;
   disable_project_default_watcher?: boolean;
   disable_project_identifier?: boolean;
-  disable_project_issue?: boolean;
   disable_project_label?: boolean;
+  disable_project_logo?: boolean;
   disable_project_member?: boolean;
   disable_project_name?: boolean;
   disable_project_owner?: boolean;
   disable_project_public?: boolean;
   disable_project_role?: boolean;
   disable_project_status?: boolean;
+  disable_project_template?: boolean;
   disable_state?: boolean;
   disable_sub_issue?: boolean;
   disable_targetDate?: boolean;
@@ -1102,11 +1140,14 @@ export interface TypesValidationRule {
 }
 
 export interface TypesViewFilters {
+  assignedToMe?: boolean;
+  authoredToMe?: boolean;
   group_by?: string;
   orderDesc?: boolean;
   order_by?: string;
   projects?: string[];
   states?: string[];
+  watchedToMe?: boolean;
   workspaces?: string[];
 }
 
@@ -1122,4 +1163,27 @@ export interface TypesViewProps {
   showEmptyGroups?: boolean;
   showOnlyActive?: boolean;
   showSubIssues?: boolean;
+}
+
+export interface TypesWorkspaceMemberNS {
+  disable_doc_attachment?: boolean;
+  disable_doc_comment?: boolean;
+  disable_doc_create?: boolean;
+  disable_doc_delete?: boolean;
+  disable_doc_desc?: boolean;
+  disable_doc_move?: boolean;
+  disable_doc_role?: boolean;
+  disable_doc_title?: boolean;
+  disable_doc_watchers?: boolean;
+  disable_workspace_desc?: boolean;
+  disable_workspace_doc?: boolean;
+  disable_workspace_form?: boolean;
+  disable_workspace_integration?: boolean;
+  disable_workspace_logo?: boolean;
+  disable_workspace_member?: boolean;
+  disable_workspace_name?: boolean;
+  disable_workspace_owner?: boolean;
+  disable_workspace_project?: boolean;
+  disable_workspace_role?: boolean;
+  disable_workspace_token?: boolean;
 }

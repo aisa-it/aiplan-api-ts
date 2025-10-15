@@ -484,6 +484,55 @@ export class Projects<
       ...params,
     });
   /**
+   * @description Загружает новый логотип для указанного проекта и обновляет запись в базе данных.
+   *
+   * @tags Projects
+   * @name UpdateProjectLogo
+   * @summary Проекты (логотип): обновление логотипа
+   * @request POST:/api/auth/workspaces/{workspaceSlug}/projects/{projectId}/logo/
+   * @secure
+   */
+  updateProjectLogo = (
+    workspaceSlug: string,
+    projectId: string,
+    data: {
+      /** Файл логотипа */
+      file: File;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<DtoProject, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/logo/`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.FormData,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Удаляет логотип указанного проекта и обновляет запись в базе данных.
+   *
+   * @tags Projects
+   * @name DeleteProjectLogo
+   * @summary Проекты (логотип): удаление логотипа проекта
+   * @request DELETE:/api/auth/workspaces/{workspaceSlug}/projects/{projectId}/logo/
+   * @secure
+   */
+  deleteProjectLogo = (
+    workspaceSlug: string,
+    projectId: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<DtoProject, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/logo/`,
+      method: "DELETE",
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
    * @description Обновляет настройки уведомлений для текущего участника проекта.
    *
    * @tags Projects

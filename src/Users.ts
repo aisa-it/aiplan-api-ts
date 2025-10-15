@@ -12,6 +12,8 @@
 
 import {
   AiplanEmailCaptchaRequest,
+  AiplanEmailRequest,
+  AiplanEmailVerifyRequest,
   AiplanLoginRequest,
   AiplanPasswordRequest,
   AiplanPasswordResponse,
@@ -380,6 +382,24 @@ export class Users<
       ...params,
     });
   /**
+   * @description Позволяет текущему пользователю изменить свой Email. В случае успеха отправляет код верификации на новую почту.
+   *
+   * @tags Users
+   * @name ChangeMyEmail
+   * @summary Пользователи (управление доступом): смена email текущего пользователя
+   * @request POST:/api/auth/users/me/change-email/
+   * @secure
+   */
+  changeMyEmail = (data: AiplanEmailRequest, params: RequestParams = {}) =>
+    this.request<void, ApierrorsDefinedError>({
+      path: `/api/auth/users/me/change-email/`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
    * @description Возвращает отзыв, оставленный текущим пользователем
    *
    * @tags Users
@@ -482,6 +502,27 @@ export class Users<
       path: `/api/auth/users/me/token/reset/`,
       method: "POST",
       secure: true,
+      ...params,
+    });
+  /**
+   * @description Позволяет текущему пользователю изменить свой Email. Сравнивает код верификации отправленый на новый Email.
+   *
+   * @tags Users
+   * @name VerifyMyEmail
+   * @summary Пользователи (управление доступом): Верификация Email
+   * @request POST:/api/auth/users/me/verification-email/
+   * @secure
+   */
+  verifyMyEmail = (
+    data: AiplanEmailVerifyRequest,
+    params: RequestParams = {},
+  ) =>
+    this.request<void, ApierrorsDefinedError>({
+      path: `/api/auth/users/me/verification-email/`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
       ...params,
     });
   /**

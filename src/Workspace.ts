@@ -18,6 +18,7 @@ import {
   AiplanRequestMessage,
   AiplanRequestRoleMember,
   AiplanResponseLastWorkspace,
+  AiplanWorkspaceNotificationRequest,
   ApierrorsDefinedError,
   DaoPaginationResponse,
   DtoEntityActivityFull,
@@ -25,6 +26,7 @@ import {
   DtoWorkspace,
   DtoWorkspaceFavorites,
   DtoWorkspaceMember,
+  DtoWorkspaceMemberLight,
   DtoWorkspaceWithCount,
   IntegrationsIntegration,
   TypesActivityTable,
@@ -450,6 +452,28 @@ export class Workspace<
       ...params,
     });
   /**
+   * @description Обновляет настройки уведомлений для текущего участника пространства.
+   *
+   * @tags Workspace
+   * @name UpdateMyWorkspaceNotifications
+   * @summary Пространство (участники): обновление настроек уведомлений текущего участника
+   * @request POST:/api/auth/workspaces/{workspaceSlug}/me/notifications/
+   * @secure
+   */
+  updateMyWorkspaceNotifications = (
+    workspaceSlug: string,
+    notificationSettings: AiplanWorkspaceNotificationRequest,
+    params: RequestParams = {},
+  ) =>
+    this.request<void, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/me/notifications/`,
+      method: "POST",
+      body: notificationSettings,
+      secure: true,
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
    * @description Возвращает список участников указанного рабочего пространства. Включает поиск по email или имени.
    *
    * @tags Workspace
@@ -491,7 +515,7 @@ export class Workspace<
   ) =>
     this.request<
       DaoPaginationResponse & {
-        result?: DtoWorkspaceMember[];
+        result?: DtoWorkspaceMemberLight[];
       },
       ApierrorsDefinedError
     >({
@@ -589,7 +613,7 @@ export class Workspace<
     role: AiplanRequestRoleMember,
     params: RequestParams = {},
   ) =>
-    this.request<DtoWorkspaceMember, ApierrorsDefinedError>({
+    this.request<DtoWorkspaceMemberLight, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/members/${memberId}`,
       method: "PATCH",
       body: role,
