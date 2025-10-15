@@ -48,7 +48,7 @@ export class Api<
          */
         limit?: number;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -62,7 +62,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -74,13 +74,13 @@ export class Api<
      * @request GET:/api/auth/users/last-visited-workspace
      * @secure
      */
-    getLastVisitedWorkspace: (httpParams: RequestParams = {}) =>
+    getLastVisitedWorkspace: (params8: RequestParams = {}) =>
       this.request<AiplanResponseLastWorkspace, ApierrorsDefinedError>({
         path: `/api/auth/users/last-visited-workspace`,
         method: "GET",
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -97,7 +97,7 @@ export class Api<
         /** Поисковый запрос для фильтрации рабочих пространств по имени */
         search_query?: string;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoWorkspaceWithCount[], ApierrorsDefinedError>({
         path: `/api/auth/users/me/workspaces/`,
@@ -106,7 +106,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -118,13 +118,13 @@ export class Api<
      * @request GET:/api/auth/users/user-favorite-workspaces/
      * @secure
      */
-    getFavoriteWorkspaceList: (httpParams: RequestParams = {}) =>
+    getFavoriteWorkspaceList: (params8: RequestParams = {}) =>
       this.request<DtoWorkspaceFavorites[], ApierrorsDefinedError>({
         path: `/api/auth/users/user-favorite-workspaces/`,
         method: "GET",
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -138,7 +138,7 @@ export class Api<
      */
     addWorkspaceToFavorites: (
       workspace: AiplanRequestAddFavorite,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<string, ApierrorsDefinedError>({
         path: `/api/auth/users/user-favorite-workspaces/`,
@@ -147,7 +147,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -161,7 +161,7 @@ export class Api<
      */
     removeWorkspaceFromFavorites: (
       workspaceId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<string, ApierrorsDefinedError>({
         path: `/api/auth/users/user-favorite-workspaces/${workspaceId}`,
@@ -169,7 +169,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -183,7 +183,7 @@ export class Api<
      */
     createWorkspace: (
       request: AiplanCreateWorkspaceRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoWorkspace, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/`,
@@ -192,7 +192,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -204,13 +204,13 @@ export class Api<
      * @request GET:/api/auth/workspaces/{workspaceSlug}
      * @secure
      */
-    getWorkspace: (workspaceSlug: string, httpParams: RequestParams = {}) =>
+    getWorkspace: (workspaceSlug: string, params8: RequestParams = {}) =>
       this.request<DtoWorkspace, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}`,
         method: "GET",
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -222,13 +222,13 @@ export class Api<
      * @request DELETE:/api/auth/workspaces/{workspaceSlug}
      * @secure
      */
-    deleteWorkspace: (workspaceSlug: string, httpParams: RequestParams = {}) =>
+    deleteWorkspace: (workspaceSlug: string, params8: RequestParams = {}) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}`,
         method: "DELETE",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -243,7 +243,7 @@ export class Api<
     updateWorkspace: (
       workspaceSlug: string,
       workspace: DtoWorkspace,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoWorkspace, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}`,
@@ -252,7 +252,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -283,7 +283,7 @@ export class Api<
          */
         limit?: number;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -297,7 +297,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -309,17 +309,14 @@ export class Api<
      * @request GET:/api/auth/workspaces/{workspaceSlug}/integrations/
      * @secure
      */
-    getIntegrationList: (
-      workspaceSlug: string,
-      httpParams: RequestParams = {},
-    ) =>
+    getIntegrationList: (workspaceSlug: string, params8: RequestParams = {}) =>
       this.request<IntegrationsIntegration[], ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/integrations/`,
         method: "GET",
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -334,14 +331,14 @@ export class Api<
     addIntegrationToWorkspace: (
       workspaceSlug: string,
       name: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/integrations/add/${name}/`,
         method: "POST",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -356,14 +353,14 @@ export class Api<
     deleteIntegrationFromWorkspace: (
       workspaceSlug: string,
       name: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/integrations/${name}/`,
         method: "POST",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -378,7 +375,7 @@ export class Api<
     addToWorkspace: (
       workspaceSlug: string,
       invite: AiplanRequestMembersInvite,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<Record<string, any>, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/invite`,
@@ -387,7 +384,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -401,14 +398,14 @@ export class Api<
      */
     getWorkspaceJitsiToken: (
       workspaceSlug: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<Record<string, string>, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/jitsi-token`,
         method: "GET",
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -426,7 +423,7 @@ export class Api<
         /** Файл логотипа */
         file: File;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoWorkspace, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/logo`,
@@ -435,7 +432,7 @@ export class Api<
         secure: true,
         type: ContentType.FormData,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -447,17 +444,14 @@ export class Api<
      * @request DELETE:/api/auth/workspaces/{workspaceSlug}/logo
      * @secure
      */
-    deleteWorkspaceLogo: (
-      workspaceSlug: string,
-      httpParams: RequestParams = {},
-    ) =>
+    deleteWorkspaceLogo: (workspaceSlug: string, params8: RequestParams = {}) =>
       this.request<DtoWorkspace, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/logo`,
         method: "DELETE",
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -472,7 +466,7 @@ export class Api<
     updateMyWorkspaceNotifications: (
       workspaceSlug: string,
       notificationSettings: AiplanWorkspaceNotificationRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/me/notifications/`,
@@ -480,7 +474,7 @@ export class Api<
         body: notificationSettings,
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -521,7 +515,7 @@ export class Api<
          */
         desc?: boolean;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -535,7 +529,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -555,7 +549,7 @@ export class Api<
         /** Конечная дата периода в формате YYYY-MM-DD */
         to: string;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<Record<string, TypesActivityTable>, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/members/activities/`,
@@ -564,7 +558,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -579,7 +573,7 @@ export class Api<
     createMessageForWorkspaceMember: (
       workspaceSlug: string,
       data: AiplanRequestMessage,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/members/message/`,
@@ -587,7 +581,7 @@ export class Api<
         body: data,
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -602,14 +596,14 @@ export class Api<
     deleteWorkspaceMember: (
       workspaceSlug: string,
       memberId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/members/${memberId}`,
         method: "DELETE",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -625,7 +619,7 @@ export class Api<
       workspaceSlug: string,
       memberId: string,
       role: AiplanRequestRoleMember,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoWorkspaceMemberLight, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/members/${memberId}`,
@@ -634,7 +628,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -650,7 +644,7 @@ export class Api<
       workspaceSlug: string,
       memberId: string,
       email: AiplanRequestEmailMember,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/members/${memberId}/set-email/`,
@@ -658,7 +652,7 @@ export class Api<
         body: email,
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -672,14 +666,14 @@ export class Api<
      */
     getWorkspaceStateList: (
       workspaceSlug: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<Record<string, DtoStateLight[]>, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/states/`,
         method: "GET",
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -691,15 +685,12 @@ export class Api<
      * @request GET:/api/auth/workspaces/{workspaceSlug}/token
      * @secure
      */
-    getWorkspaceToken: (
-      workspaceSlug: string,
-      httpParams: RequestParams = {},
-    ) =>
+    getWorkspaceToken: (workspaceSlug: string, params8: RequestParams = {}) =>
       this.request<string, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/token`,
         method: "GET",
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -711,16 +702,13 @@ export class Api<
      * @request POST:/api/auth/workspaces/{workspaceSlug}/token/reset/
      * @secure
      */
-    resetWorkspaceToken: (
-      workspaceSlug: string,
-      httpParams: RequestParams = {},
-    ) =>
+    resetWorkspaceToken: (workspaceSlug: string, params8: RequestParams = {}) =>
       this.request<string, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/token/reset/`,
         method: "POST",
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -734,7 +722,7 @@ export class Api<
      */
     getWorkspaceMemberMe: (
       workspaceSlug: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoWorkspaceMember, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/workspace-members/me/`,
@@ -742,7 +730,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
   };
   adminPanel = {
@@ -775,7 +763,7 @@ export class Api<
          */
         desc?: boolean;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -789,7 +777,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -801,13 +789,13 @@ export class Api<
      * @request GET:/api/auth/admin/feedbacks/export
      * @secure
      */
-    exportFeedbackList: (httpParams: RequestParams = {}) =>
+    exportFeedbackList: (params8: RequestParams = {}) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/admin/feedbacks/export`,
         method: "GET",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -819,14 +807,14 @@ export class Api<
      * @request GET:/api/auth/admin/imports/
      * @secure
      */
-    getRunningImportList: (httpParams: RequestParams = {}) =>
+    getRunningImportList: (params8: RequestParams = {}) =>
       this.request<IssuesImportImportStatus[], ApierrorsDefinedError>({
         path: `/api/auth/admin/imports/`,
         method: "GET",
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -861,7 +849,7 @@ export class Api<
         /** Строка для поиска */
         search_query?: string;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -875,7 +863,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -889,7 +877,7 @@ export class Api<
      */
     createReleaseNote: (
       data: DtoReleaseNoteLight,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/admin/release-notes`,
@@ -897,7 +885,7 @@ export class Api<
         body: data,
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -909,13 +897,13 @@ export class Api<
      * @request DELETE:/api/auth/admin/release-notes/{noteId}
      * @secure
      */
-    deleteReleaseNote: (noteId: string, httpParams: RequestParams = {}) =>
+    deleteReleaseNote: (noteId: string, params8: RequestParams = {}) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/admin/release-notes/${noteId}`,
         method: "DELETE",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -930,7 +918,7 @@ export class Api<
     updateReleaseNote: (
       noteId: string,
       data: DtoReleaseNoteLight,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoReleaseNoteLight, ApierrorsDefinedError>({
         path: `/api/auth/admin/release-notes/${noteId}`,
@@ -939,7 +927,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -964,7 +952,7 @@ export class Api<
         /** Строка поиска (по email, имени или фамилии) */
         search_query?: string;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -978,7 +966,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -990,10 +978,7 @@ export class Api<
      * @request POST:/api/auth/admin/tariffication/
      * @secure
      */
-    createUserTariff: (
-      tariff: DtoTariffication,
-      httpParams: RequestParams = {},
-    ) =>
+    createUserTariff: (tariff: DtoTariffication, params8: RequestParams = {}) =>
       this.request<DtoTariffication, ApierrorsDefinedError>({
         path: `/api/auth/admin/tariffication/`,
         method: "POST",
@@ -1001,7 +986,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1013,14 +998,14 @@ export class Api<
      * @request GET:/api/auth/admin/tariffication/{userId}
      * @secure
      */
-    getUserTariff: (userId: string, httpParams: RequestParams = {}) =>
+    getUserTariff: (userId: string, params8: RequestParams = {}) =>
       this.request<DtoTariffication, ApierrorsDefinedError>({
         path: `/api/auth/admin/tariffication/${userId}`,
         method: "GET",
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1035,7 +1020,7 @@ export class Api<
     updateUserTariff: (
       userId: string,
       tariff: DtoTariffication,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoTariffication, ApierrorsDefinedError>({
         path: `/api/auth/admin/tariffication/${userId}`,
@@ -1044,7 +1029,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1056,13 +1041,13 @@ export class Api<
      * @request DELETE:/api/auth/admin/tariffication/{userId}
      * @secure
      */
-    deleteUserTariff: (userId: string, httpParams: RequestParams = {}) =>
+    deleteUserTariff: (userId: string, params8: RequestParams = {}) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/admin/tariffication/${userId}`,
         method: "DELETE",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1074,13 +1059,13 @@ export class Api<
      * @request POST:/api/auth/admin/templates/reset/
      * @secure
      */
-    reloadTemplates: (httpParams: RequestParams = {}) =>
+    reloadTemplates: (params8: RequestParams = {}) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/admin/templates/reset/`,
         method: "POST",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1114,7 +1099,7 @@ export class Api<
         /** Строка для поиска */
         search_query?: string;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -1128,7 +1113,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1140,10 +1125,7 @@ export class Api<
      * @request POST:/api/auth/admin/users
      * @secure
      */
-    createUser: (
-      data: AiplanUserCreateRequest,
-      httpParams: RequestParams = {},
-    ) =>
+    createUser: (data: AiplanUserCreateRequest, params8: RequestParams = {}) =>
       this.request<DtoUserLight, ApierrorsDefinedError>({
         path: `/api/auth/admin/users`,
         method: "POST",
@@ -1151,7 +1133,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1165,7 +1147,7 @@ export class Api<
      */
     createMessageForMember: (
       data: AiplanRequestMessage,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/admin/users/message/`,
@@ -1173,7 +1155,7 @@ export class Api<
         body: data,
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1185,14 +1167,14 @@ export class Api<
      * @request GET:/api/auth/admin/users/{userId}
      * @secure
      */
-    getUserById: (userId: string, httpParams: RequestParams = {}) =>
+    getUserById: (userId: string, params8: RequestParams = {}) =>
       this.request<DtoUserLight, ApierrorsDefinedError>({
         path: `/api/auth/admin/users/${userId}`,
         method: "GET",
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1204,13 +1186,13 @@ export class Api<
      * @request DELETE:/api/auth/admin/users/{userId}
      * @secure
      */
-    deleteUser: (userId: string, httpParams: RequestParams = {}) =>
+    deleteUser: (userId: string, params8: RequestParams = {}) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/admin/users/${userId}`,
         method: "DELETE",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1225,7 +1207,7 @@ export class Api<
     updateUser: (
       userId: string,
       data: Record<string, any>,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoUserLight, ApierrorsDefinedError>({
         path: `/api/auth/admin/users/${userId}`,
@@ -1234,7 +1216,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1246,14 +1228,14 @@ export class Api<
      * @request GET:/api/auth/admin/users/{userId}/feedback
      * @secure
      */
-    getUserFeedback: (userId: string, httpParams: RequestParams = {}) =>
+    getUserFeedback: (userId: string, params8: RequestParams = {}) =>
       this.request<DtoUserFeedback, ApierrorsDefinedError>({
         path: `/api/auth/admin/users/${userId}/feedback`,
         method: "GET",
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1293,7 +1275,7 @@ export class Api<
         /** Строка для поиска */
         search_query?: string;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -1307,7 +1289,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1348,7 +1330,7 @@ export class Api<
         /** Строка для поиска */
         search_query?: string;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -1362,7 +1344,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1377,14 +1359,14 @@ export class Api<
       workspaceId: string,
       userId: string,
       body: AiplanRoleUpdRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/admin/users/${userId}/workspaces/${workspaceId}/member/`,
         method: "POST",
         body: body,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1398,13 +1380,13 @@ export class Api<
     authAdminUsersWorkspacesMemberDelete: (
       workspaceId: string,
       userId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/admin/users/${userId}/workspaces/${workspaceId}/member/`,
         method: "DELETE",
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1420,14 +1402,14 @@ export class Api<
       userId: string,
       projectId: string,
       body: AiplanRoleUpdRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/admin/users/${userId}/workspaces/${workspaceId}/projects/${projectId}/member/`,
         method: "POST",
         body: body,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1442,13 +1424,13 @@ export class Api<
       workspaceId: string,
       userId: string,
       projectId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/admin/users/${userId}/workspaces/${workspaceId}/projects/${projectId}/member/`,
         method: "DELETE",
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1482,7 +1464,7 @@ export class Api<
         /** Строка для поиска */
         search_query?: string;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -1496,7 +1478,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
   };
   releaseNotes = {
@@ -1509,14 +1491,14 @@ export class Api<
      * @request GET:/api/auth/admin/release-notes/{noteId}
      * @secure
      */
-    getReleaseNote: (noteId: string, httpParams: RequestParams = {}) =>
+    getReleaseNote: (noteId: string, params8: RequestParams = {}) =>
       this.request<DtoReleaseNoteLight, ApierrorsDefinedError>({
         path: `/api/auth/admin/release-notes/${noteId}`,
         method: "GET",
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1528,13 +1510,13 @@ export class Api<
      * @request GET:/api/auth/release-notes/
      * @secure
      */
-    getProductUpdateList: (httpParams: RequestParams = {}) =>
+    getProductUpdateList: (params8: RequestParams = {}) =>
       this.request<DtoReleaseNoteLight[], ApierrorsDefinedError>({
         path: `/api/auth/release-notes/`,
         method: "GET",
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1546,17 +1528,14 @@ export class Api<
      * @request GET:/api/auth/release-notes/{noteId}
      * @secure
      */
-    getRecentReleaseNoteList: (
-      noteId: string,
-      httpParams: RequestParams = {},
-    ) =>
+    getRecentReleaseNoteList: (noteId: string, params8: RequestParams = {}) =>
       this.request<DtoReleaseNoteLight[], ApierrorsDefinedError>({
         path: `/api/auth/release-notes/${noteId}`,
         method: "GET",
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
   };
   users = {
@@ -1571,7 +1550,7 @@ export class Api<
      */
     updateMyPassword: (
       data: AiplanPasswordRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<AiplanPasswordResponse, ApierrorsDefinedError>({
         path: `/api/auth/change-my-password/`,
@@ -1580,7 +1559,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1593,14 +1572,14 @@ export class Api<
      */
     forgotPassword: (
       data: AiplanEmailCaptchaRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/forgot-password/`,
         method: "POST",
         body: data,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1615,7 +1594,7 @@ export class Api<
       uidb64: string,
       token: string,
       data: AiplanPasswordRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<AiplanPasswordResponse, ApierrorsDefinedError>({
         path: `/api/auth/reset-password/${uidb64}/${token}/`,
@@ -1623,7 +1602,7 @@ export class Api<
         body: data,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1638,7 +1617,7 @@ export class Api<
     resetUserPassword: (
       uidb64: string,
       data: AiplanPasswordRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<AiplanPasswordResponse, ApierrorsDefinedError>({
         path: `/api/auth/reset-user-password/${uidb64}/`,
@@ -1647,7 +1626,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1659,12 +1638,12 @@ export class Api<
      * @request POST:/api/auth/sign-out-everywhere/
      * @secure
      */
-    signOutEverywhere: (httpParams: RequestParams = {}) =>
+    signOutEverywhere: (params8: RequestParams = {}) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/sign-out-everywhere/`,
         method: "POST",
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1676,12 +1655,12 @@ export class Api<
      * @request POST:/api/auth/sign-out/
      * @secure
      */
-    signOut: (httpParams: RequestParams = {}) =>
+    signOut: (params8: RequestParams = {}) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/sign-out/`,
         method: "POST",
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1712,7 +1691,7 @@ export class Api<
          */
         limit?: number;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -1725,7 +1704,7 @@ export class Api<
         query: query,
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1737,13 +1716,13 @@ export class Api<
      * @request GET:/api/auth/users/me/
      * @secure
      */
-    getCurrentUser: (httpParams: RequestParams = {}) =>
+    getCurrentUser: (params8: RequestParams = {}) =>
       this.request<DtoUser, ApierrorsDefinedError>({
         path: `/api/auth/users/me/`,
         method: "GET",
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1757,7 +1736,7 @@ export class Api<
      */
     updateCurrentUser: (
       data: AiplanUserUpdateRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoUser, ApierrorsDefinedError>({
         path: `/api/auth/users/me/`,
@@ -1766,7 +1745,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1800,7 +1779,7 @@ export class Api<
         /** Project IDs */
         project?: string[];
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -1813,7 +1792,7 @@ export class Api<
         query: query,
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1836,7 +1815,7 @@ export class Api<
         /** Project IDs */
         project?: string[];
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<TypesActivityTable, ApierrorsDefinedError>({
         path: `/api/auth/users/me/activities/table/`,
@@ -1845,7 +1824,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1862,7 +1841,7 @@ export class Api<
         /** Строка поиска по имени проекта */
         search_query?: string;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoProjectLight[], ApierrorsDefinedError>({
         path: `/api/auth/users/me/all/projects/`,
@@ -1870,7 +1849,7 @@ export class Api<
         query: query,
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1890,7 +1869,7 @@ export class Api<
          */
         file: File;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoUser, ApierrorsDefinedError>({
         path: `/api/auth/users/me/avatar/`,
@@ -1899,7 +1878,7 @@ export class Api<
         secure: true,
         type: ContentType.FormData,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1911,13 +1890,13 @@ export class Api<
      * @request DELETE:/api/auth/users/me/avatar/
      * @secure
      */
-    deleteCurrentUserAvatar: (httpParams: RequestParams = {}) =>
+    deleteCurrentUserAvatar: (params8: RequestParams = {}) =>
       this.request<DtoUser, ApierrorsDefinedError>({
         path: `/api/auth/users/me/avatar/`,
         method: "DELETE",
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1929,14 +1908,14 @@ export class Api<
      * @request POST:/api/auth/users/me/change-email/
      * @secure
      */
-    changeMyEmail: (data: AiplanEmailRequest, httpParams: RequestParams = {}) =>
+    changeMyEmail: (data: AiplanEmailRequest, params8: RequestParams = {}) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/users/me/change-email/`,
         method: "POST",
         body: data,
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1948,13 +1927,13 @@ export class Api<
      * @request GET:/api/auth/users/me/feedback/
      * @secure
      */
-    getMyFeedback: (httpParams: RequestParams = {}) =>
+    getMyFeedback: (params8: RequestParams = {}) =>
       this.request<DtoUserFeedback, ApierrorsDefinedError>({
         path: `/api/auth/users/me/feedback/`,
         method: "GET",
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1968,7 +1947,7 @@ export class Api<
      */
     createMyFeedback: (
       data: AiplanPostFeedbackRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/users/me/feedback/`,
@@ -1976,7 +1955,7 @@ export class Api<
         body: data,
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -1988,12 +1967,12 @@ export class Api<
      * @request DELETE:/api/auth/users/me/feedback/
      * @secure
      */
-    deleteMyFeedback: (httpParams: RequestParams = {}) =>
+    deleteMyFeedback: (params8: RequestParams = {}) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/users/me/feedback/`,
         method: "DELETE",
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2005,7 +1984,7 @@ export class Api<
      * @request POST:/api/auth/users/me/onboard/
      * @secure
      */
-    updateUserOnBoard: (data: DtoUser, httpParams: RequestParams = {}) =>
+    updateUserOnBoard: (data: DtoUser, params8: RequestParams = {}) =>
       this.request<DtoUser, void | ApierrorsDefinedError>({
         path: `/api/auth/users/me/onboard/`,
         method: "POST",
@@ -2013,7 +1992,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2025,12 +2004,12 @@ export class Api<
      * @request GET:/api/auth/users/me/token/
      * @secure
      */
-    getMyAuthToken: (httpParams: RequestParams = {}) =>
+    getMyAuthToken: (params8: RequestParams = {}) =>
       this.request<string, ApierrorsDefinedError>({
         path: `/api/auth/users/me/token/`,
         method: "GET",
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2042,12 +2021,12 @@ export class Api<
      * @request POST:/api/auth/users/me/token/reset/
      * @secure
      */
-    resetMyAuthToken: (httpParams: RequestParams = {}) =>
+    resetMyAuthToken: (params8: RequestParams = {}) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/users/me/token/reset/`,
         method: "POST",
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2061,7 +2040,7 @@ export class Api<
      */
     verifyMyEmail: (
       data: AiplanEmailVerifyRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/users/me/verification-email/`,
@@ -2069,7 +2048,7 @@ export class Api<
         body: data,
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2081,17 +2060,14 @@ export class Api<
      * @request POST:/api/auth/users/me/view-props/
      * @secure
      */
-    updateUserViewProps: (
-      data: TypesViewProps,
-      httpParams: RequestParams = {},
-    ) =>
+    updateUserViewProps: (data: TypesViewProps, params8: RequestParams = {}) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/users/me/view-props/`,
         method: "POST",
         body: data,
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2103,14 +2079,14 @@ export class Api<
      * @request GET:/api/auth/users/{userId}
      * @secure
      */
-    getUser: (userId: string, httpParams: RequestParams = {}) =>
+    getUser: (userId: string, params8: RequestParams = {}) =>
       this.request<DtoUserLight, ApierrorsDefinedError>({
         path: `/api/auth/users/${userId}`,
         method: "GET",
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2130,7 +2106,7 @@ export class Api<
         /** Конечная дата периода в формате YYYY-MM-DD */
         to: string;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<TypesActivityTable, ApierrorsDefinedError>({
         path: `/api/auth/users/${userId}/activities/table/`,
@@ -2139,7 +2115,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2150,13 +2126,13 @@ export class Api<
      * @summary Пользователи (управление доступом): запрос капчи для пользователя
      * @request GET:/api/captcha
      */
-    requestCaptcha: (httpParams: RequestParams = {}) =>
+    requestCaptcha: (params8: RequestParams = {}) =>
       this.request<AltchaChallenge, ApierrorsDefinedError>({
         path: `/api/captcha`,
         method: "GET",
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2167,14 +2143,14 @@ export class Api<
      * @summary Пользователи (управление доступом): вход пользователя
      * @request POST:/api/sign-in
      */
-    emailLogin: (data: AiplanLoginRequest, httpParams: RequestParams = {}) =>
+    emailLogin: (data: AiplanLoginRequest, params8: RequestParams = {}) =>
       this.request<Record<string, any>, ApierrorsDefinedError>({
         path: `/api/sign-in`,
         method: "POST",
         body: data,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2185,13 +2161,13 @@ export class Api<
      * @summary Пользователи (управление доступом): регистрация нового пользователя
      * @request POST:/api/sign-up/
      */
-    signUp: (data: AiplanEmailCaptchaRequest, httpParams: RequestParams = {}) =>
+    signUp: (data: AiplanEmailCaptchaRequest, params8: RequestParams = {}) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/sign-up/`,
         method: "POST",
         body: data,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
   };
   searchFilters = {
@@ -2219,7 +2195,7 @@ export class Api<
         /** Строка поиска по имени фильтра */
         search_query?: string;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -2232,7 +2208,7 @@ export class Api<
         query: query,
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2246,7 +2222,7 @@ export class Api<
      */
     createSearchFilter: (
       data: DtoSearchFilterLight,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoSearchFilterFull, ApierrorsDefinedError>({
         path: `/api/auth/filters/`,
@@ -2255,7 +2231,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2267,13 +2243,13 @@ export class Api<
      * @request GET:/api/auth/filters/{filterId}/
      * @secure
      */
-    getSearchFilter: (filterId: string, httpParams: RequestParams = {}) =>
+    getSearchFilter: (filterId: string, params8: RequestParams = {}) =>
       this.request<DtoSearchFilterFull, ApierrorsDefinedError>({
         path: `/api/auth/filters/${filterId}/`,
         method: "GET",
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2285,12 +2261,12 @@ export class Api<
      * @request DELETE:/api/auth/filters/{filterId}/
      * @secure
      */
-    deleteSearchFilter: (filterId: string, httpParams: RequestParams = {}) =>
+    deleteSearchFilter: (filterId: string, params8: RequestParams = {}) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/filters/${filterId}/`,
         method: "DELETE",
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2305,7 +2281,7 @@ export class Api<
     updateSearchFilter: (
       filterId: string,
       data: DtoSearchFilterLight,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/filters/${filterId}/`,
@@ -2313,7 +2289,7 @@ export class Api<
         body: data,
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2325,13 +2301,13 @@ export class Api<
      * @request GET:/api/auth/users/me/filters/
      * @secure
      */
-    getMySearchFilterList: (httpParams: RequestParams = {}) =>
+    getMySearchFilterList: (params8: RequestParams = {}) =>
       this.request<DtoSearchFilterFull[], ApierrorsDefinedError>({
         path: `/api/auth/users/me/filters/`,
         method: "GET",
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2343,12 +2319,12 @@ export class Api<
      * @request POST:/api/auth/users/me/filters/{filterId}/
      * @secure
      */
-    addSearchFilterToMe: (filterId: string, httpParams: RequestParams = {}) =>
+    addSearchFilterToMe: (filterId: string, params8: RequestParams = {}) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/users/me/filters/${filterId}/`,
         method: "POST",
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2360,15 +2336,12 @@ export class Api<
      * @request DELETE:/api/auth/users/me/filters/{filterId}/
      * @secure
      */
-    deleteSearchFilterFromMe: (
-      filterId: string,
-      httpParams: RequestParams = {},
-    ) =>
+    deleteSearchFilterFromMe: (filterId: string, params8: RequestParams = {}) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/users/me/filters/${filterId}/`,
         method: "DELETE",
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
   };
   projects = {
@@ -2395,7 +2368,7 @@ export class Api<
          */
         limit?: number;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -2410,7 +2383,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2436,7 +2409,7 @@ export class Api<
          */
         limit?: number;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -2451,7 +2424,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2477,7 +2450,7 @@ export class Api<
          */
         limit?: number;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -2492,7 +2465,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2510,7 +2483,7 @@ export class Api<
         /** Идентификатор проекта */
         name: string;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         AiplanCheckProjectIdentifierAvailabilityResponse,
@@ -2522,7 +2495,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2540,7 +2513,7 @@ export class Api<
         /** Поисковый запрос для фильтрации проектов по названию */
         search_query?: string;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoProjectLight[], ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects`,
@@ -2549,7 +2522,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2564,7 +2537,7 @@ export class Api<
     createProject: (
       workspaceSlug: string,
       request: AiplanCreateProjectRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoProject, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects`,
@@ -2573,7 +2546,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2588,7 +2561,7 @@ export class Api<
     joinProjects: (
       workspaceSlug: string,
       projects: AiplanJoinProjectsRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<AiplanJoinProjectsSuccessResponse, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/join/`,
@@ -2596,7 +2569,7 @@ export class Api<
         body: projects,
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2611,7 +2584,7 @@ export class Api<
     getProject: (
       workspaceSlug: string,
       projectId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoProject, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}`,
@@ -2619,7 +2592,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2634,14 +2607,14 @@ export class Api<
     deleteProject: (
       workspaceSlug: string,
       projectId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}`,
         method: "DELETE",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2657,7 +2630,7 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       project: DtoProject,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoProject, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}`,
@@ -2666,7 +2639,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2693,7 +2666,7 @@ export class Api<
          */
         limit?: number;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -2707,7 +2680,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2726,14 +2699,14 @@ export class Api<
         /** Поисковый запрос для фильтрации тегов по названию */
         search_query?: string;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoLabelLight[], ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issue-labels`,
         method: "GET",
         query: query,
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2749,7 +2722,7 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       data: DtoLabelLight,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoLabelLight, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issue-labels`,
@@ -2758,7 +2731,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2774,13 +2747,13 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       labelId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoLabelLight, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issue-labels/${labelId}`,
         method: "GET",
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2796,13 +2769,13 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       labelId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issue-labels/${labelId}`,
         method: "DELETE",
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2819,7 +2792,7 @@ export class Api<
       projectId: string,
       labelId: string,
       data: DtoLabelLight,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoLabelLight, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issue-labels/${labelId}`,
@@ -2828,7 +2801,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2847,7 +2820,7 @@ export class Api<
         /** Файл логотипа */
         file: File;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoProject, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/logo/`,
@@ -2856,7 +2829,7 @@ export class Api<
         secure: true,
         type: ContentType.FormData,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2871,7 +2844,7 @@ export class Api<
     deleteProjectLogo: (
       workspaceSlug: string,
       projectId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoProject, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/logo/`,
@@ -2879,7 +2852,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2895,7 +2868,7 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       notificationSettings: AiplanProjectNotificationRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/me/notifications/`,
@@ -2903,7 +2876,7 @@ export class Api<
         body: notificationSettings,
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2950,7 +2923,7 @@ export class Api<
          */
         find_by?: string[];
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -2965,7 +2938,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -2981,7 +2954,7 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       memberId: DtoProjectMember,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoProjectMemberLight, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/members/add`,
@@ -2989,7 +2962,7 @@ export class Api<
         body: memberId,
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3005,7 +2978,7 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       memberId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoProjectMemberLight, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/members/${memberId}`,
@@ -3013,7 +2986,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3029,13 +3002,13 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       memberId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/members/${memberId}`,
         method: "DELETE",
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3052,7 +3025,7 @@ export class Api<
       projectId: string,
       memberId: string,
       role: Record<string, number>,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoProjectMemberLight, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/members/${memberId}`,
@@ -3061,7 +3034,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3076,13 +3049,13 @@ export class Api<
     getProjectMemberMe: (
       workspaceSlug: string,
       projectId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoProjectMember, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/project-members/me`,
         method: "GET",
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3098,7 +3071,7 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       view_props: TypesViewProps,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<string, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/project-views/`,
@@ -3106,7 +3079,7 @@ export class Api<
         body: view_props,
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3134,7 +3107,7 @@ export class Api<
          */
         limit?: number;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -3149,7 +3122,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3168,14 +3141,14 @@ export class Api<
         /** Поисковый запрос для фильтрации статусов по названию */
         search_query?: string;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<Record<string, DtoStateLight[]>, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/states`,
         method: "GET",
         query: query,
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3191,7 +3164,7 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       data: DtoStateLight,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoStateLight, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/states`,
@@ -3200,7 +3173,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3216,13 +3189,13 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       stateId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoStateLight, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/states/${stateId}`,
         method: "GET",
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3238,13 +3211,13 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       stateId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/states/${stateId}`,
         method: "DELETE",
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3261,7 +3234,7 @@ export class Api<
       projectId: string,
       stateId: string,
       data: AiplanUpdateStateRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoStateLight, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/states/${stateId}`,
@@ -3270,7 +3243,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3297,7 +3270,7 @@ export class Api<
          */
         limit?: number;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -3311,7 +3284,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3327,7 +3300,7 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       data: DtoIssueTemplate,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/templates`,
@@ -3335,7 +3308,7 @@ export class Api<
         body: data,
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3351,13 +3324,13 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       templateId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoIssueTemplate, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/templates/${templateId}`,
         method: "GET",
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3373,14 +3346,14 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       templateId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/templates/${templateId}`,
         method: "DELETE",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3397,7 +3370,7 @@ export class Api<
       projectId: string,
       templateId: string,
       data: DtoIssueTemplate,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/templates/${templateId}`,
@@ -3405,7 +3378,7 @@ export class Api<
         body: data,
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3417,15 +3390,12 @@ export class Api<
      * @request GET:/api/auth/workspaces/{workspaceSlug}/user-favorite-projects/
      * @secure
      */
-    getFavoriteProjects: (
-      workspaceSlug: string,
-      httpParams: RequestParams = {},
-    ) =>
+    getFavoriteProjects: (workspaceSlug: string, params8: RequestParams = {}) =>
       this.request<DtoProjectFavorites[], ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/user-favorite-projects/`,
         method: "GET",
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3440,7 +3410,7 @@ export class Api<
     addProjectToFavorites: (
       workspaceSlug: string,
       project: AiplanAddProjectToFavoritesRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/user-favorite-projects/`,
@@ -3448,7 +3418,7 @@ export class Api<
         body: project,
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3463,13 +3433,13 @@ export class Api<
     removeProjectFromFavorites: (
       workspaceSlug: string,
       projectId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/user-favorite-projects/${projectId}`,
         method: "DELETE",
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
   };
   forms = {
@@ -3482,13 +3452,13 @@ export class Api<
      * @request GET:/api/auth/forms/{formSlug}/
      * @secure
      */
-    getFormAuth: (formSlug: string, httpParams: RequestParams = {}) =>
+    getFormAuth: (formSlug: string, params8: RequestParams = {}) =>
       this.request<DtoForm, ApierrorsDefinedError>({
         path: `/api/auth/forms/${formSlug}/`,
         method: "GET",
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3503,7 +3473,7 @@ export class Api<
     createAnswerAuth: (
       formSlug: string,
       answer: AiplanReqAnswer[],
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<AiplanRespAnswers, ApierrorsDefinedError>({
         path: `/api/auth/forms/${formSlug}/answer/`,
@@ -3512,7 +3482,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3531,7 +3501,7 @@ export class Api<
         /** Файл для загрузки */
         asset: File;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoAttachment, ApierrorsDefinedError>({
         path: `/api/auth/forms/${formSlug}/form-attachments/`,
@@ -3540,7 +3510,7 @@ export class Api<
         secure: true,
         type: ContentType.FormData,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3552,13 +3522,13 @@ export class Api<
      * @request GET:/api/auth/workspaces/{workspaceSlug}/forms/
      * @secure
      */
-    getFormList: (workspaceSlug: string, httpParams: RequestParams = {}) =>
+    getFormList: (workspaceSlug: string, params8: RequestParams = {}) =>
       this.request<DtoFormLight[], ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/forms/`,
         method: "GET",
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3573,7 +3543,7 @@ export class Api<
     createForm: (
       workspaceSlug: string,
       form: AiplanReqForm,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoForm, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/forms/`,
@@ -3582,7 +3552,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3597,13 +3567,13 @@ export class Api<
     deleteForm: (
       workspaceSlug: string,
       formSlug: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/forms/${formSlug}/`,
         method: "DELETE",
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3619,7 +3589,7 @@ export class Api<
       workspaceSlug: string,
       formSlug: string,
       form: AiplanReqForm,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoForm, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/forms/${formSlug}/`,
@@ -3628,7 +3598,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3655,7 +3625,7 @@ export class Api<
          */
         limit?: number;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         (DaoPaginationResponse & {
@@ -3668,7 +3638,7 @@ export class Api<
         query: query,
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3684,14 +3654,14 @@ export class Api<
       workspaceSlug: string,
       formSlug: string,
       answerSeq: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoFormAnswer, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/forms/${formSlug}/answers/${answerSeq}/`,
         method: "GET",
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3702,12 +3672,12 @@ export class Api<
      * @summary формы: получить форму
      * @request GET:/api/forms/{formSlug}/
      */
-    getFormNoAuth: (formSlug: string, httpParams: RequestParams = {}) =>
+    getFormNoAuth: (formSlug: string, params8: RequestParams = {}) =>
       this.request<DtoForm, ApierrorsDefinedError>({
         path: `/api/forms/${formSlug}/`,
         method: "GET",
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3721,7 +3691,7 @@ export class Api<
     createAnswerNoAuth: (
       formSlug: string,
       answer: AiplanReqAnswer[],
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<AiplanRespAnswers, ApierrorsDefinedError>({
         path: `/api/forms/${formSlug}/answer/`,
@@ -3729,7 +3699,7 @@ export class Api<
         body: answer,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
   };
   docs = {
@@ -3746,14 +3716,14 @@ export class Api<
       workspaceSlug: string,
       formSlug: string,
       attachmentId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/forms/${formSlug}/form-attachments/${attachmentId}`,
         method: "DELETE",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3765,14 +3735,14 @@ export class Api<
      * @request GET:/api/auth/workspaces/{workspaceSlug}/doc/
      * @secure
      */
-    getRootDocList: (workspaceSlug: string, httpParams: RequestParams = {}) =>
+    getRootDocList: (workspaceSlug: string, params8: RequestParams = {}) =>
       this.request<DtoDocLight[], ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/doc/`,
         method: "GET",
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3795,7 +3765,7 @@ export class Api<
         /** Вложения для документа */
         files?: File;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoDoc, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/doc/`,
@@ -3804,7 +3774,7 @@ export class Api<
         secure: true,
         type: ContentType.FormData,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3819,7 +3789,7 @@ export class Api<
     getDoc: (
       workspaceSlug: string,
       docId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoDoc, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/`,
@@ -3827,7 +3797,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3851,7 +3821,7 @@ export class Api<
         /** Вложения для документа */
         files?: File;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoDoc, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/`,
@@ -3860,7 +3830,7 @@ export class Api<
         secure: true,
         type: ContentType.FormData,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3875,14 +3845,14 @@ export class Api<
     deleteDoc: (
       workspaceSlug: string,
       docId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/`,
         method: "DELETE",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3906,7 +3876,7 @@ export class Api<
         /** Вложения для документа */
         files?: File;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoDoc, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/`,
@@ -3915,7 +3885,7 @@ export class Api<
         secure: true,
         type: ContentType.FormData,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3942,7 +3912,7 @@ export class Api<
          */
         limit?: number;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -3956,7 +3926,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -3971,7 +3941,7 @@ export class Api<
     getChildDocList: (
       workspaceSlug: string,
       docId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoDocLight[], ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/child/`,
@@ -3979,7 +3949,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4006,7 +3976,7 @@ export class Api<
          */
         limit?: number;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -4020,7 +3990,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4044,7 +4014,7 @@ export class Api<
         /** Вложения для документа */
         files?: File;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoDocComment, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/comments/`,
@@ -4053,7 +4023,7 @@ export class Api<
         secure: true,
         type: ContentType.FormData,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4069,14 +4039,14 @@ export class Api<
       workspaceSlug: string,
       docId: string,
       commentId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoDocComment, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/comments/${commentId}/`,
         method: "GET",
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4092,14 +4062,14 @@ export class Api<
       workspaceSlug: string,
       docId: string,
       commentId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/comments/${commentId}/`,
         method: "DELETE",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4124,7 +4094,7 @@ export class Api<
         /** Вложения для документа */
         files?: File;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoDocComment, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/comments/${commentId}/`,
@@ -4133,7 +4103,7 @@ export class Api<
         secure: true,
         type: ContentType.FormData,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4150,7 +4120,7 @@ export class Api<
       docId: string,
       commentId: string,
       data: AiplanReactionRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoCommentReaction, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/comments/${commentId}/reactions/`,
@@ -4159,7 +4129,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4176,14 +4146,14 @@ export class Api<
       docId: string,
       commentId: string,
       reaction: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/comments/${commentId}/reactions/${reaction}/`,
         method: "DELETE",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4198,7 +4168,7 @@ export class Api<
     getDocAttachmentList: (
       workspaceSlug: string,
       docId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoAttachment[], ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/doc-attachments/`,
@@ -4206,7 +4176,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4225,7 +4195,7 @@ export class Api<
         /** Файл для загрузки */
         asset: File;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoAttachment, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/doc-attachments/`,
@@ -4234,7 +4204,7 @@ export class Api<
         secure: true,
         type: ContentType.FormData,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4250,14 +4220,14 @@ export class Api<
       workspaceSlug: string,
       docId: string,
       attachmentId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/doc-attachments/${attachmentId}`,
         method: "DELETE",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4284,7 +4254,7 @@ export class Api<
          */
         limit?: number;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -4298,7 +4268,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4314,7 +4284,7 @@ export class Api<
       workspaceSlug: string,
       docId: string,
       versionId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoHistoryBody, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/history/${versionId}`,
@@ -4322,7 +4292,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4338,14 +4308,14 @@ export class Api<
       workspaceSlug: string,
       docId: string,
       versionId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/history/${versionId}`,
         method: "PATCH",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4360,14 +4330,14 @@ export class Api<
     moveDoc: (
       workspaceSlug: string,
       docId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/move/`,
         method: "POST",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4379,17 +4349,14 @@ export class Api<
      * @request GET:/api/auth/workspaces/{workspaceSlug}/user-favorite-docs/
      * @secure
      */
-    getFavoriteDocList: (
-      workspaceSlug: string,
-      httpParams: RequestParams = {},
-    ) =>
+    getFavoriteDocList: (workspaceSlug: string, params8: RequestParams = {}) =>
       this.request<DtoDocFavorites[], ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/user-favorite-docs/`,
         method: "GET",
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4404,7 +4371,7 @@ export class Api<
     addDocToFavorites: (
       workspaceSlug: string,
       project: AiplanAddDocToFavoritesRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoDocFavorites, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/user-favorite-docs/`,
@@ -4413,7 +4380,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4428,14 +4395,14 @@ export class Api<
     removeDocFromFavorites: (
       workspaceSlug: string,
       docId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/user-favorite-docs/${docId}`,
         method: "DELETE",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
   };
   integrations = {
@@ -4448,13 +4415,13 @@ export class Api<
      * @request POST:/api/auth/import/jira/cancel/{importId}
      * @secure
      */
-    cancelJiraImport: (importId: string, httpParams: RequestParams = {}) =>
+    cancelJiraImport: (importId: string, params8: RequestParams = {}) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/import/jira/cancel/${importId}`,
         method: "POST",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4466,10 +4433,7 @@ export class Api<
      * @request POST:/api/auth/import/jira/info
      * @secure
      */
-    getJiraInfo: (
-      data: AiplanJiraInfoRequest,
-      httpParams: RequestParams = {},
-    ) =>
+    getJiraInfo: (data: AiplanJiraInfoRequest, params8: RequestParams = {}) =>
       this.request<EntityJiraInfo, ApierrorsDefinedError>({
         path: `/api/auth/import/jira/info`,
         method: "POST",
@@ -4477,7 +4441,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4492,7 +4456,7 @@ export class Api<
     startJiraImport: (
       projectKey: string,
       data: AiplanJiraInfoRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<Record<string, string>, ApierrorsDefinedError>({
         path: `/api/auth/import/jira/start/${projectKey}`,
@@ -4501,7 +4465,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4513,14 +4477,14 @@ export class Api<
      * @request GET:/api/auth/import/jira/status
      * @secure
      */
-    getMyImportList: (httpParams: RequestParams = {}) =>
+    getMyImportList: (params8: RequestParams = {}) =>
       this.request<Record<string, any>, ApierrorsDefinedError>({
         path: `/api/auth/import/jira/status`,
         method: "GET",
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4532,14 +4496,14 @@ export class Api<
      * @request GET:/api/auth/import/jira/status/{importId}
      * @secure
      */
-    getJiraImportStatus: (importId: string, httpParams: RequestParams = {}) =>
+    getJiraImportStatus: (importId: string, params8: RequestParams = {}) =>
       this.request<IssuesImportImportStatus, ApierrorsDefinedError>({
         path: `/api/auth/import/jira/status/${importId}`,
         method: "GET",
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4550,12 +4514,12 @@ export class Api<
      * @summary Интеграции: получение ссылки на Telegram бота
      * @request GET:/api/auth/notification-bot-link/
      */
-    getTgBotLink: (httpParams: RequestParams = {}) =>
+    getTgBotLink: (params8: RequestParams = {}) =>
       this.request<Record<string, boolean>, ApierrorsDefinedError>({
         path: `/api/auth/notification-bot-link/`,
         method: "GET",
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4567,12 +4531,12 @@ export class Api<
      * @request GET:/api/file/{fileName}
      * @secure
      */
-    redirectToMinioFile: (fileName: string, httpParams: RequestParams = {}) =>
+    redirectToMinioFile: (fileName: string, params8: RequestParams = {}) =>
       this.request<any, void | ApierrorsDefinedError>({
         path: `/api/file/${fileName}`,
         method: "GET",
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
   };
   issues = {
@@ -4629,7 +4593,7 @@ export class Api<
          */
         only_active?: boolean;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoIssueSearchResult, ApierrorsDefinedError>({
         path: `/api/auth/issues/search`,
@@ -4639,7 +4603,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4674,7 +4638,7 @@ export class Api<
          */
         create_entities?: boolean;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         AiplanNewIssueID,
@@ -4686,7 +4650,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4721,7 +4685,7 @@ export class Api<
          */
         create_entities?: boolean;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, Record<string, any> | ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/issues/migrate/byLabel`,
@@ -4729,7 +4693,7 @@ export class Api<
         query: query,
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4745,7 +4709,7 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       issuesIds: string[],
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<Record<string, string>, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/bulk-delete-issues`,
@@ -4754,7 +4718,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4770,7 +4734,7 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       issue: AiplanIssueCreateRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<AiplanNewIssueID, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/`,
@@ -4779,7 +4743,7 @@ export class Api<
         secure: true,
         type: ContentType.FormData,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4795,7 +4759,7 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       issueIdOrSeq: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoIssue, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}`,
@@ -4803,7 +4767,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4819,14 +4783,14 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       issueIdOrSeq: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}`,
         method: "DELETE",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4848,7 +4812,7 @@ export class Api<
         /** Файлы для добавления в задачу */
         files?: File;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoIssue, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}`,
@@ -4857,7 +4821,7 @@ export class Api<
         secure: true,
         type: ContentType.FormData,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4887,7 +4851,7 @@ export class Api<
         /** Поле активности для фильтрации (например: state) */
         field?: string;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -4901,7 +4865,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4929,7 +4893,7 @@ export class Api<
         /** Поисковый запрос */
         search_query?: string;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -4943,7 +4907,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -4971,7 +4935,7 @@ export class Api<
         /** Поисковый запрос */
         search_query?: string;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -4985,7 +4949,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5013,7 +4977,7 @@ export class Api<
          */
         limit?: number;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -5027,7 +4991,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5049,7 +5013,7 @@ export class Api<
         /** Вложения для комментария */
         files?: File;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoIssueComment, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/comments`,
@@ -5058,7 +5022,7 @@ export class Api<
         secure: true,
         type: ContentType.FormData,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5075,14 +5039,14 @@ export class Api<
       projectId: string,
       issueIdOrSeq: string,
       commentId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoIssueComment, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/comments/${commentId}`,
         method: "GET",
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5099,14 +5063,14 @@ export class Api<
       projectId: string,
       issueIdOrSeq: string,
       commentId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/comments/${commentId}`,
         method: "DELETE",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5129,7 +5093,7 @@ export class Api<
         /** Новые вложения для комментария */
         files?: File;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoIssueComment, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/comments/${commentId}`,
@@ -5138,7 +5102,7 @@ export class Api<
         secure: true,
         type: ContentType.FormData,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5156,7 +5120,7 @@ export class Api<
       issueIdOrSeq: string,
       commentId: string,
       data: Record<string, string>,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoCommentReaction, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/comments/${commentId}/reactions`,
@@ -5165,7 +5129,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5183,14 +5147,14 @@ export class Api<
       issueIdOrSeq: string,
       commentId: string,
       reaction: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/comments/${commentId}/reactions/${reaction}`,
         method: "DELETE",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5206,7 +5170,7 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       issueIdOrSeq: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         AiplanIssueLockResponse,
@@ -5216,7 +5180,7 @@ export class Api<
         method: "POST",
         secure: true,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5232,13 +5196,13 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       issueIdOrSeq: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/description-unlock`,
         method: "POST",
         secure: true,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5254,7 +5218,7 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       issueIdOrSeq: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<any[], ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/history`,
@@ -5262,7 +5226,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5278,7 +5242,7 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       issueIdOrSeq: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         (DaoPaginationResponse & {
@@ -5291,7 +5255,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5311,7 +5275,7 @@ export class Api<
         /** Файл для загрузки */
         asset: File;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoAttachment, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/issue-attachments`,
@@ -5320,7 +5284,7 @@ export class Api<
         secure: true,
         type: ContentType.FormData,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5340,7 +5304,7 @@ export class Api<
         /** Файл для загрузки */
         asset: File;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<File, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/issue-attachments/all/`,
@@ -5348,7 +5312,7 @@ export class Api<
         body: data,
         secure: true,
         type: ContentType.FormData,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5365,14 +5329,14 @@ export class Api<
       projectId: string,
       issueIdOrSeq: string,
       attachmentId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/issue-attachments/${attachmentId}`,
         method: "DELETE",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5388,7 +5352,7 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       issueIdOrSeq: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoIssueLinkLight[], ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/issue-links`,
@@ -5396,7 +5360,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5413,7 +5377,7 @@ export class Api<
       projectId: string,
       issueIdOrSeq: string,
       data: AiplanIssueLinkRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoIssueLinkLight, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/issue-links`,
@@ -5422,7 +5386,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5439,14 +5403,14 @@ export class Api<
       projectId: string,
       issueIdOrSeq: string,
       linkId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/issue-links/${linkId}`,
         method: "DELETE",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5464,7 +5428,7 @@ export class Api<
       issueIdOrSeq: string,
       linkId: string,
       data: AiplanIssueLinkRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoIssueLinkLight, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/issue-links/${linkId}`,
@@ -5473,7 +5437,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5489,7 +5453,7 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       issueIdOrSeq: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoIssue[], ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/linked-issues`,
@@ -5497,7 +5461,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5514,7 +5478,7 @@ export class Api<
       projectId: string,
       issueIdOrSeq: string,
       data: AiplanLinkedIssuesIds,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoIssueLight[], ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/linked-issues`,
@@ -5523,7 +5487,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5551,7 +5515,7 @@ export class Api<
         /** Поисковый запрос */
         search_query?: string;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -5565,7 +5529,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5593,7 +5557,7 @@ export class Api<
         /** Поисковый запрос */
         search_query?: string;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -5607,7 +5571,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5623,14 +5587,14 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       issueIdOrSeq: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<File, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/pdf`,
         method: "GET",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5646,7 +5610,7 @@ export class Api<
       workspaceSlug: string,
       projectId: string,
       issueIdOrSeq: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<AiplanResponseSubIssueList, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/sub-issues`,
@@ -5654,7 +5618,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5671,7 +5635,7 @@ export class Api<
       projectId: string,
       issueIdOrSeq: string,
       data: AiplanSubIssuesIds,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoIssueLight[], ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/sub-issues`,
@@ -5680,7 +5644,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5708,7 +5672,7 @@ export class Api<
         /** Поисковый запрос */
         search_query?: string;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -5722,7 +5686,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5739,14 +5703,14 @@ export class Api<
       projectId: number,
       issueIdOrSeq: string,
       subIssueId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/sub-issues/${subIssueId}/down`,
         method: "POST",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5763,14 +5727,14 @@ export class Api<
       projectId: number,
       issueIdOrSeq: string,
       subIssueId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/sub-issues/${subIssueId}/up`,
         method: "POST",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
   };
   notifications = {
@@ -5796,7 +5760,7 @@ export class Api<
          */
         limit?: number;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -5810,7 +5774,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5824,7 +5788,7 @@ export class Api<
      */
     updateToReadMyNotifications: (
       data: AiplanNotificationViewRequest,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<AiplanNotificationIdResponse, ApierrorsDefinedError>({
         path: `/api/auth/users/me/notifications`,
@@ -5833,7 +5797,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5845,13 +5809,13 @@ export class Api<
      * @request DELETE:/api/auth/users/me/notifications
      * @secure
      */
-    deleteMyNotifications: (httpParams: RequestParams = {}) =>
+    deleteMyNotifications: (params8: RequestParams = {}) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/users/me/notifications`,
         method: "DELETE",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
   };
   sprint = {
@@ -5864,14 +5828,14 @@ export class Api<
      * @request GET:/api/auth/workspaces/{workspaceSlug}/sprints/
      * @secure
      */
-    getSprintList: (workspaceSlug: string, httpParams: RequestParams = {}) =>
+    getSprintList: (workspaceSlug: string, params8: RequestParams = {}) =>
       this.request<DtoSprintLight[], ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/sprints/`,
         method: "GET",
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5886,7 +5850,7 @@ export class Api<
     createSprint: (
       workspaceSlug: string,
       request: AiplanRequestSprint,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoSprint, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/sprints/`,
@@ -5895,7 +5859,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5910,7 +5874,7 @@ export class Api<
     getSprint: (
       workspaceSlug: string,
       sprintId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoSprint, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/sprints/${sprintId}/`,
@@ -5918,7 +5882,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5933,14 +5897,14 @@ export class Api<
     deleteSprint: (
       workspaceSlug: string,
       sprintId: string,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/sprints/${sprintId}/`,
         method: "DELETE",
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5956,7 +5920,7 @@ export class Api<
       workspaceSlug: string,
       sprintId: string,
       request: AiplanRequestSprint,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<DtoSprint, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/sprints/${sprintId}/`,
@@ -5965,7 +5929,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -5992,7 +5956,7 @@ export class Api<
          */
         limit?: number;
       },
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<
         DaoPaginationResponse & {
@@ -6006,7 +5970,7 @@ export class Api<
         secure: true,
         type: ContentType.Json,
         format: "json",
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -6022,7 +5986,7 @@ export class Api<
       workspaceSlug: string,
       sprintId: string,
       request: AiplanRequestIssueIdList,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/sprints/${sprintId}/issues/add/`,
@@ -6030,7 +5994,7 @@ export class Api<
         body: request,
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
 
     /**
@@ -6046,7 +6010,7 @@ export class Api<
       workspaceSlug: string,
       sprintId: string,
       request: AiplanRequestUserIdList,
-      httpParams: RequestParams = {},
+      params8: RequestParams = {},
     ) =>
       this.request<void, ApierrorsDefinedError>({
         path: `/api/auth/workspaces/${workspaceSlug}/sprints/${sprintId}/watchers/`,
@@ -6054,7 +6018,7 @@ export class Api<
         body: request,
         secure: true,
         type: ContentType.Json,
-        ...httpParams,
+        ...params8,
       }),
   };
 }

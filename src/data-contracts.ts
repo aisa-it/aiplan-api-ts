@@ -109,6 +109,7 @@ export interface AiplanIssueCreateRequest {
   project_detail?: DtoProjectLight | null;
   sequence_id?: number;
   short_url?: string;
+  sprints?: DtoSprintLight[];
   start_date?: string | null;
   state?: string | null;
   state_detail?: DtoStateLight | null;
@@ -270,6 +271,11 @@ export interface AiplanRequestEmailMember {
   email?: string;
 }
 
+export interface AiplanRequestIssueIdList {
+  issues_add?: string[];
+  issues_remove?: string[];
+}
+
 export interface AiplanRequestMembersInvite {
   emails?: {
     email?: string;
@@ -286,6 +292,18 @@ export interface AiplanRequestMessage {
 
 export interface AiplanRequestRoleMember {
   role?: number;
+}
+
+export interface AiplanRequestSprint {
+  description?: string;
+  end_date?: string | null;
+  name?: string;
+  start_date?: string | null;
+}
+
+export interface AiplanRequestUserIdList {
+  members_add?: string[];
+  members_remove?: string[];
 }
 
 export interface AiplanRespAnswers {
@@ -423,6 +441,7 @@ export interface DtoEntityActivityFull {
   old_identifier?: string | null;
   old_value?: string | null;
   project_detail?: DtoProjectLight | null;
+  sprint_detail?: DtoSprintLight | null;
   state_lag_ms?: number;
   verb?: string;
   workspace_detail?: DtoWorkspaceLight | null;
@@ -516,6 +535,7 @@ export interface DtoIssue {
   project_detail?: DtoProjectLight | null;
   sequence_id?: number;
   short_url?: string;
+  sprints?: DtoSprintLight[];
   start_date?: string | null;
   state?: string | null;
   state_detail?: DtoStateLight | null;
@@ -630,6 +650,7 @@ export interface DtoIssueWithCount {
   project_detail?: DtoProjectLight | null;
   sequence_id?: number;
   short_url?: string;
+  sprints?: DtoSprintLight[];
   start_date?: string | null;
   state?: string | null;
   state_detail?: DtoStateLight | null;
@@ -777,6 +798,37 @@ export interface DtoSearchFilterLight {
   name?: string;
   public?: boolean;
   short_url?: string;
+  url?: string;
+}
+
+export interface DtoSprint {
+  created_at?: string;
+  created_by?: DtoUserLight;
+  description?: string;
+  end_date?: string;
+  id?: string;
+  issues?: DtoIssueLight[];
+  name?: string;
+  sequence_id?: number;
+  short_url?: string;
+  start_date?: string;
+  stats?: TypesSprintStats;
+  updated_at?: string;
+  updated_by?: DtoUserLight | null;
+  url?: string;
+  watchers?: DtoUserLight[];
+  workspace?: DtoWorkspaceLight;
+}
+
+export interface DtoSprintLight {
+  description?: string;
+  end_date?: string;
+  id?: string;
+  name?: string;
+  sequence_id?: number;
+  short_url?: string;
+  start_date?: string;
+  stats?: TypesSprintStats;
   url?: string;
 }
 
@@ -1074,6 +1126,7 @@ export interface TypesIssuesListFilters {
   authored_by_me?: boolean;
   authors?: string[];
   labels?: string[];
+  only_active?: boolean;
   priorities?: string[];
   projects?: string[];
   search_query?: string;
@@ -1117,6 +1170,14 @@ export interface TypesProjectMemberNS {
   disable_targetDate?: boolean;
   disable_watchers?: boolean;
   notify_before_deadline?: number | null;
+}
+
+export interface TypesSprintStats {
+  all_issues?: number;
+  cancelled?: number;
+  completed?: number;
+  in_progress?: number;
+  pending?: number;
 }
 
 export interface TypesTheme {
