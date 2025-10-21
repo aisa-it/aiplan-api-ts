@@ -19,7 +19,6 @@ import {
   DtoProject,
   DtoProjectLight,
   DtoReleaseNoteLight,
-  DtoTariffication,
   DtoUserFeedback,
   DtoUserLight,
   DtoWorkspace,
@@ -215,121 +214,6 @@ export class AdminPanel<
       secure: true,
       type: ContentType.Json,
       format: "json",
-      ...params,
-    });
-  /**
-   * @description Возвращает список тарифов с возможностью сортировки, фильтрации и пагинации
-   *
-   * @tags AdminPanel
-   * @name GetAllTariffList
-   * @summary Tariffs: получить список тарифов
-   * @request GET:/api/auth/admin/tariffication/
-   * @secure
-   */
-  getAllTariffList = (
-    query?: {
-      /** Поле для сортировки (по умолчанию user_id) */
-      order_by?: string;
-      /** Смещение (пагинация) (-1 для начала) */
-      offset?: number;
-      /** Лимит записей (максимум 1000, по умолчанию 100) */
-      limit?: number;
-      /** Сортировка по убыванию (по умолчанию true) */
-      desc?: boolean;
-      /** Строка поиска (по email, имени или фамилии) */
-      search_query?: string;
-    },
-    params: RequestParams = {},
-  ) =>
-    this.request<
-      DaoPaginationResponse & {
-        result?: DtoTariffication[];
-      },
-      ApierrorsDefinedError
-    >({
-      path: `/api/auth/admin/tariffication/`,
-      method: "GET",
-      query: query,
-      secure: true,
-      type: ContentType.Json,
-      format: "json",
-      ...params,
-    });
-  /**
-   * @description Создаёт новый тариф для пользователя
-   *
-   * @tags AdminPanel
-   * @name CreateUserTariff
-   * @summary Tariffs: создать новый тариф
-   * @request POST:/api/auth/admin/tariffication/
-   * @secure
-   */
-  createUserTariff = (tariff: DtoTariffication, params: RequestParams = {}) =>
-    this.request<DtoTariffication, ApierrorsDefinedError>({
-      path: `/api/auth/admin/tariffication/`,
-      method: "POST",
-      body: tariff,
-      secure: true,
-      type: ContentType.Json,
-      format: "json",
-      ...params,
-    });
-  /**
-   * @description Возвращает тариф, связанный с указанным пользователем
-   *
-   * @tags AdminPanel
-   * @name GetUserTariff
-   * @summary Tariffs: получить тариф пользователя
-   * @request GET:/api/auth/admin/tariffication/{userId}
-   * @secure
-   */
-  getUserTariff = (userId: string, params: RequestParams = {}) =>
-    this.request<DtoTariffication, ApierrorsDefinedError>({
-      path: `/api/auth/admin/tariffication/${userId}`,
-      method: "GET",
-      secure: true,
-      type: ContentType.Json,
-      format: "json",
-      ...params,
-    });
-  /**
-   * @description Обновляет данные существующего тарифа
-   *
-   * @tags AdminPanel
-   * @name UpdateUserTariff
-   * @summary Tariffs: обновить тариф пользователя
-   * @request PUT:/api/auth/admin/tariffication/{userId}
-   * @secure
-   */
-  updateUserTariff = (
-    userId: string,
-    tariff: DtoTariffication,
-    params: RequestParams = {},
-  ) =>
-    this.request<DtoTariffication, ApierrorsDefinedError>({
-      path: `/api/auth/admin/tariffication/${userId}`,
-      method: "PUT",
-      body: tariff,
-      secure: true,
-      type: ContentType.Json,
-      format: "json",
-      ...params,
-    });
-  /**
-   * @description Удаляет тариф, связанный с указанным пользователем
-   *
-   * @tags AdminPanel
-   * @name DeleteUserTariff
-   * @summary Tariffs: удалить тариф пользователя
-   * @request DELETE:/api/auth/admin/tariffication/{userId}
-   * @secure
-   */
-  deleteUserTariff = (userId: string, params: RequestParams = {}) =>
-    this.request<void, ApierrorsDefinedError>({
-      path: `/api/auth/admin/tariffication/${userId}`,
-      method: "DELETE",
-      secure: true,
-      type: ContentType.Json,
       ...params,
     });
   /**

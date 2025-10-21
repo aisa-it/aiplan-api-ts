@@ -844,16 +844,6 @@ export interface DtoStateLight {
   workspace?: string;
 }
 
-export interface DtoTariffication {
-  attachments_allow?: boolean;
-  issues_limit?: number;
-  projects_limit?: number;
-  user_detail?: DtoUserLight;
-  user_id?: string;
-  users_limit?: number;
-  workspaces_limit?: number;
-}
-
 export interface DtoUser {
   attachments_allow?: boolean | null;
   avatar?: string;
