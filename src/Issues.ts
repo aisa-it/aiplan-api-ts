@@ -87,6 +87,11 @@ export class Issues<
        * @default false
        */
       only_active?: boolean;
+      /**
+       * Вернуть только закрепленные задачи
+       * @default false
+       */
+      only_pinned?: boolean;
     },
     params: RequestParams = {},
   ) =>
@@ -1055,6 +1060,27 @@ export class Issues<
       method: "GET",
       secure: true,
       type: ContentType.Json,
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Issues
+   * @name IssueUnpin
+   * @summary Задачи: Открепление задачи
+   * @request POST:/api/auth/workspaces/{workspaceSlug}/projects/{projectId}/issues/{issueIdOrSeq}/pin
+   * @secure
+   */
+  issueUnpin = (
+    workspaceSlug: string,
+    projectId: string,
+    issueIdOrSeq: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<void, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/pin`,
+      method: "POST",
+      secure: true,
       ...params,
     });
   /**

@@ -934,6 +934,16 @@ export interface DtoWorkspaceLight {
   url?: string;
 }
 
+export interface DtoWorkspaceLimitsInfo {
+  attachments_max?: number;
+  attachments_remains?: number;
+  invites_max?: number;
+  invites_remains?: number;
+  projects_max?: number;
+  projects_remains?: number;
+  tariff_name?: string;
+}
+
 export interface DtoWorkspaceMember {
   editable_by_admin?: boolean;
   id?: string;

@@ -25,6 +25,7 @@ import {
   DtoStateLight,
   DtoWorkspace,
   DtoWorkspaceFavorites,
+  DtoWorkspaceLimitsInfo,
   DtoWorkspaceMember,
   DtoWorkspaceMemberLight,
   DtoWorkspaceWithCount,
@@ -660,6 +661,22 @@ export class Workspace<
       method: "GET",
       secure: true,
       format: "json",
+      ...params,
+    });
+  /**
+   * @description Возвращает текущий тариф и лимиты пространства. Community тариф всегда возвращает нулевые цифры
+   *
+   * @tags Workspace
+   * @name GetWorkspaceTariff
+   * @summary Пространство (участники): получение текущего тарифа пространства
+   * @request GET:/api/auth/workspaces/{workspaceSlug}/tariff/
+   * @secure
+   */
+  getWorkspaceTariff = (workspaceSlug: string, params: RequestParams = {}) =>
+    this.request<DtoWorkspaceLimitsInfo, any>({
+      path: `/api/auth/workspaces/${workspaceSlug}/tariff/`,
+      method: "GET",
+      secure: true,
       ...params,
     });
   /**
