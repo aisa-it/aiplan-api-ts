@@ -3,7 +3,7 @@
     "axios": "^1.7.9"
   },
   "name": "@aisa-it/aiplan-api-ts",
-  "version": "1.85.0",
+  "version": "1.86.0",
   "description": "AIPlan TS API",
   "main": "index.js",
   "repository": {
