@@ -174,12 +174,12 @@ export class Sprint<
       ...params,
     });
   /**
-   * @description Добавляет задачи к спринту.
+   * @description Изменяет список задач в спринте.
    *
    * @tags Sprint
    * @name SprintIssuesUpdate
-   * @summary Спринты: Добавить задачи к спринту
-   * @request POST:/api/auth/workspaces/{workspaceSlug}/sprints/{sprintId}/issues/add/
+   * @summary Спринты: Изменяет задачи в спринте
+   * @request POST:/api/auth/workspaces/{workspaceSlug}/sprints/{sprintId}/issues/
    * @secure
    */
   sprintIssuesUpdate = (
@@ -189,7 +189,7 @@ export class Sprint<
     params: RequestParams = {},
   ) =>
     this.request<void, ApierrorsDefinedError>({
-      path: `/api/auth/workspaces/${workspaceSlug}/sprints/${sprintId}/issues/add/`,
+      path: `/api/auth/workspaces/${workspaceSlug}/sprints/${sprintId}/issues/`,
       method: "POST",
       body: request,
       secure: true,

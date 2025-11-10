@@ -92,6 +92,11 @@ export class Issues<
        * @default false
        */
       only_pinned?: boolean;
+      /**
+       * Ответ ввиде стриминга json сгруппированных таблиц, работает только при группировке
+       * @default false
+       */
+      stream?: boolean;
     },
     params: RequestParams = {},
   ) =>
