@@ -22,6 +22,22 @@ export class Integrations<
   SecurityDataType = unknown,
 > extends HttpClient<SecurityDataType> {
   /**
+   * @description Эндпоинт для получения файла из MinIO хранилища. Проверяет права доступа пользователя к файлу и возвращает файл по его имени или идентификатору
+   *
+   * @tags Integrations
+   * @name AssetsHandler
+   * @summary Получение файла
+   * @request GET:/api/auth/file/{fileName}
+   * @secure
+   */
+  assetsHandler = (fileName: string, params: RequestParams = {}) =>
+    this.request<void, ApierrorsDefinedError>({
+      path: `/api/auth/file/${fileName}`,
+      method: "GET",
+      secure: true,
+      ...params,
+    });
+  /**
    * @description Отменяет запущенный импорт
    *
    * @tags Integrations
@@ -129,22 +145,6 @@ export class Integrations<
       path: `/api/auth/notification-bot-link/`,
       method: "GET",
       format: "json",
-      ...params,
-    });
-  /**
-   * @description Перенаправляет пользователя на файл, хранящийся в MinIO, по имени файла или ID
-   *
-   * @tags Integrations
-   * @name RedirectToMinioFile
-   * @summary Интеграции: перенаправление на файл в MinIO
-   * @request GET:/api/file/{fileName}
-   * @secure
-   */
-  redirectToMinioFile = (fileName: string, params: RequestParams = {}) =>
-    this.request<any, void | ApierrorsDefinedError>({
-      path: `/api/file/${fileName}`,
-      method: "GET",
-      secure: true,
       ...params,
     });
 }
