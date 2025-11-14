@@ -29,11 +29,66 @@ export interface AiplanAddProjectToFavoritesRequest {
   project: string;
 }
 
+export interface AiplanBlobResponseDTO {
+  /** Содержимое файла (base64 encoded) */
+  content?: string;
+  /** "base64" */
+  encoding?: string;
+  /** Является ли файл бинарным */
+  is_binary?: boolean;
+  /** Путь к файлу */
+  path?: string;
+  /** Ветка/тег/коммит */
+  ref?: string;
+  /** SHA объекта */
+  sha?: string;
+  /** Размер файла */
+  size?: number;
+}
+
+export interface AiplanBranchDTO {
+  /** Является ли веткой по умолчанию */
+  is_default?: boolean;
+  /** Имя ветки */
+  name?: string;
+  /** SHA последнего коммита */
+  sha?: string;
+}
+
+export interface AiplanBranchesResponseDTO {
+  /** Список веток */
+  branches?: AiplanBranchDTO[];
+}
+
 export interface AiplanCheckProjectIdentifierAvailabilityResponse {
   /** @example 1 */
   exists?: number;
   /** @example ["[\"PROJECT1\""," \"PROJECT2\"]"] */
   identifiers?: string[];
+}
+
+export interface AiplanCommitDTO {
+  /** Автор коммита */
+  author?: AiplanPersonDTO;
+  /** Коммиттер */
+  committer?: AiplanPersonDTO;
+  /** Сообщение коммита */
+  message?: string;
+  /** SHA родительских коммитов */
+  parent_shas?: string[];
+  /** SHA коммита */
+  sha?: string;
+}
+
+export interface AiplanCommitsResponseDTO {
+  /** Список коммитов */
+  commits?: AiplanCommitDTO[];
+  /** Лимит на страницу */
+  limit?: number;
+  /** Смещение */
+  offset?: number;
+  /** Общее количество коммитов */
+  total?: number;
 }
 
 export interface AiplanCreateProjectRequest {
@@ -168,6 +223,13 @@ export interface AiplanNewIssueID {
   id?: string;
 }
 
+export interface AiplanNewIssueParam {
+  assigner_ids?: string[] | null;
+  priority?: "urgent" | "high" | "medium" | "low" | null;
+  state_id?: string | null;
+  target_date?: string | null;
+}
+
 export interface AiplanNotificationIdResponse {
   count?: number;
 }
@@ -188,6 +250,15 @@ export interface AiplanPasswordResponse {
   status?: number;
 }
 
+export interface AiplanPersonDTO {
+  /** Дата */
+  date?: string;
+  /** Email */
+  email?: string;
+  /** Имя */
+  name?: string;
+}
+
 export interface AiplanPostFeedbackRequest {
   feedback?: string;
   stars?: number;
@@ -197,6 +268,23 @@ export interface AiplanReactionRequest {
   reaction: string;
 }
 
+export interface AiplanRepoInfoDTO {
+  /** Количество веток */
+  branches_count?: number;
+  /** Количество коммитов */
+  commits_count?: number;
+  /** Ветка по умолчанию */
+  default_branch?: string;
+  /** Последний коммит */
+  last_commit?: AiplanCommitDTO;
+  /** Имя репозитория */
+  name?: string;
+  /** Размер репозитория (байты) */
+  size?: number;
+  /** Slug workspace */
+  workspace?: string;
+}
+
 export interface AiplanResponseSubIssueList {
   state_distribution?: Record<string, number>;
   sub_issues?: DtoIssue[];
@@ -204,6 +292,28 @@ export interface AiplanResponseSubIssueList {
 
 export interface AiplanSubIssuesIds {
   sub_issue_ids?: string[];
+}
+
+export interface AiplanTreeEntryDTO {
+  /** Режим файла (100644, 040000, etc.) */
+  mode?: string;
+  /** Имя файла/директории */
+  name?: string;
+  /** SHA объекта */
+  sha?: string;
+  /** Размер файла (только для файлов) */
+  size?: number;
+  /** "file" или "dir" */
+  type?: string;
+}
+
+export interface AiplanTreeResponseDTO {
+  /** Список файлов и директорий */
+  entries?: AiplanTreeEntryDTO[];
+  /** Путь в репозитории */
+  path?: string;
+  /** Ветка/тег/коммит */
+  ref?: string;
 }
 
 export interface AiplanUpdateStateRequest {
@@ -351,6 +461,25 @@ export interface DaoPaginationResponse {
   result?: any;
 }
 
+export interface DtoAddSSHKeyRequest {
+  /**
+   * @minLength 1
+   * @maxLength 255
+   */
+  name: string;
+  public_key: string;
+}
+
+export interface DtoAddSSHKeyResponse {
+  comment?: string;
+  created_at?: string;
+  fingerprint?: string;
+  id?: string;
+  key_type?: string;
+  last_used_at?: string;
+  name?: string;
+}
+
 export interface DtoAttachment {
   asset?: DtoFileAsset;
   created_at?: string;
@@ -364,6 +493,39 @@ export interface DtoCommentReaction {
   reaction?: string;
   updated_at?: string;
   user_id?: string;
+}
+
+export interface DtoCreateGitRepositoryRequest {
+  /** Branch - начальная ветка репозитория (необязательное поле, по умолчанию: main) */
+  branch?: string;
+  /** Description - описание репозитория (необязательное поле) */
+  description?: string;
+  /**
+   * Name - название репозитория (обязательное поле)
+   * Допустимые символы: a-z, A-Z, 0-9, дефис, подчеркивание, точка
+   * @minLength 1
+   * @maxLength 100
+   */
+  name: string;
+  /** Private - флаг приватности репозитория (необязательное поле, по умолчанию: false) */
+  private?: boolean;
+}
+
+export interface DtoCreateGitRepositoryResponse {
+  branch?: string;
+  clone_url?: string;
+  created_at?: string;
+  created_by?: DtoUserLight;
+  description?: string;
+  name?: string;
+  path?: string;
+  private?: boolean;
+  workspace?: string;
+}
+
+export interface DtoDeleteGitRepositoryRequest {
+  /** Name - название репозитория (обязательное поле) */
+  name: string;
 }
 
 export interface DtoDoc {
@@ -495,6 +657,24 @@ export interface DtoFormLight {
   workspace?: string;
 }
 
+export interface DtoGitConfigInfo {
+  git_enabled?: boolean;
+  git_repositories_path?: string;
+}
+
+export interface DtoGitRepositoryLight {
+  branch?: string;
+  clone_url?: string;
+  created_at?: string;
+  /** UUID пользователя */
+  created_by?: string;
+  description?: string;
+  name?: string;
+  path?: string;
+  private?: boolean;
+  workspace?: string;
+}
+
 export interface DtoHistoryBody {
   Id?: string;
   author?: DtoUserLight;
@@ -569,7 +749,7 @@ export interface DtoIssueComment {
   project_id?: string;
   reaction_summary?: Record<string, number>;
   reactions?: DtoCommentReaction[];
-  reply_to_comment_id?: string | null;
+  reply_to_comment_id?: GithubComGofrsUuidNullUUID | null;
   updated_at?: string;
   updated_by_id?: string;
   url?: string;
@@ -670,6 +850,16 @@ export interface DtoLabelLight {
   id?: string;
   name?: string;
   project?: string;
+}
+
+export interface DtoListGitRepositoriesResponse {
+  repositories?: DtoGitRepositoryLight[];
+  total?: number;
+}
+
+export interface DtoListSSHKeysResponse {
+  keys?: DtoSSHKeyDTO[];
+  total?: number;
 }
 
 export interface DtoProject {
@@ -777,6 +967,22 @@ export interface DtoRulesLog {
   type?: string;
   user_detail?: DtoUserLight;
   workspace_detail?: DtoWorkspaceLight;
+}
+
+export interface DtoSSHConfigResponse {
+  ssh_enabled?: boolean;
+  ssh_host?: string;
+  ssh_port?: number;
+}
+
+export interface DtoSSHKeyDTO {
+  comment?: string;
+  created_at?: string;
+  fingerprint?: string;
+  id?: string;
+  key_type?: string;
+  last_used_at?: string;
+  name?: string;
 }
 
 export interface DtoSearchFilterFull {
@@ -1006,6 +1212,11 @@ export interface EntityPrioritiesMapping {
   medium_id?: string;
   null_id?: string;
   urgent_id?: string;
+}
+
+export interface GithubComGofrsUuidNullUUID {
+  uuid?: string;
+  valid?: boolean;
 }
 
 export interface IntegrationsIntegration {

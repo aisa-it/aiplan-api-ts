@@ -16,6 +16,7 @@ import {
   AiplanIssueLockResponse,
   AiplanLinkedIssuesIds,
   AiplanNewIssueID,
+  AiplanNewIssueParam,
   AiplanResponseSubIssueList,
   AiplanSubIssuesIds,
   ApierrorsDefinedError,
@@ -142,6 +143,7 @@ export class Issues<
        */
       create_entities?: boolean;
     },
+    data: AiplanNewIssueParam,
     params: RequestParams = {},
   ) =>
     this.request<AiplanNewIssueID, Record<string, any> | ApierrorsDefinedError>(
@@ -149,6 +151,7 @@ export class Issues<
         path: `/api/auth/workspaces/${workspaceSlug}/issues/migrate`,
         method: "POST",
         query: query,
+        body: data,
         secure: true,
         type: ContentType.Json,
         format: "json",
