@@ -1341,6 +1341,7 @@ export interface TypesIssuesListFilters {
   priorities?: string[];
   projects?: string[];
   search_query?: string;
+  sprints?: string[];
   states?: string[];
   watched_by_me?: boolean;
   watchers?: string[];
