@@ -807,6 +807,7 @@ export interface DtoIssueWithCount {
   author_detail?: DtoUserLight | null;
   blocked_issues?: DtoIssueBlockerLight[];
   blocker_issues?: DtoIssueBlockerLight[];
+  comments_count?: number;
   completed_at?: string | null;
   created_at?: string;
   desc_highlighted?: string;
@@ -1022,6 +1023,7 @@ export interface DtoSprint {
   updated_at?: string;
   updated_by?: DtoUserLight | null;
   url?: string;
+  view_props?: TypesViewProps;
   watchers?: DtoUserLight[];
   workspace?: DtoWorkspaceLight;
 }

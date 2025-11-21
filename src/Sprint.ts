@@ -19,6 +19,7 @@ import {
   DtoEntityActivityFull,
   DtoSprint,
   DtoSprintLight,
+  TypesViewProps,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
@@ -192,6 +193,29 @@ export class Sprint<
       path: `/api/auth/workspaces/${workspaceSlug}/sprints/${sprintId}/issues/`,
       method: "POST",
       body: request,
+      secure: true,
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
+   * @description Позволяет пользователю установить настройки просмотра для конкретного спринта.
+   *
+   * @tags Sprint
+   * @name UpdateSprintView
+   * @summary Спринты: установка фильтров для просмотра
+   * @request POST:/api/auth/workspaces/{workspaceSlug}/sprints/{sprintId}/sprint-views/
+   * @secure
+   */
+  updateSprintView = (
+    workspaceSlug: string,
+    sprintId: string,
+    view_props: TypesViewProps,
+    params: RequestParams = {},
+  ) =>
+    this.request<string, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/sprints/${sprintId}/sprint-views/`,
+      method: "POST",
+      body: view_props,
       secure: true,
       type: ContentType.Json,
       ...params,
