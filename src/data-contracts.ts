@@ -159,6 +159,7 @@ export interface AiplanIssueCreateRequest {
   name?: string;
   parent?: string;
   parent_detail?: DtoIssueLight | null;
+  pinned?: boolean;
   priority?: string | null;
   project?: string;
   project_detail?: DtoProjectLight | null;
@@ -710,6 +711,7 @@ export interface DtoIssue {
   name?: string;
   parent?: string;
   parent_detail?: DtoIssueLight | null;
+  pinned?: boolean;
   priority?: string | null;
   project?: string;
   project_detail?: DtoProjectLight | null;
@@ -826,6 +828,7 @@ export interface DtoIssueWithCount {
   name_highlighted?: string;
   parent?: string;
   parent_detail?: DtoIssueLight | null;
+  pinned?: boolean;
   priority?: string | null;
   project?: string;
   project_detail?: DtoProjectLight | null;
@@ -1077,6 +1080,7 @@ export interface DtoUser {
   status_end_date?: string | null;
   telegram_id?: number | null;
   theme?: TypesTheme;
+  tutorial?: number;
   user_timezone?: string;
   username?: string | null;
   view_props?: TypesViewProps;

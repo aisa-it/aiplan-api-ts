@@ -505,6 +505,31 @@ export class Users<
       ...params,
     });
   /**
+   * @description Обновляет шаги прохождения обучения на платформе
+   *
+   * @tags Users
+   * @name UpdateUserTutorial
+   * @summary Пользователи: прохождение обучения
+   * @request POST:/api/auth/users/me/tutorial/
+   * @secure
+   */
+  updateUserTutorial = (
+    query: {
+      /** Шаг обучения */
+      step: number;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<DtoUser, ApierrorsDefinedError>({
+      path: `/api/auth/users/me/tutorial/`,
+      method: "POST",
+      query: query,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
    * @description Позволяет текущему пользователю изменить свой Email. Сравнивает код верификации отправленый на новый Email.
    *
    * @tags Users
