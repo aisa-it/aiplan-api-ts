@@ -533,18 +533,19 @@ export class Users<
    * @description Позволяет текущему пользователю изменить свой Email. Сравнивает код верификации отправленый на новый Email.
    *
    * @tags Users
-   * @name VerifyMyEmail
+   * @name ConfirmEmail
    * @summary Пользователи (управление доступом): Верификация Email
-   * @request POST:/api/auth/users/me/verification-email/
+   * @request GET:/api/auth/users/me/verify-email/{token}/
    * @secure
    */
-  verifyMyEmail = (
+  confirmEmail = (
+    token: string,
     data: AiplanEmailVerifyRequest,
     params: RequestParams = {},
   ) =>
     this.request<void, ApierrorsDefinedError>({
-      path: `/api/auth/users/me/verification-email/`,
-      method: "POST",
+      path: `/api/auth/users/me/verify-email/${token}/`,
+      method: "GET",
       body: data,
       secure: true,
       type: ContentType.Json,
