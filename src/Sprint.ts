@@ -19,6 +19,7 @@ import {
   DtoEntityActivityFull,
   DtoSprint,
   DtoSprintLight,
+  DtoStateLight,
   TypesViewProps,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
@@ -218,6 +219,27 @@ export class Sprint<
       body: view_props,
       secure: true,
       type: ContentType.Json,
+      ...params,
+    });
+  /**
+   * @description Возвращает список всех состояний задач, которые используются в задачах текущего спринта.
+   *
+   * @tags Sprint
+   * @name GetSprintStates
+   * @summary Спринты: получение состояний задач в спринте
+   * @request GET:/api/auth/workspaces/{workspaceSlug}/sprints/{sprintId}/states/
+   * @secure
+   */
+  getSprintStates = (
+    workspaceSlug: string,
+    sprintId: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<DtoStateLight[], ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/sprints/${sprintId}/states/`,
+      method: "GET",
+      secure: true,
+      format: "json",
       ...params,
     });
   /**
