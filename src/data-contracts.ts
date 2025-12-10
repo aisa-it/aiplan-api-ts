@@ -167,7 +167,7 @@ export interface AiplanIssueCreateRequest {
   short_url?: string;
   sprints?: DtoSprintLight[];
   start_date?: string | null;
-  state?: string | null;
+  state?: string;
   state_detail?: DtoStateLight | null;
   target_date?: string | null;
   updated_at?: string;
@@ -719,7 +719,7 @@ export interface DtoIssue {
   short_url?: string;
   sprints?: DtoSprintLight[];
   start_date?: string | null;
-  state?: string | null;
+  state?: string;
   state_detail?: DtoStateLight | null;
   target_date?: string | null;
   updated_at?: string;
@@ -771,7 +771,7 @@ export interface DtoIssueLight {
   priority?: string | null;
   sequence_id?: number;
   short_url?: string;
-  state?: string | null;
+  state?: string;
   state_detail?: DtoStateLight | null;
   url?: string;
 }
@@ -836,7 +836,7 @@ export interface DtoIssueWithCount {
   short_url?: string;
   sprints?: DtoSprintLight[];
   start_date?: string | null;
-  state?: string | null;
+  state?: string;
   state_detail?: DtoStateLight | null;
   sub_issues_count?: number;
   target_date?: string | null;

@@ -49,10 +49,10 @@ export class Issues<
     filters: TypesIssuesListFilters,
     query?: {
       /**
-       * Включать подзадачи
-       * @default true
+       * Выключить подзадачи
+       * @default false
        */
-      show_sub_issues?: boolean;
+      hide_sub_issues?: boolean;
       /**
        * Поле для сортировки
        * @default ""sequence_id""
