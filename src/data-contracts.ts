@@ -370,6 +370,7 @@ export interface AiplanReqForm {
   description?: string;
   end_date?: string | null;
   fields?: TypesFormFields[];
+  notification_channels?: TypesFormAnswerNotify;
   target_project_id?: string | null;
   title: string;
 }
@@ -1327,6 +1328,12 @@ export type TypesActivityTable = Record<string, TypesActivityTableDay>;
 export interface TypesActivityTableDay {
   count?: number;
   weekday?: TypesWeekdayShort;
+}
+
+export interface TypesFormAnswerNotify {
+  app?: boolean;
+  email?: boolean;
+  telegram?: boolean;
 }
 
 export interface TypesFormFields {
