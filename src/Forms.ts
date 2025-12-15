@@ -11,15 +11,15 @@
  */
 
 import {
-  AiplanReqAnswer,
   AiplanReqForm,
-  AiplanRespAnswers,
   ApierrorsDefinedError,
   DaoPaginationResponse,
   DtoAttachment,
   DtoForm,
   DtoFormAnswer,
   DtoFormLight,
+  DtoRequestAnswer,
+  DtoResponseAnswers,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
@@ -54,10 +54,10 @@ export class Forms<
    */
   createAnswerAuth = (
     formSlug: string,
-    answer: AiplanReqAnswer[],
+    answer: DtoRequestAnswer[],
     params: RequestParams = {},
   ) =>
-    this.request<AiplanRespAnswers, ApierrorsDefinedError>({
+    this.request<DtoResponseAnswers, ApierrorsDefinedError>({
       path: `/api/auth/forms/${formSlug}/answer/`,
       method: "POST",
       body: answer,
@@ -263,10 +263,10 @@ export class Forms<
    */
   createAnswerNoAuth = (
     formSlug: string,
-    answer: AiplanReqAnswer[],
+    answer: DtoRequestAnswer[],
     params: RequestParams = {},
   ) =>
-    this.request<AiplanRespAnswers, ApierrorsDefinedError>({
+    this.request<DtoResponseAnswers, ApierrorsDefinedError>({
       path: `/api/forms/${formSlug}/answer/`,
       method: "POST",
       body: answer,

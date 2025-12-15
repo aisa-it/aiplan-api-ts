@@ -147,6 +147,7 @@ export interface AiplanIssueCreateRequest {
   completed_at?: string | null;
   created_at?: string;
   description_html?: string;
+  description_json?: EditorDocument;
   description_stripped?: string | null;
   description_type?: number;
   draft?: boolean;
@@ -361,10 +362,6 @@ export interface AiplanProjectNotificationRequest {
   notification_settings_tg?: TypesProjectMemberNS;
 }
 
-export interface AiplanReqAnswer {
-  value?: any;
-}
-
 export interface AiplanReqForm {
   auth_require?: boolean;
   description?: string;
@@ -416,11 +413,6 @@ export interface AiplanRequestSprint {
 export interface AiplanRequestUserIdList {
   members_add?: string[];
   members_remove?: string[];
-}
-
-export interface AiplanRespAnswers {
-  fields?: TypesFormFields[];
-  form?: DtoFormLight;
 }
 
 export interface AiplanResponseLastWorkspace {
@@ -626,6 +618,7 @@ export interface DtoForm {
   end_date?: string | null;
   fields?: TypesFormFields[];
   id?: string;
+  notification_channels?: TypesFormAnswerNotify | null;
   slug?: string;
   target_project_detail?: DtoProjectLight | null;
   target_project_id?: string | null;
@@ -701,6 +694,7 @@ export interface DtoIssue {
   completed_at?: string | null;
   created_at?: string;
   description_html?: string;
+  description_json?: EditorDocument;
   description_stripped?: string | null;
   description_type?: number;
   draft?: boolean;
@@ -815,6 +809,7 @@ export interface DtoIssueWithCount {
   created_at?: string;
   desc_highlighted?: string;
   description_html?: string;
+  description_json?: EditorDocument;
   description_stripped?: string | null;
   description_type?: number;
   draft?: boolean;
@@ -958,6 +953,15 @@ export interface DtoReleaseNoteLight {
   id?: string;
   published_at?: string;
   tag_name?: string;
+}
+
+export interface DtoRequestAnswer {
+  value?: any;
+}
+
+export interface DtoResponseAnswers {
+  fields?: TypesFormFields[];
+  form?: DtoFormLight;
 }
 
 export interface DtoRulesLog {
@@ -1195,6 +1199,10 @@ export interface DtoWorkspaceWithCount {
   total_projects?: number;
   updated_at?: string;
   url?: string;
+}
+
+export interface EditorDocument {
+  elements?: any[];
 }
 
 export interface EntityJiraInfo {
@@ -1444,11 +1452,11 @@ export interface TypesViewProps {
   draft?: boolean;
   filters?: TypesViewFilters;
   group_tables_hide?: Record<string, boolean>;
+  hideSubIssues?: boolean;
   issueView?: "list" | "kanban" | "calendar" | "gantt_chart";
   page_size?: number | null;
   showEmptyGroups?: boolean;
   showOnlyActive?: boolean;
-  showSubIssues?: boolean;
 }
 
 export interface TypesWorkspaceMemberNS {
