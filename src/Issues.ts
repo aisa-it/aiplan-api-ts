@@ -13,11 +13,8 @@
 import {
   AiplanIssueCreateRequest,
   AiplanIssueLinkRequest,
-  AiplanIssueLockResponse,
   AiplanLinkedIssuesIds,
-  AiplanNewIssueID,
   AiplanNewIssueParam,
-  AiplanResponseSubIssueList,
   AiplanSubIssuesIds,
   ApierrorsDefinedError,
   DaoPaginationResponse,
@@ -28,7 +25,10 @@ import {
   DtoIssueComment,
   DtoIssueLight,
   DtoIssueLinkLight,
+  DtoIssueLockResponse,
   DtoIssueSearchResult,
+  DtoNewIssueID,
+  DtoResponseSubIssueList,
   TypesIssuesListFilters,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
@@ -146,18 +146,16 @@ export class Issues<
     data: AiplanNewIssueParam,
     params: RequestParams = {},
   ) =>
-    this.request<AiplanNewIssueID, Record<string, any> | ApierrorsDefinedError>(
-      {
-        path: `/api/auth/workspaces/${workspaceSlug}/issues/migrate`,
-        method: "POST",
-        query: query,
-        body: data,
-        secure: true,
-        type: ContentType.Json,
-        format: "json",
-        ...params,
-      },
-    );
+    this.request<DtoNewIssueID, Record<string, any> | ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/issues/migrate`,
+      method: "POST",
+      query: query,
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
   /**
    * @description Мигрирует все задачи с определенной меткой из одного проекта в другой с опциональной поддержкой связанных задач и удаления исходных задач
    *
@@ -239,7 +237,7 @@ export class Issues<
     issue: AiplanIssueCreateRequest,
     params: RequestParams = {},
   ) =>
-    this.request<AiplanNewIssueID, ApierrorsDefinedError>({
+    this.request<DtoNewIssueID, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/`,
       method: "POST",
       body: issue,
@@ -662,8 +660,8 @@ export class Issues<
     params: RequestParams = {},
   ) =>
     this.request<
-      AiplanIssueLockResponse,
-      ApierrorsDefinedError | AiplanIssueLockResponse
+      DtoIssueLockResponse,
+      ApierrorsDefinedError | DtoIssueLockResponse
     >({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/description-lock`,
       method: "POST",
@@ -1106,7 +1104,7 @@ export class Issues<
     issueIdOrSeq: string,
     params: RequestParams = {},
   ) =>
-    this.request<AiplanResponseSubIssueList, ApierrorsDefinedError>({
+    this.request<DtoResponseSubIssueList, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/sub-issues`,
       method: "GET",
       secure: true,

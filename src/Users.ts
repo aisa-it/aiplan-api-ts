@@ -16,13 +16,13 @@ import {
   AiplanEmailVerifyRequest,
   AiplanLoginRequest,
   AiplanPasswordRequest,
-  AiplanPasswordResponse,
   AiplanPostFeedbackRequest,
   AiplanUserUpdateRequest,
   AltchaChallenge,
   ApierrorsDefinedError,
   DaoPaginationResponse,
   DtoEntityActivityFull,
+  DtoPasswordResponse,
   DtoProjectLight,
   DtoUser,
   DtoUserFeedback,
@@ -48,7 +48,7 @@ export class Users<
     data: AiplanPasswordRequest,
     params: RequestParams = {},
   ) =>
-    this.request<AiplanPasswordResponse, ApierrorsDefinedError>({
+    this.request<DtoPasswordResponse, ApierrorsDefinedError>({
       path: `/api/auth/change-my-password/`,
       method: "POST",
       body: data,
@@ -90,7 +90,7 @@ export class Users<
     data: AiplanPasswordRequest,
     params: RequestParams = {},
   ) =>
-    this.request<AiplanPasswordResponse, ApierrorsDefinedError>({
+    this.request<DtoPasswordResponse, ApierrorsDefinedError>({
       path: `/api/auth/reset-password/${uidb64}/${token}/`,
       method: "POST",
       body: data,
@@ -112,7 +112,7 @@ export class Users<
     data: AiplanPasswordRequest,
     params: RequestParams = {},
   ) =>
-    this.request<AiplanPasswordResponse, ApierrorsDefinedError>({
+    this.request<DtoPasswordResponse, ApierrorsDefinedError>({
       path: `/api/auth/reset-user-password/${uidb64}/`,
       method: "POST",
       body: data,

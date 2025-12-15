@@ -11,10 +11,10 @@
  */
 
 import {
-  AiplanNotificationIdResponse,
   AiplanNotificationViewRequest,
   ApierrorsDefinedError,
   DaoPaginationResponse,
+  DtoNotificationIdResponse,
   NotificationsNotificationResponse,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
@@ -73,7 +73,7 @@ export class Notifications<
     data: AiplanNotificationViewRequest,
     params: RequestParams = {},
   ) =>
-    this.request<AiplanNotificationIdResponse, ApierrorsDefinedError>({
+    this.request<DtoNotificationIdResponse, ApierrorsDefinedError>({
       path: `/api/auth/users/me/notifications`,
       method: "POST",
       body: data,

@@ -17,11 +17,11 @@ import {
   AiplanRequestMembersInvite,
   AiplanRequestMessage,
   AiplanRequestRoleMember,
-  AiplanResponseLastWorkspace,
   AiplanWorkspaceNotificationRequest,
   ApierrorsDefinedError,
   DaoPaginationResponse,
   DtoEntityActivityFull,
+  DtoLastWorkspaceResponse,
   DtoStateLight,
   DtoWorkspace,
   DtoWorkspaceFavorites,
@@ -90,7 +90,7 @@ export class Workspace<
    * @secure
    */
   getLastVisitedWorkspace = (params: RequestParams = {}) =>
-    this.request<AiplanResponseLastWorkspace, ApierrorsDefinedError>({
+    this.request<DtoLastWorkspaceResponse, ApierrorsDefinedError>({
       path: `/api/auth/users/last-visited-workspace`,
       method: "GET",
       secure: true,

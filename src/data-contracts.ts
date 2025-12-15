@@ -60,13 +60,6 @@ export interface AiplanBranchesResponseDTO {
   branches?: AiplanBranchDTO[];
 }
 
-export interface AiplanCheckProjectIdentifierAvailabilityResponse {
-  /** @example 1 */
-  exists?: number;
-  /** @example ["[\"PROJECT1\""," \"PROJECT2\"]"] */
-  identifiers?: string[];
-}
-
 export interface AiplanCommitDTO {
   /** Автор коммита */
   author?: AiplanPersonDTO;
@@ -185,12 +178,6 @@ export interface AiplanIssueLinkRequest {
   url?: string;
 }
 
-export interface AiplanIssueLockResponse {
-  locked_by?: DtoUserLight;
-  locked_until?: string;
-  ok?: boolean;
-}
-
 export interface AiplanJiraInfoRequest {
   block_link_id?: string;
   jira_url?: string;
@@ -206,11 +193,6 @@ export interface AiplanJoinProjectsRequest {
   project_ids?: string[];
 }
 
-export interface AiplanJoinProjectsSuccessResponse {
-  /** @example "Projects joined successfully" */
-  message?: string;
-}
-
 export interface AiplanLinkedIssuesIds {
   issue_ids?: string[];
 }
@@ -221,19 +203,11 @@ export interface AiplanLoginRequest {
   password?: string;
 }
 
-export interface AiplanNewIssueID {
-  id?: string;
-}
-
 export interface AiplanNewIssueParam {
   assigner_ids?: string[] | null;
   priority?: "urgent" | "high" | "medium" | "low" | null;
   state_id?: string | null;
   target_date?: string | null;
-}
-
-export interface AiplanNotificationIdResponse {
-  count?: number;
 }
 
 export interface AiplanNotificationViewRequest {
@@ -245,11 +219,6 @@ export interface AiplanPasswordRequest {
   confirm_password: string;
   /** @minLength 8 */
   new_password: string;
-}
-
-export interface AiplanPasswordResponse {
-  message?: string;
-  status?: number;
 }
 
 export interface AiplanPersonDTO {
@@ -285,11 +254,6 @@ export interface AiplanRepoInfoDTO {
   size?: number;
   /** Slug workspace */
   workspace?: string;
-}
-
-export interface AiplanResponseSubIssueList {
-  state_distribution?: Record<string, number>;
-  sub_issues?: DtoIssue[];
 }
 
 export interface AiplanSubIssuesIds {
@@ -415,11 +379,6 @@ export interface AiplanRequestUserIdList {
   members_remove?: string[];
 }
 
-export interface AiplanResponseLastWorkspace {
-  project_details?: any;
-  workspace_details?: any;
-}
-
 export interface AiplanRoleUpdRequest {
   role: number;
 }
@@ -478,6 +437,13 @@ export interface DtoAttachment {
   asset?: DtoFileAsset;
   created_at?: string;
   id?: string;
+}
+
+export interface DtoCheckProjectIdentifierAvailabilityResponse {
+  /** @example 1 */
+  exists?: number;
+  /** @example ["[\"PROJECT1\""," \"PROJECT2\"]"] */
+  identifiers?: string[];
 }
 
 export interface DtoCommentReaction {
@@ -779,6 +745,12 @@ export interface DtoIssueLinkLight {
   url?: string;
 }
 
+export interface DtoIssueLockResponse {
+  locked_by?: DtoUserLight;
+  locked_until?: string;
+  ok?: boolean;
+}
+
 export interface DtoIssueSearchResult {
   count?: number;
   issues?: DtoIssueWithCount[];
@@ -844,12 +816,22 @@ export interface DtoIssueWithCount {
   workspace_detail?: DtoWorkspaceLight | null;
 }
 
+export interface DtoJoinProjectsSuccessResponse {
+  /** @example "Projects joined successfully" */
+  message?: string;
+}
+
 export interface DtoLabelLight {
   color?: string;
   description?: string;
   id?: string;
   name?: string;
   project?: string;
+}
+
+export interface DtoLastWorkspaceResponse {
+  project_details?: any;
+  workspace_details?: any;
 }
 
 export interface DtoListGitRepositoriesResponse {
@@ -860,6 +842,19 @@ export interface DtoListGitRepositoriesResponse {
 export interface DtoListSSHKeysResponse {
   keys?: DtoSSHKeyDTO[];
   total?: number;
+}
+
+export interface DtoNewIssueID {
+  id?: string;
+}
+
+export interface DtoNotificationIdResponse {
+  count?: number;
+}
+
+export interface DtoPasswordResponse {
+  message?: string;
+  status?: number;
 }
 
 export interface DtoProject {
@@ -962,6 +957,11 @@ export interface DtoRequestAnswer {
 export interface DtoResponseAnswers {
   fields?: TypesFormFields[];
   form?: DtoFormLight;
+}
+
+export interface DtoResponseSubIssueList {
+  state_distribution?: Record<string, number>;
+  sub_issues?: DtoIssue[];
 }
 
 export interface DtoRulesLog {

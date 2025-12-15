@@ -12,18 +12,18 @@
 
 import {
   AiplanAddProjectToFavoritesRequest,
-  AiplanCheckProjectIdentifierAvailabilityResponse,
   AiplanCreateProjectRequest,
   AiplanFilterParams,
   AiplanGetRulesLogfilterRequest,
   AiplanJoinProjectsRequest,
-  AiplanJoinProjectsSuccessResponse,
   AiplanProjectNotificationRequest,
   AiplanUpdateStateRequest,
   ApierrorsDefinedError,
   DaoPaginationResponse,
+  DtoCheckProjectIdentifierAvailabilityResponse,
   DtoEntityActivityFull,
   DtoIssueTemplate,
+  DtoJoinProjectsSuccessResponse,
   DtoLabelLight,
   DtoProject,
   DtoProjectFavorites,
@@ -178,7 +178,7 @@ export class Projects<
     params: RequestParams = {},
   ) =>
     this.request<
-      AiplanCheckProjectIdentifierAvailabilityResponse,
+      DtoCheckProjectIdentifierAvailabilityResponse,
       ApierrorsDefinedError
     >({
       path: `/api/auth/workspaces/${workspaceSlug}/project-identifiers`,
@@ -252,7 +252,7 @@ export class Projects<
     projects: AiplanJoinProjectsRequest,
     params: RequestParams = {},
   ) =>
-    this.request<AiplanJoinProjectsSuccessResponse, ApierrorsDefinedError>({
+    this.request<DtoJoinProjectsSuccessResponse, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/join/`,
       method: "POST",
       body: projects,
