@@ -204,7 +204,7 @@ export class Sprint<
    * @tags Sprint
    * @name UpdateSprintView
    * @summary Спринты: установка фильтров для просмотра
-   * @request POST:/api/auth/workspaces/{workspaceSlug}/sprints/{sprintId}/sprint-views/
+   * @request POST:/api/auth/workspaces/{workspaceSlug}/sprints/{sprintId}/sprint-view/
    * @secure
    */
   updateSprintView = (
@@ -214,7 +214,7 @@ export class Sprint<
     params: RequestParams = {},
   ) =>
     this.request<string, ApierrorsDefinedError>({
-      path: `/api/auth/workspaces/${workspaceSlug}/sprints/${sprintId}/sprint-views/`,
+      path: `/api/auth/workspaces/${workspaceSlug}/sprints/${sprintId}/sprint-view/`,
       method: "POST",
       body: view_props,
       secure: true,

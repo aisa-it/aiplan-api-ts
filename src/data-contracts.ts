@@ -208,6 +208,7 @@ export interface AiplanNewIssueParam {
   priority?: "urgent" | "high" | "medium" | "low" | null;
   state_id?: string | null;
   target_date?: string | null;
+  watcher_ids?: string[] | null;
 }
 
 export interface AiplanNotificationViewRequest {
@@ -557,10 +558,10 @@ export interface DtoEntityActivityFull {
   id?: string;
   issue_detail?: DtoIssueLight | null;
   new_entity_detail?: any;
-  new_identifier?: string | null;
+  new_identifier?: GithubComGofrsUuidNullUUID | null;
   new_value?: string;
   old_entity_detail?: any;
-  old_identifier?: string | null;
+  old_identifier?: GithubComGofrsUuidNullUUID | null;
   old_value?: string | null;
   project_detail?: DtoProjectLight | null;
   sprint_detail?: DtoSprintLight | null;
