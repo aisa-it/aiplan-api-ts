@@ -30,6 +30,7 @@ import {
   DtoProjectLight,
   DtoProjectMember,
   DtoProjectMemberLight,
+  DtoProjectStats,
   DtoRulesLog,
   DtoStateLight,
   DtoUserLight,
@@ -904,6 +905,39 @@ export class Projects<
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/states/${stateId}`,
       method: "PATCH",
       body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Возвращает агрегированную статистику проекта: счётчики задач, распределение по статусам,
+   *
+   * @tags Projects
+   * @name GetProjectStats
+   * @summary Проекты: получение статистики проекта
+   * @request GET:/api/auth/workspaces/{workspaceSlug}/projects/{projectId}/stats/
+   * @secure
+   */
+  getProjectStats = (
+    workspaceSlug: string,
+    projectId: string,
+    query?: {
+      /** Включить статистику по исполнителям, топ-50 (по умолчанию true) */
+      include_assignee_stats?: boolean;
+      /** Включить статистику по меткам, топ-50 (по умолчанию true) */
+      include_label_stats?: boolean;
+      /** Включить статистику по спринтам, последние 50 (по умолчанию true) */
+      include_sprint_stats?: boolean;
+      /** Включить временную статистику за 12 месяцев (по умолчанию true) */
+      include_timeline?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<DtoProjectStats, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/stats/`,
+      method: "GET",
+      query: query,
       secure: true,
       type: ContentType.Json,
       format: "json",

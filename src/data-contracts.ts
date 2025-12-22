@@ -151,7 +151,7 @@ export interface AiplanIssueCreateRequest {
   label_details?: DtoLabelLight[] | null;
   labels_list?: string[];
   name?: string;
-  parent?: string;
+  parent?: GithubComGofrsUuidNullUUID;
   parent_detail?: DtoIssueLight | null;
   pinned?: boolean;
   priority?: string | null;
@@ -165,7 +165,7 @@ export interface AiplanIssueCreateRequest {
   state_detail?: DtoStateLight | null;
   target_date?: string | null;
   updated_at?: string;
-  updated_by?: string | null;
+  updated_by?: GithubComGofrsUuidNullUUID | null;
   url?: string;
   watcher_details?: DtoUserLight[] | null;
   watchers_list?: string[];
@@ -434,6 +434,17 @@ export interface DtoAddSSHKeyResponse {
   name?: string;
 }
 
+export interface DtoAssigneeStatItem {
+  /** Active количество активных задач */
+  active?: number;
+  /** Completed количество завершённых задач */
+  completed?: number;
+  /** DisplayName отображаемое имя пользователя */
+  display_name?: string;
+  /** UserID идентификатор пользователя */
+  user_id?: string;
+}
+
 export interface DtoAttachment {
   asset?: DtoFileAsset;
   created_at?: string;
@@ -502,7 +513,7 @@ export interface DtoDoc {
   has_child_docs?: boolean;
   id?: string;
   is_favorite?: boolean;
-  parent_doc?: string;
+  parent_doc?: GithubComGofrsUuidNullUUID;
   reader_ids?: string[];
   reader_role?: number;
   readers?: DtoUserLight[];
@@ -527,7 +538,7 @@ export interface DtoDocComment {
   reaction_summary?: Record<string, number>;
   reactions?: DtoCommentReaction[];
   updated_at?: string;
-  updated_by_id?: string;
+  updated_by_id?: GithubComGofrsUuidNullUUID;
   url?: string;
 }
 
@@ -588,7 +599,7 @@ export interface DtoForm {
   notification_channels?: TypesFormAnswerNotify | null;
   slug?: string;
   target_project_detail?: DtoProjectLight | null;
-  target_project_id?: string | null;
+  target_project_id?: GithubComGofrsUuidNullUUID | null;
   title: string;
   url?: string;
   workspace?: string;
@@ -613,7 +624,7 @@ export interface DtoFormLight {
   fields?: TypesFormFields[];
   id?: string;
   slug?: string;
-  target_project_id?: string | null;
+  target_project_id?: GithubComGofrsUuidNullUUID | null;
   title: string;
   url?: string;
   workspace?: string;
@@ -671,7 +682,7 @@ export interface DtoIssue {
   issue_link?: DtoIssueLinkLight[] | null;
   label_details?: DtoLabelLight[] | null;
   name?: string;
-  parent?: string;
+  parent?: GithubComGofrsUuidNullUUID;
   parent_detail?: DtoIssueLight | null;
   pinned?: boolean;
   priority?: string | null;
@@ -685,7 +696,7 @@ export interface DtoIssue {
   state_detail?: DtoStateLight | null;
   target_date?: string | null;
   updated_at?: string;
-  updated_by?: string | null;
+  updated_by?: GithubComGofrsUuidNullUUID | null;
   url?: string;
   watcher_details?: DtoUserLight[] | null;
   workspace?: string;
@@ -702,7 +713,7 @@ export interface DtoIssueBlockerLight {
 
 export interface DtoIssueComment {
   actor_detail?: DtoUserLight | null;
-  actor_id?: string | null;
+  actor_id?: GithubComGofrsUuidNullUUID | null;
   comment_attachments?: DtoFileAsset[];
   comment_html?: string;
   comment_stripped?: string;
@@ -715,7 +726,7 @@ export interface DtoIssueComment {
   reactions?: DtoCommentReaction[];
   reply_to_comment_id?: GithubComGofrsUuidNullUUID | null;
   updated_at?: string;
-  updated_by_id?: string;
+  updated_by_id?: GithubComGofrsUuidNullUUID;
   url?: string;
   workspace_id?: string;
 }
@@ -725,6 +736,17 @@ export interface DtoIssueCommentLight {
   comment_stripped?: string;
   id?: string;
   url?: string;
+}
+
+export interface DtoIssueCounters {
+  /** Active количество активных задач (не completed и не cancelled) */
+  active?: number;
+  /** Cancelled количество отменённых задач */
+  cancelled?: number;
+  /** Completed количество завершённых задач */
+  completed?: number;
+  /** Total общее количество задач */
+  total?: number;
 }
 
 export interface DtoIssueLight {
@@ -795,7 +817,7 @@ export interface DtoIssueWithCount {
   linked_issues_count?: number;
   name?: string;
   name_highlighted?: string;
-  parent?: string;
+  parent?: GithubComGofrsUuidNullUUID;
   parent_detail?: DtoIssueLight | null;
   pinned?: boolean;
   priority?: string | null;
@@ -810,7 +832,7 @@ export interface DtoIssueWithCount {
   sub_issues_count?: number;
   target_date?: string | null;
   updated_at?: string;
-  updated_by?: string | null;
+  updated_by?: GithubComGofrsUuidNullUUID | null;
   url?: string;
   watcher_details?: DtoUserLight[] | null;
   workspace?: string;
@@ -830,6 +852,17 @@ export interface DtoLabelLight {
   project?: string;
 }
 
+export interface DtoLabelStatItem {
+  /** Color цвет метки в HEX формате */
+  color?: string;
+  /** Count количество задач с этой меткой */
+  count?: number;
+  /** LabelID идентификатор метки */
+  label_id?: string;
+  /** Name название метки */
+  name?: string;
+}
+
 export interface DtoLastWorkspaceResponse {
   project_details?: any;
   workspace_details?: any;
@@ -845,6 +878,13 @@ export interface DtoListSSHKeysResponse {
   total?: number;
 }
 
+export interface DtoMonthlyCount {
+  /** Count количество */
+  count?: number;
+  /** Month месяц в формате "YYYY-MM" */
+  month?: string;
+}
+
 export interface DtoNewIssueID {
   id?: string;
 }
@@ -853,9 +893,29 @@ export interface DtoNotificationIdResponse {
   count?: number;
 }
 
+export interface DtoOverdueStats {
+  /** Count количество просроченных задач */
+  count?: number;
+  /** OldestDate дата самой старой просроченной задачи */
+  oldest_date?: string | null;
+}
+
 export interface DtoPasswordResponse {
   message?: string;
   status?: number;
+}
+
+export interface DtoPriorityStats {
+  /** High высокий приоритет */
+  high?: number;
+  /** Low низкий приоритет */
+  low?: number;
+  /** Medium средний приоритет */
+  medium?: number;
+  /** None без приоритета */
+  none?: number;
+  /** Urgent срочные задачи */
+  urgent?: number;
 }
 
 export interface DtoProject {
@@ -942,6 +1002,40 @@ export interface DtoProjectMemberLight {
   project_id?: string;
   role?: number;
   workspace_admin?: boolean;
+}
+
+export interface DtoProjectStats {
+  /** AssigneeStats статистика по исполнителям (опционально, топ-50) */
+  assignee_stats?: DtoAssigneeStatItem[] | null;
+  /** ByPriority распределение по приоритетам */
+  by_priority?: DtoPriorityStats;
+  /** ByState распределение по статусам */
+  by_state?: DtoStateStatItem[];
+  /** ByStateGroup распределение по группам статусов */
+  by_state_group?: DtoStateGroupStats;
+  /** Issues общие счётчики задач */
+  issues?: DtoIssueCounters;
+  /** LabelStats статистика по меткам (опционально, топ-50) */
+  label_stats?: DtoLabelStatItem[] | null;
+  /** Overdue статистика просроченных задач */
+  overdue?: DtoOverdueStats;
+  /** Project базовая информация о проекте */
+  project?: DtoProjectStatsProject;
+  /** SprintStats статистика по спринтам (опционально, последние 50) */
+  sprint_stats?: DtoSprintStatItem[] | null;
+  /** Timeline временная статистика (опционально, за 12 месяцев) */
+  timeline?: DtoTimelineStats | null;
+}
+
+export interface DtoProjectStatsProject {
+  /** ID идентификатор проекта */
+  id?: string;
+  /** Identifier короткий идентификатор проекта (например, "PORTAL") */
+  identifier?: string;
+  /** Name название проекта */
+  name?: string;
+  /** TotalMembers общее количество участников проекта */
+  total_members?: number;
 }
 
 export interface DtoReleaseNoteLight {
@@ -1049,6 +1143,30 @@ export interface DtoSprintLight {
   url?: string;
 }
 
+export interface DtoSprintStatItem {
+  /** Completed количество завершённых задач в спринте */
+  completed?: number;
+  /** Name название спринта */
+  name?: string;
+  /** SprintID идентификатор спринта */
+  sprint_id?: string;
+  /** Total общее количество задач в спринте */
+  total?: number;
+}
+
+export interface DtoStateGroupStats {
+  /** Backlog задачи в бэклоге */
+  backlog?: number;
+  /** Cancelled отменённые задачи */
+  cancelled?: number;
+  /** Completed завершённые задачи */
+  completed?: number;
+  /** Started задачи в работе */
+  started?: number;
+  /** Unstarted задачи не начатые */
+  unstarted?: number;
+}
+
 export interface DtoStateLight {
   color?: string;
   default?: boolean;
@@ -1059,6 +1177,26 @@ export interface DtoStateLight {
   project?: string;
   sequence?: number;
   workspace?: string;
+}
+
+export interface DtoStateStatItem {
+  /** Color цвет статуса в HEX формате */
+  color?: string;
+  /** Count количество задач с этим статусом */
+  count?: number;
+  /** Group группа статуса (backlog, unstarted, started, completed, cancelled) */
+  group?: string;
+  /** Name название статуса */
+  name?: string;
+  /** StateID идентификатор статуса */
+  state_id?: string;
+}
+
+export interface DtoTimelineStats {
+  /** CompletedByMonth количество завершённых задач по месяцам */
+  completed_by_month?: DtoMonthlyCount[];
+  /** CreatedByMonth количество созданных задач по месяцам */
+  created_by_month?: DtoMonthlyCount[];
 }
 
 export interface DtoUser {
@@ -1077,7 +1215,7 @@ export interface DtoUser {
   is_superuser?: boolean;
   last_active?: string | null;
   last_name?: string;
-  last_workspace_id?: string | null;
+  last_workspace_id?: GithubComGofrsUuidNullUUID | null;
   last_workspace_slug?: string | null;
   notification_count?: number;
   settings?: TypesUserSettings;
