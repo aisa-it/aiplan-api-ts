@@ -32,7 +32,9 @@ import {
   DtoProjectMemberLight,
   DtoProjectStats,
   DtoRulesLog,
+  DtoRulesScriptResponse,
   DtoStateLight,
+  DtoUpdateRulesScriptRequest,
   DtoUserLight,
   TypesViewProps,
 } from "./data-contracts";
@@ -641,6 +643,28 @@ export class Projects<
       ...params,
     });
   /**
+   * @description Возвращает информацию о членстве текущего пользователя в указанном проекте.
+   *
+   * @tags Projects
+   * @name GetProjectCurrentMembership
+   * @summary Проекты (участники): получение информации о текущем членстве в проекте
+   * @request GET:/api/auth/workspaces/{workspaceSlug}/projects/{projectId}/members/me
+   * @secure
+   */
+  getProjectCurrentMembership = (
+    workspaceSlug: string,
+    projectId: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<DtoProjectMember, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/members/me`,
+      method: "GET",
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
    * @description Возвращает информацию о конкретном участнике проекта по его идентификатору.
    *
    * @tags Projects
@@ -789,6 +813,74 @@ export class Projects<
       method: "POST",
       query: query,
       body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Возвращает скрипт правил проекта. Доступно только для админов проекта.
+   *
+   * @tags Projects
+   * @name GetProjectRulesScript
+   * @summary Проекты: получение скрипта правил
+   * @request GET:/api/auth/workspaces/{workspaceSlug}/projects/{projectId}/rules-script/
+   * @secure
+   */
+  getProjectRulesScript = (
+    workspaceSlug: string,
+    projectId: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<DtoRulesScriptResponse, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/rules-script/`,
+      method: "GET",
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Обновляет скрипт правил проекта. Доступно только для админов проекта.
+   *
+   * @tags Projects
+   * @name UpdateProjectRulesScript
+   * @summary Проекты: обновление скрипта правил
+   * @request PUT:/api/auth/workspaces/{workspaceSlug}/projects/{projectId}/rules-script/
+   * @secure
+   */
+  updateProjectRulesScript = (
+    workspaceSlug: string,
+    projectId: string,
+    request: DtoUpdateRulesScriptRequest,
+    params: RequestParams = {},
+  ) =>
+    this.request<DtoRulesScriptResponse, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/rules-script/`,
+      method: "PUT",
+      body: request,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Удаляет скрипт правил проекта. Доступно только для админов проекта.
+   *
+   * @tags Projects
+   * @name DeleteProjectRulesScript
+   * @summary Проекты: удаление скрипта правил
+   * @request DELETE:/api/auth/workspaces/{workspaceSlug}/projects/{projectId}/rules-script/
+   * @secure
+   */
+  deleteProjectRulesScript = (
+    workspaceSlug: string,
+    projectId: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<DtoRulesScriptResponse, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/rules-script/`,
+      method: "DELETE",
       secure: true,
       type: ContentType.Json,
       format: "json",

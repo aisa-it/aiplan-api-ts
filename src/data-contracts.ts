@@ -937,7 +937,6 @@ export interface DtoProject {
   project_lead?: string;
   project_lead_detail?: DtoUserLight | null;
   public?: boolean;
-  rules_script?: string | null;
   total_members?: number;
   updated_at?: string;
   url?: string;
@@ -1073,6 +1072,10 @@ export interface DtoRulesLog {
   workspace_detail?: DtoWorkspaceLight;
 }
 
+export interface DtoRulesScriptResponse {
+  rules_script?: string | null;
+}
+
 export interface DtoSSHConfigResponse {
   ssh_enabled?: boolean;
   ssh_host?: string;
@@ -1197,6 +1200,11 @@ export interface DtoTimelineStats {
   completed_by_month?: DtoMonthlyCount[];
   /** CreatedByMonth количество созданных задач по месяцам */
   created_by_month?: DtoMonthlyCount[];
+}
+
+export interface DtoUpdateRulesScriptRequest {
+  /** @maxLength 10000 */
+  rules_script?: string | null;
 }
 
 export interface DtoUser {

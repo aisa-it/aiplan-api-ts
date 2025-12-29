@@ -557,6 +557,27 @@ export class Workspace<
       ...params,
     });
   /**
+   * @description Возвращает данные участника для текущего пользователя в рабочем пространстве.
+   *
+   * @tags Workspace
+   * @name GetWorkspaceCurrentMembership
+   * @summary Пространство (участники): получение информации о текущем участнике рабочего пространства
+   * @request GET:/api/auth/workspaces/{workspaceSlug}/members/me/
+   * @secure
+   */
+  getWorkspaceCurrentMembership = (
+    workspaceSlug: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<DtoWorkspaceMember, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/members/me/`,
+      method: "GET",
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
    * @description Позволяет отправить сообщение всем участникам рабочего пространства или выбранным участникам. Поддерживается отправка отложенных сообщений.
    *
    * @tags Workspace
