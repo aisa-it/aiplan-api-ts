@@ -24,9 +24,11 @@ import {
   DtoEntityActivityFull,
   DtoPasswordResponse,
   DtoProjectLight,
+  DtoProjectMember,
   DtoUser,
   DtoUserFeedback,
   DtoUserLight,
+  DtoWorkspaceMember,
   TypesActivityTable,
   TypesViewProps,
 } from "./data-contracts";
@@ -451,6 +453,46 @@ export class Users<
       path: `/api/auth/users/me/feedback/`,
       method: "DELETE",
       secure: true,
+      ...params,
+    });
+  /**
+   * @description Возвращает информацию о членстве текущего пользователя в указанных проектах, если не указывать проекты - возвращаются все членства
+   *
+   * @tags Users
+   * @name GetCurrentUserProjectMemberships
+   * @summary Пользователи: получение членства в проектах
+   * @request GET:/api/auth/users/me/memberships/projects/
+   * @secure
+   */
+  getCurrentUserProjectMemberships = (
+    projects?: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<DtoProjectMember[], ApierrorsDefinedError>({
+      path: `/api/auth/users/me/memberships/projects/`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Возвращает информацию о членстве текущего пользователя в указанных рабочих пространствах, если не указывать пространства - возвращаются все членства
+   *
+   * @tags Users
+   * @name GetCurrentUserWorkspaceMemberships
+   * @summary Пользователи: получение членства в рабочих пространствах
+   * @request GET:/api/auth/users/me/memberships/workspaces/
+   * @secure
+   */
+  getCurrentUserWorkspaceMemberships = (
+    workspaces?: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<DtoWorkspaceMember[], ApierrorsDefinedError>({
+      path: `/api/auth/users/me/memberships/workspaces/`,
+      method: "GET",
+      secure: true,
+      format: "json",
       ...params,
     });
   /**
