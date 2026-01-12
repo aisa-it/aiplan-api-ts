@@ -461,21 +461,19 @@ export class Users<
    * @tags Users
    * @name GetCurrentUserProjectMemberships
    * @summary Пользователи: получение членства в проектах
-   * @request GET:/api/auth/users/me/memberships/projects/
+   * @request POST:/api/auth/users/me/memberships/projects/
    * @secure
    */
   getCurrentUserProjectMemberships = (
-    query?: {
-      /** Список ID проектов через запятую */
-      projects?: string;
-    },
+    data: string[],
     params: RequestParams = {},
   ) =>
     this.request<DtoProjectMember[], ApierrorsDefinedError>({
       path: `/api/auth/users/me/memberships/projects/`,
-      method: "GET",
-      query: query,
+      method: "POST",
+      body: data,
       secure: true,
+      type: ContentType.Json,
       format: "json",
       ...params,
     });
@@ -485,21 +483,19 @@ export class Users<
    * @tags Users
    * @name GetCurrentUserWorkspaceMemberships
    * @summary Пользователи: получение членства в рабочих пространствах
-   * @request GET:/api/auth/users/me/memberships/workspaces/
+   * @request POST:/api/auth/users/me/memberships/workspaces/
    * @secure
    */
   getCurrentUserWorkspaceMemberships = (
-    query?: {
-      /** Список ID рабочих пространств через запятую */
-      workspaces?: string;
-    },
+    data: string[],
     params: RequestParams = {},
   ) =>
     this.request<DtoWorkspaceMember[], ApierrorsDefinedError>({
       path: `/api/auth/users/me/memberships/workspaces/`,
-      method: "GET",
-      query: query,
+      method: "POST",
+      body: data,
       secure: true,
+      type: ContentType.Json,
       format: "json",
       ...params,
     });
