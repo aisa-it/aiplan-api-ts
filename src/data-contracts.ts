@@ -513,6 +513,7 @@ export interface DtoDoc {
   has_child_docs?: boolean;
   id?: string;
   is_favorite?: boolean;
+  llm_content?: boolean;
   parent_doc?: GithubComGofrsUuidNullUUID;
   reader_ids?: string[];
   reader_role?: number;

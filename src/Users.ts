@@ -465,12 +465,16 @@ export class Users<
    * @secure
    */
   getCurrentUserProjectMemberships = (
-    projects?: string,
+    query?: {
+      /** Список ID проектов через запятую */
+      projects?: string;
+    },
     params: RequestParams = {},
   ) =>
     this.request<DtoProjectMember[], ApierrorsDefinedError>({
       path: `/api/auth/users/me/memberships/projects/`,
       method: "GET",
+      query: query,
       secure: true,
       format: "json",
       ...params,
@@ -485,12 +489,16 @@ export class Users<
    * @secure
    */
   getCurrentUserWorkspaceMemberships = (
-    workspaces?: string,
+    query?: {
+      /** Список ID рабочих пространств через запятую */
+      workspaces?: string;
+    },
     params: RequestParams = {},
   ) =>
     this.request<DtoWorkspaceMember[], ApierrorsDefinedError>({
       path: `/api/auth/users/me/memberships/workspaces/`,
       method: "GET",
+      query: query,
       secure: true,
       format: "json",
       ...params,
