@@ -990,6 +990,7 @@ export interface DtoProjectMember {
   role?: number;
   view_props?: TypesViewProps;
   workspace_admin?: boolean;
+  workspace_id?: string;
 }
 
 export interface DtoProjectMemberLight {
@@ -1002,6 +1003,7 @@ export interface DtoProjectMemberLight {
   project_id?: string;
   role?: number;
   workspace_admin?: boolean;
+  workspace_id?: string;
 }
 
 export interface DtoProjectStats {
@@ -1321,6 +1323,7 @@ export interface DtoWorkspaceMember {
   notification_settings_email?: TypesWorkspaceMemberNS;
   notification_settings_tg?: TypesWorkspaceMemberNS;
   role?: number;
+  workspace_id?: string;
 }
 
 export interface DtoWorkspaceMemberLight {
@@ -1329,6 +1332,7 @@ export interface DtoWorkspaceMemberLight {
   member?: DtoUserLight;
   member_id?: string;
   role?: number;
+  workspace_id?: string;
 }
 
 export interface DtoWorkspaceWithCount {
