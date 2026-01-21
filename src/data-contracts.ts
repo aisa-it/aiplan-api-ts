@@ -1466,6 +1466,7 @@ export interface NotificationsNotificationDetailResponse {
   issue?: DtoIssueLight;
   issue_comment?: DtoIssueCommentLight;
   project?: DtoProjectLight;
+  sprint?: DtoSprintLight;
   user?: DtoUserLight;
   workspace?: DtoWorkspaceLight;
 }
@@ -1621,6 +1622,11 @@ export interface TypesWorkspaceMemberNS {
   disable_doc_role?: boolean;
   disable_doc_title?: boolean;
   disable_doc_watchers?: boolean;
+  disable_sprint_date?: boolean;
+  disable_sprint_description?: boolean;
+  disable_sprint_issue_list?: boolean;
+  disable_sprint_name?: boolean;
+  disable_sprint_watcher_list?: boolean;
   disable_workspace_desc?: boolean;
   disable_workspace_doc?: boolean;
   disable_workspace_form?: boolean;
@@ -1631,5 +1637,6 @@ export interface TypesWorkspaceMemberNS {
   disable_workspace_owner?: boolean;
   disable_workspace_project?: boolean;
   disable_workspace_role?: boolean;
+  disable_workspace_sprint?: boolean;
   disable_workspace_token?: boolean;
 }
