@@ -495,6 +495,17 @@ export interface DtoCreateGitRepositoryResponse {
   workspace?: string;
 }
 
+export interface DtoCreatePropertyTemplateRequest {
+  /**
+   * @minLength 1
+   * @maxLength 255
+   */
+  name: string;
+  only_admin?: boolean;
+  sort_order?: number;
+  type: "string" | "boolean";
+}
+
 export interface DtoDeleteGitRepositoryRequest {
   /** Name - название репозитория (обязательное поле) */
   name: string;
@@ -775,6 +786,17 @@ export interface DtoIssueLockResponse {
   ok?: boolean;
 }
 
+export interface DtoIssueProperty {
+  id?: string;
+  issue_id?: string;
+  name?: string;
+  project_id?: string;
+  template_id?: string;
+  type?: string;
+  value?: any;
+  workspace_id?: string;
+}
+
 export interface DtoIssueSearchResult {
   count?: number;
   issues?: DtoIssueWithCount[];
@@ -1006,6 +1028,18 @@ export interface DtoProjectMemberLight {
   workspace_id?: string;
 }
 
+export interface DtoProjectPropertyTemplate {
+  created_at?: string;
+  id?: string;
+  name?: string;
+  only_admin?: boolean;
+  project_id?: string;
+  sort_order?: number;
+  type?: string;
+  updated_at?: string;
+  workspace_id?: string;
+}
+
 export interface DtoProjectStats {
   /** AssigneeStats статистика по исполнителям (опционально, топ-50) */
   assignee_stats?: DtoAssigneeStatItem[] | null;
@@ -1117,6 +1151,10 @@ export interface DtoSearchFilterLight {
   url?: string;
 }
 
+export interface DtoSetIssuePropertyRequest {
+  value?: any;
+}
+
 export interface DtoSprint {
   created_at?: string;
   created_by?: DtoUserLight;
@@ -1203,6 +1241,13 @@ export interface DtoTimelineStats {
   completed_by_month?: DtoMonthlyCount[];
   /** CreatedByMonth количество созданных задач по месяцам */
   created_by_month?: DtoMonthlyCount[];
+}
+
+export interface DtoUpdatePropertyTemplateRequest {
+  name?: string;
+  only_admin?: boolean;
+  sort_order?: number;
+  type?: string;
 }
 
 export interface DtoUpdateRulesScriptRequest {
@@ -1532,6 +1577,7 @@ export interface TypesProjectMemberNS {
   disable_deadline?: boolean;
   disable_desc?: boolean;
   disable_issue_new?: boolean;
+  disable_issue_sprint?: boolean;
   disable_issue_transfer?: boolean;
   disable_labels?: boolean;
   disable_linked?: boolean;
