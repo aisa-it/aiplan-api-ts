@@ -112,6 +112,70 @@ export class Issues<
       ...params,
     });
   /**
+   * @description Экспортирует задачи в ZIP архив с CSV файлами. При группировке создаётся отдельный CSV файл для каждой группы.
+   *
+   * @tags Issues
+   * @name ExportIssueList
+   * @summary Задачи: экспорт задач в CSV
+   * @request POST:/api/auth/issues/search/export/
+   * @secure
+   */
+  exportIssueList = (
+    filters: TypesIssuesListFilters,
+    query?: {
+      /**
+       * Выключить подзадачи
+       * @default false
+       */
+      hide_sub_issues?: boolean;
+      /**
+       * Поле для сортировки
+       * @default ""sequence_id""
+       */
+      order_by?: string;
+      /**
+       * Поле для группировки результатов
+       * @default """"
+       */
+      group_by?: string;
+      /**
+       * Смещение для пагинации
+       * @default -1
+       */
+      offset?: number;
+      /**
+       * Лимит записей
+       * @default 100
+       */
+      limit?: number;
+      /**
+       * Сортировка по убыванию
+       * @default true
+       */
+      desc?: boolean;
+      /**
+       * Вернуть только активные задачи
+       * @default false
+       */
+      only_active?: boolean;
+      /**
+       * Вернуть только закрепленные задачи
+       * @default false
+       */
+      only_pinned?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<File, ApierrorsDefinedError>({
+      path: `/api/auth/issues/search/export/`,
+      method: "POST",
+      query: query,
+      body: filters,
+      secure: true,
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
    * @description Мигрирует задачу из одного проекта в другой с опциональной поддержкой связанных задач и удаления исходной задачи
    *
    * @tags Issues
