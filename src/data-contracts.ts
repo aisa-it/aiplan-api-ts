@@ -1542,7 +1542,17 @@ export interface TypesFormAnswerNotify {
   telegram?: boolean;
 }
 
+export interface TypesFormFieldDependency {
+  /** Индекс поля от которого зависит */
+  field_index?: number;
+  /** Индекс варианта ответа (для select/multiselect) */
+  option_index?: number | null;
+  /** Ожидаемое значение зависимого поля (или варианта ответа) */
+  value?: boolean;
+}
+
 export interface TypesFormFields {
+  depend_on?: TypesFormFieldDependency | null;
   label?: string;
   required?: boolean;
   type?: string;
@@ -1555,13 +1565,23 @@ export interface TypesIssuesListFilters {
   assignees?: string[];
   authored_by_me?: boolean;
   authors?: string[];
+  completed_at_from?: string;
+  completed_at_to?: string;
+  created_at_from?: string;
+  created_at_to?: string;
   labels?: string[];
   only_active?: boolean;
   priorities?: string[];
   projects?: string[];
   search_query?: string;
   sprints?: string[];
+  start_date_from?: string;
+  start_date_to?: string;
   states?: string[];
+  target_date_from?: string;
+  target_date_to?: string;
+  updated_at_from?: string;
+  updated_at_to?: string;
   watched_by_me?: boolean;
   watchers?: string[];
   workspace_slugs?: string[];
@@ -1680,7 +1700,6 @@ export interface TypesWorkspaceMemberNS {
   disable_workspace_logo?: boolean;
   disable_workspace_member?: boolean;
   disable_workspace_name?: boolean;
-  disable_workspace_owner?: boolean;
   disable_workspace_project?: boolean;
   disable_workspace_role?: boolean;
   disable_workspace_sprint?: boolean;

@@ -193,11 +193,16 @@ export class Docs<
       /** Вложения для документа */
       files?: File;
     },
+    query?: {
+      /** применить повышение роли (при необходимости) к дочерним документам */
+      cascade_roles?: boolean;
+    },
     params: RequestParams = {},
   ) =>
     this.request<DtoDoc, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/`,
       method: "PATCH",
+      query: query,
       body: data,
       secure: true,
       type: ContentType.FormData,
