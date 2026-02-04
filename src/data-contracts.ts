@@ -1536,6 +1536,11 @@ export interface TypesActivityTableDay {
   weekday?: TypesWeekdayShort;
 }
 
+export interface TypesFilterUUIDs {
+  array?: string[];
+  include_empty?: boolean;
+}
+
 export interface TypesFormAnswerNotify {
   app?: boolean;
   email?: boolean;
@@ -1562,7 +1567,7 @@ export interface TypesFormFields {
 
 export interface TypesIssuesListFilters {
   assigned_to_me?: boolean;
-  assignees?: string[];
+  assignees?: TypesFilterUUIDs;
   authored_by_me?: boolean;
   authors?: string[];
   completed_at_from?: string;
@@ -1583,7 +1588,7 @@ export interface TypesIssuesListFilters {
   updated_at_from?: string;
   updated_at_to?: string;
   watched_by_me?: boolean;
-  watchers?: string[];
+  watchers?: TypesFilterUUIDs;
   workspace_slugs?: string[];
   workspaces?: string[];
 }
