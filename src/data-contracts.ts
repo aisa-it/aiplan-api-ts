@@ -502,8 +502,9 @@ export interface DtoCreatePropertyTemplateRequest {
    */
   name: string;
   only_admin?: boolean;
+  options?: string[];
   sort_order?: number;
-  type: "string" | "boolean";
+  type: "string" | "boolean" | "select";
 }
 
 export interface DtoDeleteGitRepositoryRequest {
@@ -790,6 +791,7 @@ export interface DtoIssueProperty {
   id?: string;
   issue_id?: string;
   name?: string;
+  options?: string[];
   project_id?: string;
   template_id?: string;
   type?: string;
@@ -951,6 +953,7 @@ export interface DtoProject {
   default_watchers_details?: DtoProjectMemberLight[];
   /** @example "0" */
   emoji?: string;
+  hide_fields?: string[];
   id?: string;
   identifier?: string;
   is_favorite?: boolean;
@@ -1033,6 +1036,7 @@ export interface DtoProjectPropertyTemplate {
   id?: string;
   name?: string;
   only_admin?: boolean;
+  options?: string[];
   project_id?: string;
   sort_order?: number;
   type?: string;
@@ -1246,6 +1250,7 @@ export interface DtoTimelineStats {
 export interface DtoUpdatePropertyTemplateRequest {
   name?: string;
   only_admin?: boolean;
+  options?: string[];
   sort_order?: number;
   type?: string;
 }
@@ -1558,6 +1563,7 @@ export interface TypesFormFieldDependency {
 
 export interface TypesFormFields {
   depend_on?: TypesFormFieldDependency | null;
+  issue_name_field?: boolean;
   label?: string;
   required?: boolean;
   type?: string;
