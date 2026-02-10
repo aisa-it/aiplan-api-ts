@@ -14,9 +14,9 @@ import {
   AiplanReqForm,
   ApierrorsDefinedError,
   DaoPaginationResponse,
-  DtoAttachment,
   DtoForm,
   DtoFormAnswer,
+  DtoFormAttachmentLight,
   DtoFormLight,
   DtoRequestAnswer,
   DtoResponseAnswers,
@@ -84,7 +84,7 @@ export class Forms<
     },
     params: RequestParams = {},
   ) =>
-    this.request<DtoAttachment, ApierrorsDefinedError>({
+    this.request<DtoFormAttachmentLight, ApierrorsDefinedError>({
       path: `/api/auth/forms/${formSlug}/form-attachments/`,
       method: "POST",
       body: data,

@@ -19,6 +19,7 @@ import {
   ApierrorsDefinedError,
   DaoPaginationResponse,
   DtoAttachment,
+  DtoCommentHistory,
   DtoCommentReaction,
   DtoEntityActivityFull,
   DtoIssue,
@@ -655,6 +656,47 @@ export class Issues<
       body: data,
       secure: true,
       type: ContentType.FormData,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Получает данные истории изменения комментария к задаче
+   *
+   * @tags Issues
+   * @name GetIssueCommentUpdateList
+   * @summary Задачи (комментарии): получение истории изменения комментария к задаче
+   * @request GET:/api/auth/workspaces/{workspaceSlug}/projects/{projectId}/issues/{issueIdOrSeq}/comments/{commentId}/history
+   * @secure
+   */
+  getIssueCommentUpdateList = (
+    workspaceSlug: string,
+    projectId: string,
+    issueIdOrSeq: string,
+    commentId: string,
+    query?: {
+      /**
+       * Смещение для пагинации
+       * @default 0
+       */
+      offset?: number;
+      /**
+       * Лимит записей
+       * @default 100
+       */
+      limit?: number;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<
+      DaoPaginationResponse & {
+        result?: DtoCommentHistory[];
+      },
+      ApierrorsDefinedError
+    >({
+      path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/comments/${commentId}/history`,
+      method: "GET",
+      query: query,
+      secure: true,
       format: "json",
       ...params,
     });

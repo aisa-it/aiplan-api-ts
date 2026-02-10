@@ -458,6 +458,16 @@ export interface DtoCheckProjectIdentifierAvailabilityResponse {
   identifiers?: string[];
 }
 
+export interface DtoCommentHistory {
+  actor_update?: DtoUserLight;
+  comment_attachments?: DtoFileAsset[];
+  comment_html?: string;
+  comment_id?: GithubComGofrsUuidNullUUID;
+  comment_stripped?: string;
+  created_at?: string;
+  updated_by_id?: string;
+}
+
 export interface DtoCommentReaction {
   comment_id?: string;
   created_at?: string;
@@ -621,12 +631,19 @@ export interface DtoForm {
 
 export interface DtoFormAnswer {
   attachment?: DtoAttachment | null;
+  attachments?: DtoFormAttachmentLight[] | null;
   created_at?: string;
   fields?: TypesFormFields[];
   form?: DtoForm | null;
   id?: string;
   responder?: DtoUserLight | null;
   seq_id?: number;
+}
+
+export interface DtoFormAttachmentLight {
+  asset?: DtoFileAsset;
+  created_at?: string;
+  id?: string;
 }
 
 export interface DtoFormLight {

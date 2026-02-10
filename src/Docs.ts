@@ -16,6 +16,7 @@ import {
   ApierrorsDefinedError,
   DaoPaginationResponse,
   DtoAttachment,
+  DtoCommentHistory,
   DtoCommentReaction,
   DtoDoc,
   DtoDocComment,
@@ -417,6 +418,46 @@ export class Docs<
       body: data,
       secure: true,
       type: ContentType.FormData,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Получает данные истории изменения комментария к документу
+   *
+   * @tags Docs
+   * @name GetDocCommentUpdateList
+   * @summary Doc (комментарии): получение истории изменения комментария к документу
+   * @request GET:/api/auth/workspaces/{workspaceSlug}/doc/{docId}/comments/{commentId}/history
+   * @secure
+   */
+  getDocCommentUpdateList = (
+    workspaceSlug: string,
+    docId: string,
+    commentId: string,
+    query?: {
+      /**
+       * Смещение для пагинации
+       * @default 0
+       */
+      offset?: number;
+      /**
+       * Лимит записей
+       * @default 100
+       */
+      limit?: number;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<
+      DaoPaginationResponse & {
+        result?: DtoCommentHistory[];
+      },
+      ApierrorsDefinedError
+    >({
+      path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/comments/${commentId}/history`,
+      method: "GET",
+      query: query,
+      secure: true,
       format: "json",
       ...params,
     });
