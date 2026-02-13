@@ -150,6 +150,7 @@ export interface AiplanIssueCreateRequest {
   issue_link?: DtoIssueLinkLight[] | null;
   label_details?: DtoLabelLight[] | null;
   labels_list?: string[];
+  llm_content?: boolean;
   name?: string;
   parent?: GithubComGofrsUuidNullUUID;
   parent_detail?: DtoIssueLight | null;
@@ -711,6 +712,7 @@ export interface DtoIssue {
   issue_inline_attachments?: DtoFileAsset[];
   issue_link?: DtoIssueLinkLight[] | null;
   label_details?: DtoLabelLight[] | null;
+  llm_content?: boolean;
   name?: string;
   parent?: GithubComGofrsUuidNullUUID;
   parent_detail?: DtoIssueLight | null;
@@ -857,6 +859,7 @@ export interface DtoIssueWithCount {
   label_details?: DtoLabelLight[] | null;
   link_count?: number;
   linked_issues_count?: number;
+  llm_content?: boolean;
   name?: string;
   name_highlighted?: string;
   parent?: GithubComGofrsUuidNullUUID;
