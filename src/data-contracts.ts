@@ -977,12 +977,14 @@ export interface DtoProject {
   id?: string;
   identifier?: string;
   is_favorite?: boolean;
+  issue_deletion_allowed?: boolean;
   logo?: string | null;
   name?: string;
   name_highlighted?: string;
   project_lead?: string;
   project_lead_detail?: DtoUserLight | null;
   public?: boolean;
+  states_flow?: TypesStatesFlowGraph;
   total_members?: number;
   updated_at?: string;
   url?: string;
@@ -1008,6 +1010,7 @@ export interface DtoProjectLight {
   id?: string;
   identifier?: string;
   is_favorite?: boolean;
+  issue_deletion_allowed?: boolean;
   logo?: string | null;
   name?: string;
   name_highlighted?: string;
@@ -1566,6 +1569,23 @@ export interface TypesFilterUUIDs {
   include_empty?: boolean;
 }
 
+export interface TypesFlowEdge {
+  animated?: boolean;
+  id?: string;
+  source?: string;
+  target?: string;
+}
+
+export interface TypesFlowNode {
+  id?: string;
+  label?: string;
+  position?: {
+    x?: number;
+    y?: number;
+  };
+  type?: string;
+}
+
 export interface TypesFormAnswerNotify {
   app?: boolean;
   email?: boolean;
@@ -1600,7 +1620,7 @@ export interface TypesIssuesListFilters {
   completed_at_to?: string;
   created_at_from?: string;
   created_at_to?: string;
-  labels?: string[];
+  labels?: TypesFilterUUIDs;
   only_active?: boolean;
   priorities?: string[];
   projects?: string[];
@@ -1661,6 +1681,11 @@ export interface TypesSprintStats {
   completed?: number;
   in_progress?: number;
   pending?: number;
+}
+
+export interface TypesStatesFlowGraph {
+  edges?: TypesFlowEdge[];
+  nodes?: TypesFlowNode[];
 }
 
 export interface TypesTheme {

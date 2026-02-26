@@ -632,4 +632,21 @@ export class AdminPanel<
       format: "json",
       ...params,
     });
+  /**
+   * @description Удаляет рабочее пространство по его slug. Доступно только суперпользователям или владельцам пространства. Выполняет мягкое удаление с последующим фоновым окончательным удалением.
+   *
+   * @tags AdminPanel
+   * @name DeleteWorkspaceByAdmin
+   * @summary Пространство: удаление рабочего пространства администратором
+   * @request DELETE:/api/auth/admin/workspaces/{slug}
+   * @secure
+   */
+  deleteWorkspaceByAdmin = (slug: string, params: RequestParams = {}) =>
+    this.request<void, ApierrorsDefinedError>({
+      path: `/api/auth/admin/workspaces/${slug}`,
+      method: "DELETE",
+      secure: true,
+      type: ContentType.Json,
+      ...params,
+    });
 }
