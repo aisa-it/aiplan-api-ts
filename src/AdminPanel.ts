@@ -633,6 +633,24 @@ export class AdminPanel<
       ...params,
     });
   /**
+   * @description Возвращает информацию о рабочем пространстве по его slug или ID. Доступно только суперпользователям.
+   *
+   * @tags AdminPanel
+   * @name GetWorkspaceByAdmin
+   * @summary Пространство: получение рабочего пространства администратором
+   * @request GET:/api/auth/admin/workspaces/{slug}
+   * @secure
+   */
+  getWorkspaceByAdmin = (slug: string, params: RequestParams = {}) =>
+    this.request<DtoWorkspace, ApierrorsDefinedError>({
+      path: `/api/auth/admin/workspaces/${slug}`,
+      method: "GET",
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
    * @description Удаляет рабочее пространство по его slug. Доступно только суперпользователям или владельцам пространства. Выполняет мягкое удаление с последующим фоновым окончательным удалением.
    *
    * @tags AdminPanel
