@@ -884,6 +884,18 @@ export interface DtoIssueWithCount {
   workspace_detail?: DtoWorkspaceLight | null;
 }
 
+export interface DtoJitsiTokenLog {
+  created_at?: string;
+  id?: number;
+  ip?: string;
+  room?: string;
+  user_agent?: string;
+  user_details?: DtoUserLight;
+  user_id?: string;
+  workspace_details?: DtoWorkspaceLight;
+  workspace_id?: GithubComGofrsUuidNullUUID;
+}
+
 export interface DtoJoinProjectsSuccessResponse {
   /** @example "Projects joined successfully" */
   message?: string;

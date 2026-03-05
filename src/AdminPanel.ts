@@ -16,6 +16,7 @@ import {
   AiplanUserCreateRequest,
   ApierrorsDefinedError,
   DaoPaginationResponse,
+  DtoJitsiTokenLog,
   DtoProject,
   DtoProjectLight,
   DtoReleaseNoteLight,
@@ -105,6 +106,46 @@ export class AdminPanel<
     this.request<IssuesImportImportStatus[], ApierrorsDefinedError>({
       path: `/api/auth/admin/imports/`,
       method: "GET",
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Возвращает список логов токенов Jitsi с поддержкой пагинации, сортировки и фильтрации по пользователю
+   *
+   * @tags AdminPanel
+   * @name GetJitsiTokenLogList
+   * @summary Jitsi: получение логов токенов Jitsi
+   * @request GET:/api/auth/admin/jitsi-token-logs
+   * @secure
+   */
+  getJitsiTokenLogList = (
+    query?: {
+      /**
+       * Смещение для пагинации
+       * @default 0
+       */
+      offset?: number;
+      /**
+       * Количество результатов на странице
+       * @default 100
+       */
+      limit?: number;
+      /** ID пользователя для фильтрации */
+      user_id?: string;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<
+      DaoPaginationResponse & {
+        result?: DtoJitsiTokenLog[];
+      },
+      ApierrorsDefinedError
+    >({
+      path: `/api/auth/admin/jitsi-token-logs`,
+      method: "GET",
+      query: query,
       secure: true,
       type: ContentType.Json,
       format: "json",
