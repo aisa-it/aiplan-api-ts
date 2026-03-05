@@ -515,7 +515,7 @@ export interface DtoCreatePropertyTemplateRequest {
   only_admin?: boolean;
   options?: string[];
   sort_order?: number;
-  type: "string" | "boolean" | "select";
+  type: "string" | "boolean" | "select" | "link";
 }
 
 export interface DtoDeleteGitRepositoryRequest {
