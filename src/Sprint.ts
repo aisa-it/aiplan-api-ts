@@ -11,14 +11,15 @@
  */
 
 import {
-  AiplanRequestIssueIdList,
-  AiplanRequestSprint,
-  AiplanRequestUserIdList,
   ApierrorsDefinedError,
   DaoPaginationResponse,
   DtoEntityActivityFull,
+  DtoRequestIssueIdList,
+  DtoRequestSprint,
+  DtoRequestSprintFolder,
+  DtoRequestUserIdList,
   DtoSprint,
-  DtoSprintLight,
+  DtoSprintFolder,
   DtoStateLight,
   TypesViewProps,
 } from "./data-contracts";
@@ -28,20 +29,87 @@ export class Sprint<
   SecurityDataType = unknown,
 > extends HttpClient<SecurityDataType> {
   /**
-   * @description Возвращает список всех спринтов в рабочем пространстве.
+   * @description Создает новую директорию для спринтов.
+   *
+   * @tags Sprint
+   * @name AddSprintFolders
+   * @summary Спринты: добавление директории спринтов
+   * @request POST:/api/auth/workspaces/{workspaceSlug}/sprints-folder/
+   * @secure
+   */
+  addSprintFolders = (
+    workspaceSlug: string,
+    data: DtoRequestSprintFolder,
+    params: RequestParams = {},
+  ) =>
+    this.request<DtoSprintFolder, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/sprints-folder/`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Удаляет директорию спринта.
+   *
+   * @tags Sprint
+   * @name DeleteSprintFolders
+   * @summary Спринты: удаление директорий спринтов
+   * @request DELETE:/api/auth/workspaces/{workspaceSlug}/sprints-folder/{sprintFolderId}/
+   * @secure
+   */
+  deleteSprintFolders = (
+    workspaceSlug: string,
+    sprintFolderId: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<void, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/sprints-folder/${sprintFolderId}/`,
+      method: "DELETE",
+      secure: true,
+      ...params,
+    });
+  /**
+   * @description Обновляет директорию спринта.
+   *
+   * @tags Sprint
+   * @name UpdateSprintFolders
+   * @summary Спринты: обновление директорий спринтов
+   * @request PATCH:/api/auth/workspaces/{workspaceSlug}/sprints-folder/{sprintFolderId}/
+   * @secure
+   */
+  updateSprintFolders = (
+    workspaceSlug: string,
+    sprintFolderId: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<DtoSprintFolder[], ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/sprints-folder/${sprintFolderId}/`,
+      method: "PATCH",
+      secure: true,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Возвращает список всех директорий спринтов, с вложенными спринтами.
    *
    * @tags Sprint
    * @name GetSprintList
-   * @summary Спринты: получения списка спринтов
+   * @summary Спринты: получение директорий спринтов
    * @request GET:/api/auth/workspaces/{workspaceSlug}/sprints/
    * @secure
    */
-  getSprintList = (workspaceSlug: string, params: RequestParams = {}) =>
-    this.request<DtoSprintLight[], ApierrorsDefinedError>({
+  getSprintList = (
+    workspaceSlug: string,
+    sprintId: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<DtoSprintFolder[], ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/sprints/`,
       method: "GET",
       secure: true,
-      type: ContentType.Json,
       format: "json",
       ...params,
     });
@@ -56,7 +124,7 @@ export class Sprint<
    */
   createSprint = (
     workspaceSlug: string,
-    request: AiplanRequestSprint,
+    request: DtoRequestSprint,
     params: RequestParams = {},
   ) =>
     this.request<DtoSprint, ApierrorsDefinedError>({
@@ -123,7 +191,7 @@ export class Sprint<
   updateSprint = (
     workspaceSlug: string,
     sprintId: string,
-    request: AiplanRequestSprint,
+    request: DtoRequestSprint,
     params: RequestParams = {},
   ) =>
     this.request<DtoSprint, ApierrorsDefinedError>({
@@ -187,7 +255,7 @@ export class Sprint<
   sprintIssuesUpdate = (
     workspaceSlug: string,
     sprintId: string,
-    request: AiplanRequestIssueIdList,
+    request: DtoRequestIssueIdList,
     params: RequestParams = {},
   ) =>
     this.request<void, ApierrorsDefinedError>({
@@ -254,7 +322,7 @@ export class Sprint<
   sprintWatchersUpdate = (
     workspaceSlug: string,
     sprintId: string,
-    request: AiplanRequestUserIdList,
+    request: DtoRequestUserIdList,
     params: RequestParams = {},
   ) =>
     this.request<void, ApierrorsDefinedError>({

@@ -86,7 +86,7 @@ export class AdminPanel<
    * @secure
    */
   exportFeedbackList = (params: RequestParams = {}) =>
-    this.request<void, ApierrorsDefinedError>({
+    this.request<Blob, ApierrorsDefinedError>({
       path: `/api/auth/admin/feedbacks/export`,
       method: "GET",
       secure: true,

@@ -346,11 +346,6 @@ export interface AiplanRequestEmailMember {
   email?: string;
 }
 
-export interface AiplanRequestIssueIdList {
-  issues_add?: string[];
-  issues_remove?: string[];
-}
-
 export interface AiplanRequestMembersInvite {
   emails?: {
     email?: string;
@@ -367,18 +362,6 @@ export interface AiplanRequestMessage {
 
 export interface AiplanRequestRoleMember {
   role?: number;
-}
-
-export interface AiplanRequestSprint {
-  description?: string;
-  end_date?: string | null;
-  name?: string;
-  start_date?: string | null;
-}
-
-export interface AiplanRequestUserIdList {
-  members_add?: string[];
-  members_remove?: string[];
 }
 
 export interface AiplanRoleUpdRequest {
@@ -1124,6 +1107,28 @@ export interface DtoRequestAnswer {
   value?: any;
 }
 
+export interface DtoRequestIssueIdList {
+  issues_add?: string[];
+  issues_remove?: string[];
+}
+
+export interface DtoRequestSprint {
+  description?: string;
+  end_date?: string | null;
+  name?: string;
+  sprint_folder_id?: string;
+  start_date?: string | null;
+}
+
+export interface DtoRequestSprintFolder {
+  name?: string;
+}
+
+export interface DtoRequestUserIdList {
+  members_add?: string[];
+  members_remove?: string[];
+}
+
 export interface DtoResponseAnswers {
   fields?: TypesFormFields[];
   form?: DtoFormLight;
@@ -1204,6 +1209,7 @@ export interface DtoSprint {
   name?: string;
   sequence_id?: number;
   short_url?: string;
+  sprint_folder?: DtoSprintFolder;
   start_date?: string;
   stats?: TypesSprintStats;
   updated_at?: string;
@@ -1214,6 +1220,12 @@ export interface DtoSprint {
   workspace?: DtoWorkspaceLight;
 }
 
+export interface DtoSprintFolder {
+  id?: string;
+  name?: string;
+  sprints?: DtoSprintLight[];
+}
+
 export interface DtoSprintLight {
   description?: string;
   end_date?: string;
@@ -1221,6 +1233,7 @@ export interface DtoSprintLight {
   name?: string;
   sequence_id?: number;
   short_url?: string;
+  sprint_folder?: DtoSprintFolder;
   start_date?: string;
   stats?: TypesSprintStats;
   url?: string;

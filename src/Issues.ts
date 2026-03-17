@@ -167,7 +167,7 @@ export class Issues<
     },
     params: RequestParams = {},
   ) =>
-    this.request<File, ApierrorsDefinedError>({
+    this.request<Blob, ApierrorsDefinedError>({
       path: `/api/auth/issues/search/export/`,
       method: "POST",
       query: query,
@@ -894,7 +894,7 @@ export class Issues<
     },
     params: RequestParams = {},
   ) =>
-    this.request<File, ApierrorsDefinedError>({
+    this.request<Blob, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/issue-attachments/all/`,
       method: "GET",
       body: data,
@@ -1167,7 +1167,7 @@ export class Issues<
     issueIdOrSeq: string,
     params: RequestParams = {},
   ) =>
-    this.request<File, ApierrorsDefinedError>({
+    this.request<Blob, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/pdf`,
       method: "GET",
       secure: true,
