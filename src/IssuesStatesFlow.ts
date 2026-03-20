@@ -31,7 +31,7 @@ export class IssuesStatesFlow<
     issueIdOrSeq: string,
     params: RequestParams = {},
   ) =>
-    this.request<Record<string, DtoStateLight>, ApierrorsDefinedError>({
+    this.request<DtoStateLight[], ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/available-states`,
       method: "GET",
       secure: true,
