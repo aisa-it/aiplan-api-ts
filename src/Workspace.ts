@@ -28,6 +28,7 @@ import {
   DtoWorkspaceLimitsInfo,
   DtoWorkspaceMember,
   DtoWorkspaceMemberLight,
+  DtoWorkspaceMemberWithOwner,
   DtoWorkspaceWithCount,
   IntegrationsIntegration,
   TypesActivityTable,
@@ -569,7 +570,7 @@ export class Workspace<
     workspaceSlug: string,
     params: RequestParams = {},
   ) =>
-    this.request<DtoWorkspaceMember, ApierrorsDefinedError>({
+    this.request<DtoWorkspaceMemberWithOwner, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/members/me/`,
       method: "GET",
       secure: true,

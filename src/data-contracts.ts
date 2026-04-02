@@ -1049,6 +1049,27 @@ export interface DtoProjectMemberLight {
   workspace_id?: string;
 }
 
+export interface DtoProjectMemberWithLead {
+  id?: string;
+  is_default_assignee?: boolean;
+  is_default_watcher?: boolean;
+  is_project_lead?: boolean;
+  member?: DtoUserLight | null;
+  member_id?: string;
+  notification_author_settings_app?: TypesProjectMemberNS;
+  notification_author_settings_email?: TypesProjectMemberNS;
+  notification_author_settings_tg?: TypesProjectMemberNS;
+  notification_settings_app?: TypesProjectMemberNS;
+  notification_settings_email?: TypesProjectMemberNS;
+  notification_settings_tg?: TypesProjectMemberNS;
+  project?: DtoProjectLight | null;
+  project_id?: string;
+  role?: number;
+  view_props?: TypesViewProps;
+  workspace_admin?: boolean;
+  workspace_id?: string;
+}
+
 export interface DtoProjectPropertyTemplate {
   created_at?: string;
   id?: string;
@@ -1429,6 +1450,22 @@ export interface DtoWorkspaceMemberLight {
   id?: string;
   member?: DtoUserLight;
   member_id?: string;
+  role?: number;
+  workspace_id?: string;
+}
+
+export interface DtoWorkspaceMemberWithOwner {
+  editable_by_admin?: boolean;
+  id?: string;
+  is_workspace_owner?: boolean;
+  member?: DtoUserLight;
+  member_id?: string;
+  notification_author_settings_app?: TypesWorkspaceMemberNS;
+  notification_author_settings_email?: TypesWorkspaceMemberNS;
+  notification_author_settings_tg?: TypesWorkspaceMemberNS;
+  notification_settings_app?: TypesWorkspaceMemberNS;
+  notification_settings_email?: TypesWorkspaceMemberNS;
+  notification_settings_tg?: TypesWorkspaceMemberNS;
   role?: number;
   workspace_id?: string;
 }

@@ -30,6 +30,7 @@ import {
   DtoProjectLight,
   DtoProjectMember,
   DtoProjectMemberLight,
+  DtoProjectMemberWithLead,
   DtoProjectStats,
   DtoRulesLog,
   DtoRulesScriptResponse,
@@ -656,7 +657,7 @@ export class Projects<
     projectId: string,
     params: RequestParams = {},
   ) =>
-    this.request<DtoProjectMember, ApierrorsDefinedError>({
+    this.request<DtoProjectMemberWithLead, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/members/me`,
       method: "GET",
       secure: true,
