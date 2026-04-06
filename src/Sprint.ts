@@ -83,12 +83,15 @@ export class Sprint<
   updateSprintFolders = (
     workspaceSlug: string,
     sprintFolderId: string,
+    data: DtoRequestSprintFolder,
     params: RequestParams = {},
   ) =>
     this.request<DtoSprintFolder[], ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/sprints-folder/${sprintFolderId}/`,
       method: "PATCH",
+      body: data,
       secure: true,
+      type: ContentType.Json,
       format: "json",
       ...params,
     });
@@ -101,11 +104,7 @@ export class Sprint<
    * @request GET:/api/auth/workspaces/{workspaceSlug}/sprints/
    * @secure
    */
-  getSprintList = (
-    workspaceSlug: string,
-    sprintId: string,
-    params: RequestParams = {},
-  ) =>
+  getSprintList = (workspaceSlug: string, params: RequestParams = {}) =>
     this.request<DtoSprintFolder[], ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/sprints/`,
       method: "GET",
