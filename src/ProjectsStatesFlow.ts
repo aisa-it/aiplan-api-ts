@@ -22,7 +22,7 @@ export class ProjectsStatesFlow<
    * @tags Projects StatesFlow
    * @name GetStartStates
    * @summary Задачи: получение доступных стартовых статусов
-   * @request GET:/api/auth/workspaces/{workspaceSlug}/projects/{projectId}/states/start
+   * @request GET:/api/auth/workspaces/{workspaceSlug}/projects/{projectId}/start-states
    * @secure
    */
   getStartStates = (
@@ -31,7 +31,7 @@ export class ProjectsStatesFlow<
     params: RequestParams = {},
   ) =>
     this.request<DtoStateLight[], ApierrorsDefinedError>({
-      path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/states/start`,
+      path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/start-states`,
       method: "GET",
       secure: true,
       type: ContentType.Json,
