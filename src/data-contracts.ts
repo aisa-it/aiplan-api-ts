@@ -575,10 +575,10 @@ export interface DtoEntityActivityFull {
   form_detail?: DtoFormLight | null;
   id?: string;
   issue_detail?: DtoIssueLight | null;
-  new_entity_detail?: any;
+  new_entity_detail?: any | null;
   new_identifier?: GithubComGofrsUuidNullUUID | null;
   new_value?: string;
-  old_entity_detail?: any;
+  old_entity_detail?: any | null;
   old_identifier?: GithubComGofrsUuidNullUUID | null;
   old_value?: string | null;
   project_detail?: DtoProjectLight | null;
