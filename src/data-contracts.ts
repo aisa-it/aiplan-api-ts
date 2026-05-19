@@ -132,11 +132,13 @@ export interface AiplanGetRulesLogfilterRequest {
 export interface AiplanIssueCreateRequest {
   assignee_details?: DtoUserLight[] | null;
   assignees_list?: string[];
+  attachment_count?: number;
   author_detail?: DtoUserLight | null;
   blocked_issues?: DtoIssueBlockerLight[];
   blocker_issues?: DtoIssueBlockerLight[];
   blockers_list?: string[];
   blocks_list?: string[];
+  comments_count?: number;
   completed_at?: string | null;
   created_at?: string;
   description_html?: string;
@@ -150,6 +152,8 @@ export interface AiplanIssueCreateRequest {
   issue_link?: DtoIssueLinkLight[] | null;
   label_details?: DtoLabelLight[] | null;
   labels_list?: string[];
+  link_count?: number;
+  linked_issues_count?: number;
   llm_content?: boolean;
   name?: string;
   parent?: GithubComGofrsUuidNullUUID;
@@ -164,6 +168,7 @@ export interface AiplanIssueCreateRequest {
   start_date?: string | null;
   state?: string;
   state_detail?: DtoStateLight | null;
+  sub_issues_count?: number;
   target_date?: string | null;
   updated_at?: string;
   updated_by?: GithubComGofrsUuidNullUUID | null;
@@ -680,9 +685,11 @@ export interface DtoHistoryBodyLight {
 
 export interface DtoIssue {
   assignee_details?: DtoUserLight[] | null;
+  attachment_count?: number;
   author_detail?: DtoUserLight | null;
   blocked_issues?: DtoIssueBlockerLight[];
   blocker_issues?: DtoIssueBlockerLight[];
+  comments_count?: number;
   completed_at?: string | null;
   created_at?: string;
   description_html?: string;
@@ -695,6 +702,8 @@ export interface DtoIssue {
   issue_inline_attachments?: DtoFileAsset[];
   issue_link?: DtoIssueLinkLight[] | null;
   label_details?: DtoLabelLight[] | null;
+  link_count?: number;
+  linked_issues_count?: number;
   llm_content?: boolean;
   name?: string;
   parent?: GithubComGofrsUuidNullUUID;
@@ -709,6 +718,7 @@ export interface DtoIssue {
   start_date?: string | null;
   state?: string;
   state_detail?: DtoStateLight | null;
+  sub_issues_count?: number;
   target_date?: string | null;
   updated_at?: string;
   updated_by?: GithubComGofrsUuidNullUUID | null;
@@ -959,6 +969,7 @@ export interface DtoPriorityStats {
 }
 
 export interface DtoProject {
+  archived?: boolean;
   cover_image?: string | null;
   created_at?: string;
   current_user_membership?: DtoProjectMemberLight | null;
@@ -994,6 +1005,7 @@ export interface DtoProjectFavorites {
 }
 
 export interface DtoProjectLight {
+  archived?: boolean;
   cover_image?: string | null;
   current_user_membership?: DtoProjectMemberLight | null;
   default_assignees?: string[];

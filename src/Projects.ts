@@ -207,6 +207,8 @@ export class Projects<
     query?: {
       /** Поисковый запрос для фильтрации проектов по названию */
       search_query?: string;
+      /** Возвращать только архивные проекты */
+      is_archived?: boolean;
     },
     params: RequestParams = {},
   ) =>
@@ -369,6 +371,27 @@ export class Projects<
       secure: true,
       type: ContentType.Json,
       format: "json",
+      ...params,
+    });
+  /**
+   * @description Помечает проект как архивный. После архивирования над проектом и его задачами доступны только операции чтения и поиска; ручка `/unarchive/` возвращает проект из архива. Доступно только администраторам проекта.
+   *
+   * @tags Projects
+   * @name ArchiveProject
+   * @summary Проекты: архивирование
+   * @request POST:/api/auth/workspaces/{workspaceSlug}/projects/{projectId}/archive/
+   * @secure
+   */
+  archiveProject = (
+    workspaceSlug: string,
+    projectId: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<void, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/archive/`,
+      method: "POST",
+      secure: true,
+      type: ContentType.Json,
       ...params,
     });
   /**
@@ -1162,6 +1185,27 @@ export class Projects<
       path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/templates/${templateId}`,
       method: "PATCH",
       body: data,
+      secure: true,
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
+   * @description Возвращает архивный проект в рабочее состояние и снова разрешает все операции записи. Доступно только администраторам проекта.
+   *
+   * @tags Projects
+   * @name UnarchiveProject
+   * @summary Проекты: восстановление из архива
+   * @request POST:/api/auth/workspaces/{workspaceSlug}/projects/{projectId}/unarchive/
+   * @secure
+   */
+  unarchiveProject = (
+    workspaceSlug: string,
+    projectId: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<void, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/unarchive/`,
+      method: "POST",
       secure: true,
       type: ContentType.Json,
       ...params,
