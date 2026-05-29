@@ -24,11 +24,11 @@ import {
   DtoEntityActivityFull,
   DtoPasswordResponse,
   DtoProjectLight,
-  DtoProjectMember,
+  DtoProjectMemberWithLead,
   DtoUser,
   DtoUserFeedback,
   DtoUserLight,
-  DtoWorkspaceMember,
+  DtoWorkspaceMemberWithOwner,
   TypesActivityTable,
   TypesViewProps,
 } from "./data-contracts";
@@ -468,7 +468,7 @@ export class Users<
     data: string[],
     params: RequestParams = {},
   ) =>
-    this.request<DtoProjectMember[], ApierrorsDefinedError>({
+    this.request<DtoProjectMemberWithLead[], ApierrorsDefinedError>({
       path: `/api/auth/users/me/memberships/projects/`,
       method: "POST",
       body: data,
@@ -490,7 +490,7 @@ export class Users<
     data: string[],
     params: RequestParams = {},
   ) =>
-    this.request<DtoWorkspaceMember[], ApierrorsDefinedError>({
+    this.request<DtoWorkspaceMemberWithOwner[], ApierrorsDefinedError>({
       path: `/api/auth/users/me/memberships/workspaces/`,
       method: "POST",
       body: data,
