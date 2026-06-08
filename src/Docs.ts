@@ -15,6 +15,7 @@ import {
   AiplanReactionRequest,
   ApierrorsDefinedError,
   DaoPaginationResponse,
+  DtoActivityEventFull,
   DtoAttachment,
   DtoCommentHistory,
   DtoCommentReaction,
@@ -22,7 +23,6 @@ import {
   DtoDocComment,
   DtoDocFavorites,
   DtoDocLight,
-  DtoEntityActivityFull,
   DtoHistoryBody,
   DtoHistoryBodyLight,
 } from "./data-contracts";
@@ -238,7 +238,7 @@ export class Docs<
   ) =>
     this.request<
       DaoPaginationResponse & {
-        result?: DtoEntityActivityFull[];
+        result?: DtoActivityEventFull[];
       },
       ApierrorsDefinedError
     >({
@@ -661,27 +661,6 @@ export class Docs<
     this.request<void, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/history/${versionId}`,
       method: "PATCH",
-      secure: true,
-      type: ContentType.Json,
-      ...params,
-    });
-  /**
-   * @description перенос документа
-   *
-   * @tags Docs
-   * @name MoveDoc
-   * @summary doc: перенос документа
-   * @request POST:/api/auth/workspaces/{workspaceSlug}/doc/{docId}/move/
-   * @secure
-   */
-  moveDoc = (
-    workspaceSlug: string,
-    docId: string,
-    params: RequestParams = {},
-  ) =>
-    this.request<void, ApierrorsDefinedError>({
-      path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/move/`,
-      method: "POST",
       secure: true,
       type: ContentType.Json,
       ...params,

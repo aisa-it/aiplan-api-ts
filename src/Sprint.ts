@@ -13,7 +13,7 @@
 import {
   ApierrorsDefinedError,
   DaoPaginationResponse,
-  DtoEntityActivityFull,
+  DtoActivityEventFull,
   DtoRequestIssueIdList,
   DtoRequestSprint,
   DtoRequestSprintFolder,
@@ -230,7 +230,7 @@ export class Sprint<
   ) =>
     this.request<
       DaoPaginationResponse & {
-        result?: DtoEntityActivityFull[];
+        result?: DtoActivityEventFull[];
       },
       ApierrorsDefinedError
     >({

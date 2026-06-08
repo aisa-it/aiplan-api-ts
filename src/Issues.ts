@@ -18,10 +18,10 @@ import {
   AiplanSubIssuesIds,
   ApierrorsDefinedError,
   DaoPaginationResponse,
+  DtoActivityEventFull,
   DtoAttachment,
   DtoCommentHistory,
   DtoCommentReaction,
-  DtoEntityActivityFull,
   DtoIssue,
   DtoIssueComment,
   DtoIssueLight,
@@ -417,7 +417,7 @@ export class Issues<
   ) =>
     this.request<
       DaoPaginationResponse & {
-        result?: DtoEntityActivityFull[];
+        result?: DtoActivityEventFull[];
       },
       ApierrorsDefinedError
     >({

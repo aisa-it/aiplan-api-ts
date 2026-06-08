@@ -404,6 +404,29 @@ export interface DaoPaginationResponse {
   result?: any;
 }
 
+export interface DtoActivityEventFull {
+  actor_detail?: DtoUserLight | null;
+  created_at?: string;
+  doc_detail?: DtoDocLight | null;
+  entity_type?: string;
+  entity_url?: string;
+  field?: string | null;
+  form_detail?: DtoFormLight | null;
+  id?: string;
+  issue_detail?: DtoIssueLight | null;
+  new_entity_detail?: any | null;
+  new_identifier?: GithubComGofrsUuidNullUUID | null;
+  new_value?: string;
+  old_entity_detail?: any | null;
+  old_identifier?: GithubComGofrsUuidNullUUID | null;
+  old_value?: string;
+  project_detail?: DtoProjectLight | null;
+  sprint_detail?: DtoSprintLight | null;
+  state_lag_ms?: number;
+  verb?: string;
+  workspace_detail?: DtoWorkspaceLight | null;
+}
+
 export interface DtoAddSSHKeyRequest {
   /**
    * @minLength 1
@@ -568,29 +591,6 @@ export interface DtoDocLight {
   short_url?: string;
   title?: string;
   url?: string;
-}
-
-export interface DtoEntityActivityFull {
-  actor_detail?: DtoUserLight | null;
-  created_at?: string;
-  doc_detail?: DtoDocLight | null;
-  entity_type?: string;
-  entity_url?: string;
-  field?: string | null;
-  form_detail?: DtoFormLight | null;
-  id?: string;
-  issue_detail?: DtoIssueLight | null;
-  new_entity_detail?: any | null;
-  new_identifier?: GithubComGofrsUuidNullUUID | null;
-  new_value?: string;
-  old_entity_detail?: any | null;
-  old_identifier?: GithubComGofrsUuidNullUUID | null;
-  old_value?: string | null;
-  project_detail?: DtoProjectLight | null;
-  sprint_detail?: DtoSprintLight | null;
-  state_lag_ms?: number;
-  verb?: string;
-  workspace_detail?: DtoWorkspaceLight | null;
 }
 
 export interface DtoFileAsset {

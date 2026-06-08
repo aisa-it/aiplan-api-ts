@@ -21,7 +21,7 @@ import {
   AltchaChallenge,
   ApierrorsDefinedError,
   DaoPaginationResponse,
-  DtoEntityActivityFull,
+  DtoActivityEventFull,
   DtoPasswordResponse,
   DtoProjectLight,
   DtoProjectMemberWithLead,
@@ -187,7 +187,7 @@ export class Users<
   ) =>
     this.request<
       DaoPaginationResponse & {
-        result?: DtoEntityActivityFull[];
+        result?: DtoActivityEventFull[];
       },
       ApierrorsDefinedError
     >({
@@ -272,7 +272,7 @@ export class Users<
   ) =>
     this.request<
       DaoPaginationResponse & {
-        result?: DtoEntityActivityFull[];
+        result?: DtoActivityEventFull[];
       },
       ApierrorsDefinedError
     >({

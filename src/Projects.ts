@@ -20,8 +20,8 @@ import {
   AiplanUpdateStateRequest,
   ApierrorsDefinedError,
   DaoPaginationResponse,
+  DtoActivityEventFull,
   DtoCheckProjectIdentifierAvailabilityResponse,
-  DtoEntityActivityFull,
   DtoIssueTemplate,
   DtoJoinProjectsSuccessResponse,
   DtoLabelLight,
@@ -361,7 +361,7 @@ export class Projects<
   ) =>
     this.request<
       DaoPaginationResponse & {
-        result?: DtoEntityActivityFull[];
+        result?: DtoActivityEventFull[];
       },
       ApierrorsDefinedError
     >({
