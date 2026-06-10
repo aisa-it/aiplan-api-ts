@@ -20,7 +20,7 @@ import {
   AiplanWorkspaceNotificationRequest,
   ApierrorsDefinedError,
   DaoPaginationResponse,
-  DtoActivityEventFull,
+  DtoEntityActivityFull,
   DtoLastWorkspaceResponse,
   DtoStateLight,
   DtoWorkspace,
@@ -69,7 +69,7 @@ export class Workspace<
   ) =>
     this.request<
       DaoPaginationResponse & {
-        result?: DtoActivityEventFull[];
+        result?: DtoEntityActivityFull[];
       },
       ApierrorsDefinedError
     >({
@@ -294,7 +294,7 @@ export class Workspace<
   ) =>
     this.request<
       DaoPaginationResponse & {
-        result?: DtoActivityEventFull[];
+        result?: DtoEntityActivityFull[];
       },
       ApierrorsDefinedError
     >({

@@ -21,14 +21,14 @@ import {
   AltchaChallenge,
   ApierrorsDefinedError,
   DaoPaginationResponse,
-  DtoActivityEventFull,
+  DtoEntityActivityFull,
   DtoPasswordResponse,
   DtoProjectLight,
-  DtoProjectMemberWithLead,
+  DtoProjectMember,
   DtoUser,
   DtoUserFeedback,
   DtoUserLight,
-  DtoWorkspaceMemberWithOwner,
+  DtoWorkspaceMember,
   TypesActivityTable,
   TypesViewProps,
 } from "./data-contracts";
@@ -187,7 +187,7 @@ export class Users<
   ) =>
     this.request<
       DaoPaginationResponse & {
-        result?: DtoActivityEventFull[];
+        result?: DtoEntityActivityFull[];
       },
       ApierrorsDefinedError
     >({
@@ -272,7 +272,7 @@ export class Users<
   ) =>
     this.request<
       DaoPaginationResponse & {
-        result?: DtoActivityEventFull[];
+        result?: DtoEntityActivityFull[];
       },
       ApierrorsDefinedError
     >({
@@ -468,7 +468,7 @@ export class Users<
     data: string[],
     params: RequestParams = {},
   ) =>
-    this.request<DtoProjectMemberWithLead[], ApierrorsDefinedError>({
+    this.request<DtoProjectMember[], ApierrorsDefinedError>({
       path: `/api/auth/users/me/memberships/projects/`,
       method: "POST",
       body: data,
@@ -490,7 +490,7 @@ export class Users<
     data: string[],
     params: RequestParams = {},
   ) =>
-    this.request<DtoWorkspaceMemberWithOwner[], ApierrorsDefinedError>({
+    this.request<DtoWorkspaceMember[], ApierrorsDefinedError>({
       path: `/api/auth/users/me/memberships/workspaces/`,
       method: "POST",
       body: data,

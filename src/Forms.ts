@@ -274,28 +274,4 @@ export class Forms<
       format: "json",
       ...params,
     });
-  /**
-   * @description Загружает новое вложение в ответ формы, доступной без аутентификации
-   *
-   * @tags Forms
-   * @name CreateFormAttachmentsNoAuth
-   * @summary вложения: загрузка вложения в ответ формы (без аутентификации)
-   * @request POST:/api/forms/{formSlug}/form-attachments/
-   */
-  createFormAttachmentsNoAuth = (
-    formSlug: string,
-    data: {
-      /** Файл для загрузки */
-      asset: File;
-    },
-    params: RequestParams = {},
-  ) =>
-    this.request<DtoFormAttachmentLight, ApierrorsDefinedError>({
-      path: `/api/forms/${formSlug}/form-attachments/`,
-      method: "POST",
-      body: data,
-      type: ContentType.FormData,
-      format: "json",
-      ...params,
-    });
 }
