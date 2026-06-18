@@ -20,7 +20,7 @@ import {
   AiplanWorkspaceNotificationRequest,
   ApierrorsDefinedError,
   DaoPaginationResponse,
-  DtoEntityActivityFull,
+  DtoActivityEventFull,
   DtoLastWorkspaceResponse,
   DtoStateLight,
   DtoWorkspace,
@@ -29,6 +29,7 @@ import {
   DtoWorkspaceMember,
   DtoWorkspaceMemberLight,
   DtoWorkspaceMemberWithOwner,
+  DtoWorkspaceSummaryResponse,
   DtoWorkspaceWithCount,
   IntegrationsIntegration,
   TypesActivityTable,
@@ -69,7 +70,7 @@ export class Workspace<
   ) =>
     this.request<
       DaoPaginationResponse & {
-        result?: DtoEntityActivityFull[];
+        result?: DtoActivityEventFull[];
       },
       ApierrorsDefinedError
     >({
@@ -294,7 +295,7 @@ export class Workspace<
   ) =>
     this.request<
       DaoPaginationResponse & {
-        result?: DtoEntityActivityFull[];
+        result?: DtoActivityEventFull[];
       },
       ApierrorsDefinedError
     >({
@@ -680,6 +681,23 @@ export class Workspace<
   getWorkspaceStateList = (workspaceSlug: string, params: RequestParams = {}) =>
     this.request<Record<string, DtoStateLight[]>, ApierrorsDefinedError>({
       path: `/api/auth/workspaces/${workspaceSlug}/states/`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Возвращает сводку рабочего пространства (проекты, спринты, формы) с учётом роли пользователя
+   *
+   * @tags Workspace
+   * @name GetWorkspaceSummary
+   * @summary Пространство: получение сводки рабочего пространства
+   * @request GET:/api/auth/workspaces/{workspaceSlug}/summary/
+   * @secure
+   */
+  getWorkspaceSummary = (workspaceSlug: string, params: RequestParams = {}) =>
+    this.request<DtoWorkspaceSummaryResponse, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/summary/`,
       method: "GET",
       secure: true,
       format: "json",
