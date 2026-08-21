@@ -60,7 +60,7 @@ export class Issues<
        */
       order_by?: string;
       /**
-       * Поле для группировки результатов
+       * Поле для группировки: priority, author, state, labels, assignees, watchers, project или property:<uuid шаблона кастомного поля>
        * @default """"
        */
       group_by?: string;
@@ -135,7 +135,7 @@ export class Issues<
        */
       order_by?: string;
       /**
-       * Поле для группировки результатов
+       * Поле для группировки: priority, author, state, labels, assignees, watchers, project или property:<uuid шаблона кастомного поля>
        * @default """"
        */
       group_by?: string;
@@ -164,6 +164,11 @@ export class Issues<
        * @default false
        */
       only_pinned?: boolean;
+      /**
+       * Добавить колонки дополнительных параметров задач
+       * @default false
+       */
+      include_properties?: boolean;
     },
     params: RequestParams = {},
   ) =>

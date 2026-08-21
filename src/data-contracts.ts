@@ -335,6 +335,7 @@ export interface AiplanProjectNotificationRequest {
 
 export interface AiplanReqForm {
   auth_require?: boolean;
+  default_issue_priority?: "urgent" | "high" | "medium" | "low" | null;
   description?: string;
   end_date?: string | null;
   fields?: TypesFormFields[];
@@ -604,6 +605,8 @@ export interface DtoForm {
   active?: boolean;
   auth_require?: boolean;
   author_detail?: DtoUserLight | null;
+  /** Приоритет задач, создаваемых из ответов формы */
+  default_issue_priority?: "urgent" | "high" | "medium" | "low" | null;
   description?: string;
   end_date?: string | null;
   fields?: TypesFormFields[];
@@ -638,6 +641,8 @@ export interface DtoFormAttachmentLight {
 export interface DtoFormLight {
   active?: boolean;
   auth_require?: boolean;
+  /** Приоритет задач, создаваемых из ответов формы */
+  default_issue_priority?: "urgent" | "high" | "medium" | "low" | null;
   description?: string;
   end_date?: string | null;
   fields?: TypesFormFields[];
@@ -1485,7 +1490,7 @@ export interface DtoWorkspaceMemberWithOwner {
 export interface DtoWorkspaceSummaryResponse {
   forms?: DtoFormLight[];
   projects?: DtoProjectLight[];
-  sprints?: DtoSprintLight[];
+  sprints?: DtoSprintFolder[];
 }
 
 export interface DtoWorkspaceWithCount {
@@ -1687,6 +1692,11 @@ export interface TypesFormFields {
   depend_on?: TypesFormFieldDependency | null;
   issue_name_field?: boolean;
   label?: string;
+  /**
+   * Привязка к шаблону кастомного поля (ProjectPropertyTemplate) целевого проекта:
+   * значение ответа записывается в это поле создаваемой задачи
+   */
+  property_template_id?: string | null;
   required?: boolean;
   type?: string;
   validate?: TypesValidationRule | null;

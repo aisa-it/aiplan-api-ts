@@ -666,6 +666,27 @@ export class Docs<
       ...params,
     });
   /**
+   * @description перенос документа
+   *
+   * @tags Docs
+   * @name MoveDoc
+   * @summary doc: перенос документа
+   * @request POST:/api/auth/workspaces/{workspaceSlug}/doc/{docId}/move/
+   * @secure
+   */
+  moveDoc = (
+    workspaceSlug: string,
+    docId: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<void, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/doc/${docId}/move/`,
+      method: "POST",
+      secure: true,
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
    * @description Возвращает список избранных документов текущего пользователя в рабочем пространстве.
    *
    * @tags Docs
