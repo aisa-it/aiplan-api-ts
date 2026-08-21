@@ -12,6 +12,7 @@
 
 import {
   ApierrorsDefinedError,
+  DtoAvailablePropertyValues,
   DtoIssueProperty,
   DtoSetIssuePropertyRequest,
 } from "./data-contracts";
@@ -20,6 +21,39 @@ import { ContentType, HttpClient, RequestParams } from "./http-client";
 export class IssueProperties<
   SecurityDataType = unknown,
 > extends HttpClient<SecurityDataType> {
+  /**
+   * @description Возвращает допустимые значения кастомного поля для задачи с учётом каскадной зависимости и текущего значения родительского поля. Для select - список options, для lookup - строки справочника с пагинацией и поиском.
+   *
+   * @tags IssueProperties
+   * @name GetAvailablePropertyValues
+   * @summary Свойства задачи: допустимые значения поля
+   * @request GET:/api/auth/workspaces/{workspaceSlug}/projects/{projectId}/issues/{issueIdOrSeq}/properties/{templateId}/available-values/
+   * @secure
+   */
+  getAvailablePropertyValues = (
+    workspaceSlug: string,
+    projectId: string,
+    issueIdOrSeq: string,
+    templateId: string,
+    query?: {
+      /** Смещение (для lookup, по умолчанию 0) */
+      offset?: number;
+      /** Количество строк (для lookup, по умолчанию 100, максимум 1000) */
+      limit?: number;
+      /** Поиск по отображаемому значению (для lookup) */
+      search_query?: string;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<DtoAvailablePropertyValues, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/properties/${templateId}/available-values/`,
+      method: "GET",
+      query: query,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
   /**
    * @description Возвращает все шаблоны полей проекта с их значениями для задачи.
    *

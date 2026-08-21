@@ -519,6 +519,8 @@ export interface DtoCreateGitRepositoryResponse {
 }
 
 export interface DtoCreatePropertyTemplateRequest {
+  dependency?: TypesPropertyDependency | null;
+  dictionary_id?: string | null;
   /**
    * @minLength 1
    * @maxLength 255
@@ -527,7 +529,7 @@ export interface DtoCreatePropertyTemplateRequest {
   only_admin?: boolean;
   options?: string[];
   sort_order?: number;
-  type: "string" | "boolean" | "select" | "link";
+  type: "string" | "boolean" | "select" | "link" | "lookup";
 }
 
 export interface DtoDeleteGitRepositoryRequest {
@@ -805,14 +807,23 @@ export interface DtoIssueLockResponse {
 }
 
 export interface DtoIssueProperty {
+  dependency?: TypesPropertyDependency | null;
+  dictionary_id?: string | null;
   id?: string;
   issue_id?: string;
   name?: string;
   options?: string[];
   project_id?: string;
+  /**
+   * ResetProperties - имена зависимых полей, значения которых были сброшены
+   * установкой этого значения (только в ответе установки значения)
+   */
+  reset_properties?: string[];
   template_id?: string;
   type?: string;
   value?: any;
+  /** ValueLabel - отображаемое значение для lookup-полей (Value хранит id строки справочника) */
+  value_label?: string | null;
   workspace_id?: string;
 }
 
@@ -1087,8 +1098,88 @@ export interface DtoProjectMemberWithLead {
   workspace_id?: string;
 }
 
+export interface DtoCreateDictionaryRequest {
+  /**
+   * @minLength 1
+   * @maxLength 255
+   */
+  name: string;
+}
+
+export interface DtoCreateDictionaryRowRequest {
+  attrs?: Record<string, any>;
+  /** @minLength 1 */
+  value: string;
+}
+
+export interface DtoDictionary {
+  created_at?: string;
+  id?: string;
+  name?: string;
+  project_id?: string;
+  rows_count?: number;
+  updated_at?: string;
+  workspace_id?: string;
+}
+
+export interface DtoDictionaryRow {
+  archived?: boolean;
+  attrs?: Record<string, any>;
+  created_at?: string;
+  dictionary_id?: string;
+  id?: string;
+  updated_at?: string;
+  value?: string;
+}
+
+export interface DtoImportDictionaryRowsRequest {
+  replace?: boolean;
+  rows: DtoCreateDictionaryRowRequest[];
+}
+
+export interface DtoImportDictionaryRowsResult {
+  archived?: number;
+  created?: number;
+  deleted?: number;
+}
+
+export interface DtoUpdateDictionaryRequest {
+  name?: string | null;
+}
+
+export interface DtoUpdateDictionaryRowRequest {
+  archived?: boolean | null;
+  attrs?: Record<string, any> | null;
+  value?: string | null;
+}
+
+export interface DtoAvailablePropertyValues {
+  /** Options - допустимые варианты (для типа select) */
+  options?: string[];
+  /** Restricted - применён ли каскадный фильтр (у поля есть зависимость и родитель заполнен) */
+  restricted?: boolean;
+  /** Rows - допустимые строки справочника с пагинацией (для типа lookup) */
+  rows?: object | null;
+  type?: string;
+}
+
+export interface TypesPropertyDependency {
+  /** "options_map" или "row_filter" */
+  mode?: string;
+  /** OptionsMap (режим options_map): значение родителя → допустимые options ребёнка */
+  options_map?: Record<string, string[]> | null;
+  parent_template_id?: string;
+  /**
+   * RowFilterAttr (режим row_filter): имя атрибута строки справочника ребёнка,
+   * сравниваемого с отображаемым значением родителя (строка или массив строк в attrs)
+   */
+  row_filter_attr?: string;
+}
+
 export interface DtoProjectPropertyTemplate {
   created_at?: string;
+  dependency?: TypesPropertyDependency | null;
+  dictionary_id?: string | null;
   id?: string;
   name?: string;
   only_admin?: boolean;
@@ -1334,6 +1425,8 @@ export interface DtoTimelineStats {
 }
 
 export interface DtoUpdatePropertyTemplateRequest {
+  dependency?: TypesPropertyDependency | null;
+  dictionary_id?: string | null;
   name?: string;
   only_admin?: boolean;
   options?: string[];
