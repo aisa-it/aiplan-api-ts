@@ -529,7 +529,14 @@ export interface DtoCreatePropertyTemplateRequest {
   only_admin?: boolean;
   options?: string[];
   sort_order?: number;
-  type: "string" | "boolean" | "select" | "link" | "lookup";
+  type:
+    | "string"
+    | "boolean"
+    | "select"
+    | "link"
+    | "lookup"
+    | "date"
+    | "datetime";
 }
 
 export interface DtoDeleteGitRepositoryRequest {
