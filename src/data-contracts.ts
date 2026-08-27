@@ -464,6 +464,16 @@ export interface DtoAttachment {
   id?: string;
 }
 
+export interface DtoAvailablePropertyValues {
+  /** Options - допустимые варианты (для типа select) */
+  options?: string[];
+  /** Restricted - применён ли каскадный фильтр (у поля есть зависимость и родитель заполнен) */
+  restricted?: boolean;
+  /** Rows - допустимые строки справочника с пагинацией (для типа lookup) */
+  rows?: object | null;
+  type?: string;
+}
+
 export interface DtoCheckProjectIdentifierAvailabilityResponse {
   /** @example 1 */
   exists?: number;
@@ -488,6 +498,20 @@ export interface DtoCommentReaction {
   reaction?: string;
   updated_at?: string;
   user_id?: string;
+}
+
+export interface DtoCreateDictionaryRequest {
+  /**
+   * @minLength 1
+   * @maxLength 255
+   */
+  name: string;
+}
+
+export interface DtoCreateDictionaryRowRequest {
+  attrs?: Record<string, any>;
+  /** @minLength 1 */
+  value: string;
 }
 
 export interface DtoCreateGitRepositoryRequest {
@@ -542,6 +566,26 @@ export interface DtoCreatePropertyTemplateRequest {
 export interface DtoDeleteGitRepositoryRequest {
   /** Name - название репозитория (обязательное поле) */
   name: string;
+}
+
+export interface DtoDictionary {
+  created_at?: string;
+  id?: string;
+  name?: string;
+  project_id?: string;
+  rows_count?: number;
+  updated_at?: string;
+  workspace_id?: string;
+}
+
+export interface DtoDictionaryRow {
+  archived?: boolean;
+  attrs?: Record<string, any>;
+  created_at?: string;
+  dictionary_id?: string;
+  id?: string;
+  updated_at?: string;
+  value?: string;
 }
 
 export interface DtoDoc {
@@ -695,6 +739,18 @@ export interface DtoHistoryBodyLight {
   Id?: string;
   author?: DtoUserLight;
   crated_at?: string;
+}
+
+export interface DtoImportDictionaryRowsRequest {
+  replace?: boolean;
+  /** @minItems 1 */
+  rows: DtoCreateDictionaryRowRequest[];
+}
+
+export interface DtoImportDictionaryRowsResult {
+  archived?: number;
+  created?: number;
+  deleted?: number;
 }
 
 export interface DtoIssue {
@@ -1008,6 +1064,7 @@ export interface DtoProject {
   is_favorite?: boolean;
   issue_deletion_allowed?: boolean;
   logo?: string | null;
+  member_attachments_allowed?: boolean;
   name?: string;
   name_highlighted?: string;
   project_lead?: string;
@@ -1042,6 +1099,7 @@ export interface DtoProjectLight {
   is_favorite?: boolean;
   issue_deletion_allowed?: boolean;
   logo?: string | null;
+  member_attachments_allowed?: boolean;
   name?: string;
   name_highlighted?: string;
   project_lead?: string;
@@ -1103,84 +1161,6 @@ export interface DtoProjectMemberWithLead {
   view_props?: TypesViewProps;
   workspace_admin?: boolean;
   workspace_id?: string;
-}
-
-export interface DtoCreateDictionaryRequest {
-  /**
-   * @minLength 1
-   * @maxLength 255
-   */
-  name: string;
-}
-
-export interface DtoCreateDictionaryRowRequest {
-  attrs?: Record<string, any>;
-  /** @minLength 1 */
-  value: string;
-}
-
-export interface DtoDictionary {
-  created_at?: string;
-  id?: string;
-  name?: string;
-  project_id?: string;
-  rows_count?: number;
-  updated_at?: string;
-  workspace_id?: string;
-}
-
-export interface DtoDictionaryRow {
-  archived?: boolean;
-  attrs?: Record<string, any>;
-  created_at?: string;
-  dictionary_id?: string;
-  id?: string;
-  updated_at?: string;
-  value?: string;
-}
-
-export interface DtoImportDictionaryRowsRequest {
-  replace?: boolean;
-  rows: DtoCreateDictionaryRowRequest[];
-}
-
-export interface DtoImportDictionaryRowsResult {
-  archived?: number;
-  created?: number;
-  deleted?: number;
-}
-
-export interface DtoUpdateDictionaryRequest {
-  name?: string | null;
-}
-
-export interface DtoUpdateDictionaryRowRequest {
-  archived?: boolean | null;
-  attrs?: Record<string, any> | null;
-  value?: string | null;
-}
-
-export interface DtoAvailablePropertyValues {
-  /** Options - допустимые варианты (для типа select) */
-  options?: string[];
-  /** Restricted - применён ли каскадный фильтр (у поля есть зависимость и родитель заполнен) */
-  restricted?: boolean;
-  /** Rows - допустимые строки справочника с пагинацией (для типа lookup) */
-  rows?: object | null;
-  type?: string;
-}
-
-export interface TypesPropertyDependency {
-  /** "options_map" или "row_filter" */
-  mode?: string;
-  /** OptionsMap (режим options_map): значение родителя → допустимые options ребёнка */
-  options_map?: Record<string, string[]> | null;
-  parent_template_id?: string;
-  /**
-   * RowFilterAttr (режим row_filter): имя атрибута строки справочника ребёнка,
-   * сравниваемого с отображаемым значением родителя (строка или массив строк в attrs)
-   */
-  row_filter_attr?: string;
 }
 
 export interface DtoProjectPropertyTemplate {
@@ -1429,6 +1409,16 @@ export interface DtoTimelineStats {
   completed_by_month?: DtoMonthlyCount[];
   /** CreatedByMonth количество созданных задач по месяцам */
   created_by_month?: DtoMonthlyCount[];
+}
+
+export interface DtoUpdateDictionaryRequest {
+  name?: string | null;
+}
+
+export interface DtoUpdateDictionaryRowRequest {
+  archived?: boolean | null;
+  attrs?: Record<string, any> | null;
+  value?: string | null;
 }
 
 export interface DtoUpdatePropertyTemplateRequest {
@@ -1865,6 +1855,19 @@ export interface TypesProjectMemberNS {
   disable_targetDate?: boolean;
   disable_watchers?: boolean;
   notify_before_deadline?: number | null;
+}
+
+export interface TypesPropertyDependency {
+  /** "options_map" или "row_filter" */
+  mode?: string;
+  /** OptionsMap (режим options_map): значение родителя → допустимые options ребёнка */
+  options_map?: Record<string, string[]> | null;
+  parent_template_id?: string;
+  /**
+   * RowFilterAttr (режим row_filter): имя атрибута строки справочника ребёнка,
+   * сравниваемого с отображаемым значением родителя (строка или массив строк в attrs)
+   */
+  row_filter_attr?: string;
 }
 
 export interface TypesSprintStats {
