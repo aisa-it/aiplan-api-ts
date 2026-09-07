@@ -99,6 +99,11 @@ export class Issues<
        * @default false
        */
       stream?: boolean;
+      /**
+       * Подкачать в задачи значения дополнительных параметров (properties) для колонок таблицы
+       * @default false
+       */
+      include_properties?: boolean;
     },
     params: RequestParams = {},
   ) =>

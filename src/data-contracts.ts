@@ -940,6 +940,11 @@ export interface DtoIssueWithCount {
   priority?: string | null;
   project?: string;
   project_detail?: DtoProjectLight | null;
+  /**
+   * Properties - значения дополнительных параметров задачи; заполняются только
+   * по запросу списка с include_properties=true (колонки таблицы)
+   */
+  properties?: DtoIssueProperty[];
   sequence_id?: number;
   short_url?: string;
   sprints?: DtoSprintLight[];
