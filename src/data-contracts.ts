@@ -1065,6 +1065,7 @@ export interface DtoProject {
   issue_deletion_allowed?: boolean;
   logo?: string | null;
   member_attachments_allowed?: boolean;
+  member_properties_allowed?: boolean;
   name?: string;
   name_highlighted?: string;
   project_lead?: string;
@@ -1100,6 +1101,7 @@ export interface DtoProjectLight {
   issue_deletion_allowed?: boolean;
   logo?: string | null;
   member_attachments_allowed?: boolean;
+  member_properties_allowed?: boolean;
   name?: string;
   name_highlighted?: string;
   project_lead?: string;

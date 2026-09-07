@@ -100,7 +100,7 @@ export class SearchFilters<
       ...params,
     });
   /**
-   * @description Удаляет фильтр поиска по его ID для текущего пользователя или суперпользователя
+   * @description Удаляет фильтр поиска по его ID: автор и суперпользователь удаляют фильтр полностью, остальные — только из своего списка
    *
    * @tags Search Filters
    * @name DeleteSearchFilter
