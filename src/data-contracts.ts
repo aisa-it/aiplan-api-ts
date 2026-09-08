@@ -465,7 +465,7 @@ export interface DtoAttachment {
 }
 
 export interface DtoAvailablePropertyValues {
-  /** Options - допустимые варианты (для типа select) */
+  /** Options - допустимые варианты (для типов select и multiselect) */
   options?: string[];
   /** Restricted - применён ли каскадный фильтр (у поля есть зависимость и родитель заполнен) */
   restricted?: boolean;
@@ -557,10 +557,13 @@ export interface DtoCreatePropertyTemplateRequest {
     | "string"
     | "boolean"
     | "select"
+    | "multiselect"
     | "link"
     | "lookup"
     | "date"
     | "datetime";
+  /** UniqueValues - для multiselect: запрет повторяющихся значений в списке */
+  unique_values?: boolean;
 }
 
 export interface DtoDeleteGitRepositoryRequest {
@@ -884,6 +887,8 @@ export interface DtoIssueProperty {
   reset_properties?: string[];
   template_id?: string;
   type?: string;
+  /** UniqueValues - для multiselect: значения в списке не должны повторяться */
+  unique_values?: boolean;
   value?: any;
   /** ValueLabel - отображаемое значение для lookup-полей (Value хранит id строки справочника) */
   value_label?: string | null;
@@ -1181,6 +1186,8 @@ export interface DtoProjectPropertyTemplate {
   project_id?: string;
   sort_order?: number;
   type?: string;
+  /** UniqueValues - для multiselect: значения в списке не должны повторяться */
+  unique_values?: boolean;
   updated_at?: string;
   workspace_id?: string;
 }
@@ -1436,6 +1443,7 @@ export interface DtoUpdatePropertyTemplateRequest {
   options?: string[];
   sort_order?: number;
   type?: string;
+  unique_values?: boolean;
 }
 
 export interface DtoUpdateRulesScriptRequest {
