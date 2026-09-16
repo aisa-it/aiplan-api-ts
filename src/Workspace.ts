@@ -11,13 +11,6 @@
  */
 
 import {
-  AiplanCreateWorkspaceRequest,
-  AiplanRequestAddFavorite,
-  AiplanRequestEmailMember,
-  AiplanRequestMembersInvite,
-  AiplanRequestMessage,
-  AiplanRequestRoleMember,
-  AiplanWorkspaceNotificationRequest,
   ApierrorsDefinedError,
   DaoPaginationResponse,
   DtoActivityEventFull,
@@ -32,6 +25,13 @@ import {
   DtoWorkspaceSummaryResponse,
   DtoWorkspaceWithCount,
   IntegrationsIntegration,
+  ServerCreateWorkspaceRequest,
+  ServerRequestAddFavorite,
+  ServerRequestEmailMember,
+  ServerRequestMembersInvite,
+  ServerRequestMessage,
+  ServerRequestRoleMember,
+  ServerWorkspaceNotificationRequest,
   TypesActivityTable,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
@@ -151,7 +151,7 @@ export class Workspace<
    * @secure
    */
   addWorkspaceToFavorites = (
-    workspace: AiplanRequestAddFavorite,
+    workspace: ServerRequestAddFavorite,
     params: RequestParams = {},
   ) =>
     this.request<string, ApierrorsDefinedError>({
@@ -194,7 +194,7 @@ export class Workspace<
    * @secure
    */
   createWorkspace = (
-    request: AiplanCreateWorkspaceRequest,
+    request: ServerCreateWorkspaceRequest,
     params: RequestParams = {},
   ) =>
     this.request<DtoWorkspace, ApierrorsDefinedError>({
@@ -378,7 +378,7 @@ export class Workspace<
    */
   addToWorkspace = (
     workspaceSlug: string,
-    invite: AiplanRequestMembersInvite,
+    invite: ServerRequestMembersInvite,
     params: RequestParams = {},
   ) =>
     this.request<Record<string, any>, ApierrorsDefinedError>({
@@ -465,7 +465,7 @@ export class Workspace<
    */
   updateMyWorkspaceNotifications = (
     workspaceSlug: string,
-    notificationSettings: AiplanWorkspaceNotificationRequest,
+    notificationSettings: ServerWorkspaceNotificationRequest,
     params: RequestParams = {},
   ) =>
     this.request<void, ApierrorsDefinedError>({
@@ -590,7 +590,7 @@ export class Workspace<
    */
   createMessageForWorkspaceMember = (
     workspaceSlug: string,
-    data: AiplanRequestMessage,
+    data: ServerRequestMessage,
     params: RequestParams = {},
   ) =>
     this.request<void, ApierrorsDefinedError>({
@@ -634,7 +634,7 @@ export class Workspace<
   updateWorkspaceMember = (
     workspaceSlug: string,
     memberId: string,
-    role: AiplanRequestRoleMember,
+    role: ServerRequestRoleMember,
     params: RequestParams = {},
   ) =>
     this.request<DtoWorkspaceMemberLight, ApierrorsDefinedError>({
@@ -658,7 +658,7 @@ export class Workspace<
   updateUserEmail = (
     workspaceSlug: string,
     memberId: string,
-    email: AiplanRequestEmailMember,
+    email: ServerRequestEmailMember,
     params: RequestParams = {},
   ) =>
     this.request<void, ApierrorsDefinedError>({
@@ -667,6 +667,26 @@ export class Workspace<
       body: email,
       secure: true,
       type: ContentType.Json,
+      ...params,
+    });
+  /**
+   * @description Возвращает разрешённые действия в пространстве плоской картой вида {"workspace.update": true, "project.create": false}. Ролей наружу не отдаёт.
+   *
+   * @tags Workspace
+   * @name GetWorkspacePermissions
+   * @summary Пространство: права текущего пользователя в пространстве
+   * @request GET:/api/auth/workspaces/{workspaceSlug}/permissions
+   * @secure
+   */
+  getWorkspacePermissions = (
+    workspaceSlug: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<Record<string, boolean>, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/permissions`,
+      method: "GET",
+      secure: true,
+      format: "json",
       ...params,
     });
   /**

@@ -11,9 +11,6 @@
  */
 
 import {
-  AiplanRequestMessage,
-  AiplanRoleUpdRequest,
-  AiplanUserCreateRequest,
   ApierrorsDefinedError,
   DaoPaginationResponse,
   DtoJitsiTokenLog,
@@ -25,6 +22,9 @@ import {
   DtoWorkspace,
   DtoWorkspaceWithCount,
   IssuesImportImportStatus,
+  ServerRequestMessage,
+  ServerRoleUpdRequest,
+  ServerUserCreateRequest,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
@@ -330,7 +330,7 @@ export class AdminPanel<
    * @request POST:/api/auth/admin/users
    * @secure
    */
-  createUser = (data: AiplanUserCreateRequest, params: RequestParams = {}) =>
+  createUser = (data: ServerUserCreateRequest, params: RequestParams = {}) =>
     this.request<DtoUserLight, ApierrorsDefinedError>({
       path: `/api/auth/admin/users`,
       method: "POST",
@@ -350,7 +350,7 @@ export class AdminPanel<
    * @secure
    */
   createMessageForMember = (
-    data: AiplanRequestMessage,
+    data: ServerRequestMessage,
     params: RequestParams = {},
   ) =>
     this.request<void, ApierrorsDefinedError>({
@@ -555,7 +555,7 @@ export class AdminPanel<
   authAdminUsersWorkspacesMemberCreate = (
     workspaceId: string,
     userId: string,
-    body: AiplanRoleUpdRequest,
+    body: ServerRoleUpdRequest,
     params: RequestParams = {},
   ) =>
     this.request<void, ApierrorsDefinedError>({
@@ -596,7 +596,7 @@ export class AdminPanel<
     workspaceId: string,
     userId: string,
     projectId: string,
-    body: AiplanRoleUpdRequest,
+    body: ServerRoleUpdRequest,
     params: RequestParams = {},
   ) =>
     this.request<void, ApierrorsDefinedError>({

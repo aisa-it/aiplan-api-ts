@@ -11,11 +11,11 @@
  */
 
 import {
-  AiplanNotificationViewRequest,
   ApierrorsDefinedError,
   DaoPaginationResponse,
   DtoNotificationIdResponse,
   NotificationsNotificationResponse,
+  ServerNotificationViewRequest,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
@@ -70,7 +70,7 @@ export class Notifications<
    * @secure
    */
   updateToReadMyNotifications = (
-    data: AiplanNotificationViewRequest,
+    data: ServerNotificationViewRequest,
     params: RequestParams = {},
   ) =>
     this.request<DtoNotificationIdResponse, ApierrorsDefinedError>({

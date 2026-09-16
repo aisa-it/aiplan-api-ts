@@ -11,10 +11,10 @@
  */
 
 import {
-  AiplanJiraInfoRequest,
   ApierrorsDefinedError,
   EntityJiraInfo,
   IssuesImportImportStatus,
+  ServerJiraInfoRequest,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
@@ -63,7 +63,7 @@ export class Integrations<
    * @request POST:/api/auth/import/jira/info
    * @secure
    */
-  getJiraInfo = (data: AiplanJiraInfoRequest, params: RequestParams = {}) =>
+  getJiraInfo = (data: ServerJiraInfoRequest, params: RequestParams = {}) =>
     this.request<EntityJiraInfo, ApierrorsDefinedError>({
       path: `/api/auth/import/jira/info`,
       method: "POST",
@@ -84,7 +84,7 @@ export class Integrations<
    */
   startJiraImport = (
     projectKey: string,
-    data: AiplanJiraInfoRequest,
+    data: ServerJiraInfoRequest,
     params: RequestParams = {},
   ) =>
     this.request<Record<string, string>, ApierrorsDefinedError>({

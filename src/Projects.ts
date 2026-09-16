@@ -11,13 +11,6 @@
  */
 
 import {
-  AiplanAddProjectToFavoritesRequest,
-  AiplanCreateProjectRequest,
-  AiplanFilterParams,
-  AiplanGetRulesLogfilterRequest,
-  AiplanJoinProjectsRequest,
-  AiplanProjectNotificationRequest,
-  AiplanUpdateStateRequest,
   ApierrorsDefinedError,
   DaoPaginationResponse,
   DtoActivityEventFull,
@@ -37,6 +30,13 @@ import {
   DtoStateLight,
   DtoUpdateRulesScriptRequest,
   DtoUserLight,
+  ServerAddProjectToFavoritesRequest,
+  ServerCreateProjectRequest,
+  ServerFilterParams,
+  ServerGetRulesLogfilterRequest,
+  ServerJoinProjectsRequest,
+  ServerProjectNotificationRequest,
+  ServerUpdateStateRequest,
   TypesViewProps,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
@@ -54,7 +54,7 @@ export class Projects<
    * @secure
    */
   getFilterLabelList = (
-    data: AiplanFilterParams,
+    data: ServerFilterParams,
     query?: {
       /**
        * Смещение для пагинации
@@ -94,7 +94,7 @@ export class Projects<
    * @secure
    */
   getFilterMemberList = (
-    data: AiplanFilterParams,
+    data: ServerFilterParams,
     query?: {
       /**
        * Смещение для пагинации
@@ -134,7 +134,7 @@ export class Projects<
    * @secure
    */
   getFilterStateList = (
-    data: AiplanFilterParams,
+    data: ServerFilterParams,
     query?: {
       /**
        * Смещение для пагинации
@@ -232,7 +232,7 @@ export class Projects<
    */
   createProject = (
     workspaceSlug: string,
-    request: AiplanCreateProjectRequest,
+    request: ServerCreateProjectRequest,
     params: RequestParams = {},
   ) =>
     this.request<DtoProject, ApierrorsDefinedError>({
@@ -255,7 +255,7 @@ export class Projects<
    */
   joinProjects = (
     workspaceSlug: string,
-    projects: AiplanJoinProjectsRequest,
+    projects: ServerJoinProjectsRequest,
     params: RequestParams = {},
   ) =>
     this.request<DtoJoinProjectsSuccessResponse, ApierrorsDefinedError>({
@@ -571,7 +571,7 @@ export class Projects<
   updateMyNotifications = (
     workspaceSlug: string,
     projectId: string,
-    notificationSettings: AiplanProjectNotificationRequest,
+    notificationSettings: ServerProjectNotificationRequest,
     params: RequestParams = {},
   ) =>
     this.request<void, ApierrorsDefinedError>({
@@ -758,6 +758,27 @@ export class Projects<
       ...params,
     });
   /**
+   * @description Возвращает разрешённые действия над проектом плоской картой вида {"project.update": true, "issue.create": false}. Ролей наружу не отдаёт.
+   *
+   * @tags Projects
+   * @name GetProjectPermissions
+   * @summary Проекты: права текущего пользователя на проект
+   * @request GET:/api/auth/workspaces/{workspaceSlug}/projects/{projectId}/permissions
+   * @secure
+   */
+  getProjectPermissions = (
+    workspaceSlug: string,
+    projectId: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<Record<string, boolean>, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/permissions`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    });
+  /**
    * @description Возвращает информацию о текущем пользователе как члене проекта.
    *
    * @tags Projects
@@ -812,7 +833,7 @@ export class Projects<
   getRulesLog = (
     workspaceSlug: string,
     projectId: string,
-    data: AiplanGetRulesLogfilterRequest,
+    data: ServerGetRulesLogfilterRequest,
     query?: {
       /**
        * Смещение для пагинации
@@ -1014,7 +1035,7 @@ export class Projects<
     workspaceSlug: string,
     projectId: string,
     stateId: string,
-    data: AiplanUpdateStateRequest,
+    data: ServerUpdateStateRequest,
     params: RequestParams = {},
   ) =>
     this.request<DtoStateLight, ApierrorsDefinedError>({
@@ -1237,7 +1258,7 @@ export class Projects<
    */
   addProjectToFavorites = (
     workspaceSlug: string,
-    project: AiplanAddProjectToFavoritesRequest,
+    project: ServerAddProjectToFavoritesRequest,
     params: RequestParams = {},
   ) =>
     this.request<void, ApierrorsDefinedError>({

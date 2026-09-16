@@ -18,369 +18,13 @@ export enum TypesWeekdayShort {
   Thursday = 4,
   Friday = 5,
   Saturday = 6,
-}
-
-export interface AiplanAddDocToFavoritesRequest {
-  doc: string;
-}
-
-export interface AiplanAddProjectToFavoritesRequest {
-  /** @example "project123" */
-  project: string;
-}
-
-export interface AiplanBlobResponseDTO {
-  /** Содержимое файла (base64 encoded) */
-  content?: string;
-  /** "base64" */
-  encoding?: string;
-  /** Является ли файл бинарным */
-  is_binary?: boolean;
-  /** Путь к файлу */
-  path?: string;
-  /** Ветка/тег/коммит */
-  ref?: string;
-  /** SHA объекта */
-  sha?: string;
-  /** Размер файла */
-  size?: number;
-}
-
-export interface AiplanBranchDTO {
-  /** Является ли веткой по умолчанию */
-  is_default?: boolean;
-  /** Имя ветки */
-  name?: string;
-  /** SHA последнего коммита */
-  sha?: string;
-}
-
-export interface AiplanBranchesResponseDTO {
-  /** Список веток */
-  branches?: AiplanBranchDTO[];
-}
-
-export interface AiplanCommitDTO {
-  /** Автор коммита */
-  author?: AiplanPersonDTO;
-  /** Коммиттер */
-  committer?: AiplanPersonDTO;
-  /** Сообщение коммита */
-  message?: string;
-  /** SHA родительских коммитов */
-  parent_shas?: string[];
-  /** SHA коммита */
-  sha?: string;
-}
-
-export interface AiplanCommitsResponseDTO {
-  /** Список коммитов */
-  commits?: AiplanCommitDTO[];
-  /** Лимит на страницу */
-  limit?: number;
-  /** Смещение */
-  offset?: number;
-  /** Общее количество коммитов */
-  total?: number;
-}
-
-export interface AiplanCreateProjectRequest {
-  cover_image?: string;
-  default_assignees?: string[];
-  default_watchers?: string[];
-  /** @example "0" */
-  emoji?: string;
-  estimate?: string;
-  identifier?: string;
-  name?: string;
-  project_lead?: string;
-  public?: boolean;
-  rules_script?: string;
-}
-
-export interface AiplanCreateWorkspaceRequest {
-  logo?: string;
-  name?: string;
-  owner_id?: string;
-  slug?: string;
-}
-
-export interface AiplanEmailCaptchaRequest {
-  captcha_payload: string;
-  email: string;
-}
-
-export interface AiplanEmailRequest {
-  new_email: string;
-}
-
-export interface AiplanEmailVerifyRequest {
-  code: string;
-  new_email: string;
-}
-
-export interface AiplanFilterParams {
-  project_ids?: string[];
-  search_query?: string;
-  workspace_ids?: string[];
-}
-
-export interface AiplanGetRulesLogfilterRequest {
-  select?: string[];
-}
-
-export interface AiplanIssueCreateRequest {
-  assignee_details?: DtoUserLight[] | null;
-  assignees_list?: string[];
-  attachment_count?: number;
-  author_detail?: DtoUserLight | null;
-  blocked_issues?: DtoIssueBlockerLight[];
-  blocker_issues?: DtoIssueBlockerLight[];
-  blockers_list?: string[];
-  blocks_list?: string[];
-  comments_count?: number;
-  completed_at?: string | null;
-  created_at?: string;
-  description_html?: string;
-  description_json?: EditorDocument;
-  description_stripped?: string | null;
-  description_type?: number;
-  draft?: boolean;
-  estimate_point?: number;
-  id?: string;
-  issue_inline_attachments?: DtoFileAsset[];
-  issue_link?: DtoIssueLinkLight[] | null;
-  label_details?: DtoLabelLight[] | null;
-  labels_list?: string[];
-  link_count?: number;
-  linked_issues_count?: number;
-  llm_content?: boolean;
-  name?: string;
-  parent?: GithubComGofrsUuidNullUUID;
-  parent_detail?: DtoIssueLight | null;
-  pinned?: boolean;
-  priority?: string | null;
-  project?: string;
-  project_detail?: DtoProjectLight | null;
-  sequence_id?: number;
-  short_url?: string;
-  sprints?: DtoSprintLight[];
-  start_date?: string | null;
-  state?: string;
-  state_detail?: DtoStateLight | null;
-  sub_issues_count?: number;
-  target_date?: string | null;
-  updated_at?: string;
-  updated_by?: GithubComGofrsUuidNullUUID | null;
-  url?: string;
-  watcher_details?: DtoUserLight[] | null;
-  watchers_list?: string[];
-  workspace?: string;
-  workspace_detail?: DtoWorkspaceLight | null;
-}
-
-export interface AiplanIssueLinkRequest {
-  title?: string;
-  url?: string;
-}
-
-export interface AiplanJiraInfoRequest {
-  block_link_id?: string;
-  jira_url?: string;
-  priorities_mapping?: EntityPrioritiesMapping;
-  relates_link_id?: string[];
-  target_workspace_id?: string;
-  token?: string;
-  username?: string;
-}
-
-export interface AiplanJoinProjectsRequest {
-  /** @example ["[\"project1\""," \"project2\"]"] */
-  project_ids?: string[];
-}
-
-export interface AiplanLinkedIssuesIds {
-  issue_ids?: string[];
-}
-
-export interface AiplanLoginRequest {
-  captcha_payload?: string;
-  email?: string;
-  password?: string;
-}
-
-export interface AiplanNewIssueParam {
-  assigner_ids?: string[] | null;
-  priority?: "urgent" | "high" | "medium" | "low" | null;
-  state_id?: string | null;
-  target_date?: string | null;
-  watcher_ids?: string[] | null;
-}
-
-export interface AiplanNotificationViewRequest {
-  ids?: string[];
-  viewed_all?: boolean;
-}
-
-export interface AiplanPasswordRequest {
-  confirm_password: string;
-  /** @minLength 8 */
-  new_password: string;
-}
-
-export interface AiplanPersonDTO {
-  /** Дата */
-  date?: string;
-  /** Email */
-  email?: string;
-  /** Имя */
-  name?: string;
-}
-
-export interface AiplanPostFeedbackRequest {
-  feedback?: string;
-  stars?: number;
-}
-
-export interface AiplanReactionRequest {
-  reaction: string;
-}
-
-export interface AiplanRepoInfoDTO {
-  /** Количество веток */
-  branches_count?: number;
-  /** Количество коммитов */
-  commits_count?: number;
-  /** Ветка по умолчанию */
-  default_branch?: string;
-  /** Последний коммит */
-  last_commit?: AiplanCommitDTO;
-  /** Имя репозитория */
-  name?: string;
-  /** Размер репозитория (байты) */
-  size?: number;
-  /** Slug workspace */
-  workspace?: string;
-}
-
-export interface AiplanSubIssuesIds {
-  sub_issue_ids?: string[];
-}
-
-export interface AiplanTreeEntryDTO {
-  /** Режим файла (100644, 040000, etc.) */
-  mode?: string;
-  /** Имя файла/директории */
-  name?: string;
-  /** SHA объекта */
-  sha?: string;
-  /** Размер файла (только для файлов) */
-  size?: number;
-  /** "file" или "dir" */
-  type?: string;
-}
-
-export interface AiplanTreeResponseDTO {
-  /** Список файлов и директорий */
-  entries?: AiplanTreeEntryDTO[];
-  /** Путь в репозитории */
-  path?: string;
-  /** Ветка/тег/коммит */
-  ref?: string;
-}
-
-export interface AiplanUpdateStateRequest {
-  color?: string;
-  default?: boolean;
-  description?: string;
-  group?: string;
-  group_seq_id?: number;
-  name?: string;
-  sequence?: number;
-}
-
-export interface AiplanUserCreateRequest {
-  email?: string;
-  first_name?: string;
-  last_name?: string;
-  password?: string;
-  /** optional */
-  role?: number;
-  /** optional */
-  workspace_id?: string;
-}
-
-export interface AiplanUserUpdateRequest {
-  first_name?: string | null;
-  last_name?: string | null;
-  settings?: TypesUserSettings | null;
-  status?: string | null;
-  status_emoji?: string | null;
-  status_end_date?: string | null;
-  telegram_id?: number | null;
-  theme?: TypesTheme | null;
-  user_timezone?: string | null;
-  username?: string | null;
-  view_props?: TypesViewProps | null;
-}
-
-export interface AiplanProjectNotificationRequest {
-  notification_author_settings_app?: TypesProjectMemberNS;
-  notification_author_settings_email?: TypesProjectMemberNS;
-  notification_author_settings_tg?: TypesProjectMemberNS;
-  notification_settings_app?: TypesProjectMemberNS;
-  notification_settings_email?: TypesProjectMemberNS;
-  notification_settings_tg?: TypesProjectMemberNS;
-}
-
-export interface AiplanReqForm {
-  auth_require?: boolean;
-  default_issue_priority?: "urgent" | "high" | "medium" | "low" | null;
-  description?: string;
-  end_date?: string | null;
-  fields?: TypesFormFields[];
-  notification_channels?: TypesFormAnswerNotify;
-  target_project_id?: string | null;
-  title: string;
-}
-
-export interface AiplanRequestAddFavorite {
-  workspace?: string;
-}
-
-export interface AiplanRequestEmailMember {
-  email?: string;
-}
-
-export interface AiplanRequestMembersInvite {
-  emails?: {
-    email?: string;
-    role?: number;
-  }[];
-}
-
-export interface AiplanRequestMessage {
-  members?: string[];
-  msg?: string;
-  send_at?: string;
-  title?: string;
-}
-
-export interface AiplanRequestRoleMember {
-  role?: number;
-}
-
-export interface AiplanRoleUpdRequest {
-  role: number;
-}
-
-export interface AiplanWorkspaceNotificationRequest {
-  notification_author_settings_app?: TypesWorkspaceMemberNS;
-  notification_author_settings_email?: TypesWorkspaceMemberNS;
-  notification_author_settings_tg?: TypesWorkspaceMemberNS;
-  notification_settings_app?: TypesWorkspaceMemberNS;
-  notification_settings_email?: TypesWorkspaceMemberNS;
-  notification_settings_tg?: TypesWorkspaceMemberNS;
+  Sunday1 = 0,
+  Monday2 = 1,
+  Tuesday3 = 2,
+  Wednesday4 = 3,
+  Thursday5 = 4,
+  Friday6 = 5,
+  Saturday7 = 6,
 }
 
 export interface AltchaChallenge {
@@ -781,6 +425,13 @@ export interface DtoIssue {
   name?: string;
   parent?: GithubComGofrsUuidNullUUID;
   parent_detail?: DtoIssueLight | null;
+  /**
+   * Permissions — разрешённые текущему пользователю действия над задачей
+   * ({"issue.update": true, ...}). Заполняется при получении одной задачи.
+   * Действия, зависящие от объекта (правка чужого комментария), отсутствуют:
+   * решаются при обращении.
+   */
+  permissions?: Record<string, boolean> | null;
   pinned?: boolean;
   priority?: string | null;
   project?: string;
@@ -941,6 +592,13 @@ export interface DtoIssueWithCount {
   name_highlighted?: string;
   parent?: GithubComGofrsUuidNullUUID;
   parent_detail?: DtoIssueLight | null;
+  /**
+   * Permissions — разрешённые текущему пользователю действия над задачей
+   * ({"issue.update": true, ...}). Заполняется при получении одной задачи.
+   * Действия, зависящие от объекта (правка чужого комментария), отсутствуют:
+   * решаются при обращении.
+   */
+  permissions?: Record<string, boolean> | null;
   pinned?: boolean;
   priority?: string | null;
   project?: string;
@@ -1078,6 +736,11 @@ export interface DtoProject {
   member_properties_allowed?: boolean;
   name?: string;
   name_highlighted?: string;
+  /**
+   * Permissions — разрешённые текущему пользователю действия над проектом
+   * ({"project.update": true, ...}). Заполняется при получении одного проекта.
+   */
+  permissions?: Record<string, boolean> | null;
   project_lead?: string;
   project_lead_detail?: DtoUserLight | null;
   public?: boolean;
@@ -1522,6 +1185,11 @@ export interface DtoWorkspace {
   name?: string;
   owner?: DtoUserLight | null;
   owner_id?: string;
+  /**
+   * Permissions — разрешённые текущему пользователю действия в пространстве
+   * ({"workspace.update": true, ...}). Заполняется при получении одного пространства.
+   */
+  permissions?: Record<string, boolean> | null;
   slug?: string;
   updated_at?: string;
   url?: string;
@@ -1609,6 +1277,11 @@ export interface DtoWorkspaceWithCount {
   name_highlighted?: string;
   owner?: DtoUserLight | null;
   owner_id?: string;
+  /**
+   * Permissions — разрешённые текущему пользователю действия в пространстве
+   * ({"workspace.update": true, ...}). Заполняется при получении одного пространства.
+   */
+  permissions?: Record<string, boolean> | null;
   slug?: string;
   total_members?: number;
   total_projects?: number;
@@ -1745,6 +1418,376 @@ export interface NotificationsNotificationResponse {
    * OldEntity any                        `json:"old_entity,omitempty"`
    */
   viewed?: boolean;
+}
+
+export interface ServerAddDocToFavoritesRequest {
+  doc: string;
+}
+
+export interface ServerAddProjectToFavoritesRequest {
+  /** @example "project123" */
+  project: string;
+}
+
+export interface ServerBlobResponseDTO {
+  /** Содержимое файла (base64 encoded) */
+  content?: string;
+  /** "base64" */
+  encoding?: string;
+  /** Является ли файл бинарным */
+  is_binary?: boolean;
+  /** Путь к файлу */
+  path?: string;
+  /** Ветка/тег/коммит */
+  ref?: string;
+  /** SHA объекта */
+  sha?: string;
+  /** Размер файла */
+  size?: number;
+}
+
+export interface ServerBranchDTO {
+  /** Является ли веткой по умолчанию */
+  is_default?: boolean;
+  /** Имя ветки */
+  name?: string;
+  /** SHA последнего коммита */
+  sha?: string;
+}
+
+export interface ServerBranchesResponseDTO {
+  /** Список веток */
+  branches?: ServerBranchDTO[];
+}
+
+export interface ServerCommitDTO {
+  /** Автор коммита */
+  author?: ServerPersonDTO;
+  /** Коммиттер */
+  committer?: ServerPersonDTO;
+  /** Сообщение коммита */
+  message?: string;
+  /** SHA родительских коммитов */
+  parent_shas?: string[];
+  /** SHA коммита */
+  sha?: string;
+}
+
+export interface ServerCommitsResponseDTO {
+  /** Список коммитов */
+  commits?: ServerCommitDTO[];
+  /** Лимит на страницу */
+  limit?: number;
+  /** Смещение */
+  offset?: number;
+  /** Общее количество коммитов */
+  total?: number;
+}
+
+export interface ServerCreateProjectRequest {
+  cover_image?: string;
+  default_assignees?: string[];
+  default_watchers?: string[];
+  /** @example "0" */
+  emoji?: string;
+  estimate?: string;
+  identifier?: string;
+  name?: string;
+  project_lead?: string;
+  public?: boolean;
+  rules_script?: string;
+}
+
+export interface ServerCreateWorkspaceRequest {
+  logo?: string;
+  name?: string;
+  owner_id?: string;
+  slug?: string;
+}
+
+export interface ServerEmailCaptchaRequest {
+  captcha_payload: string;
+  email: string;
+}
+
+export interface ServerEmailRequest {
+  new_email: string;
+}
+
+export interface ServerEmailVerifyRequest {
+  code: string;
+  new_email: string;
+}
+
+export interface ServerFilterParams {
+  project_ids?: string[];
+  search_query?: string;
+  workspace_ids?: string[];
+}
+
+export interface ServerGetRulesLogfilterRequest {
+  select?: string[];
+}
+
+export interface ServerIssueCreateRequest {
+  assignee_details?: DtoUserLight[] | null;
+  assignees_list?: string[];
+  attachment_count?: number;
+  author_detail?: DtoUserLight | null;
+  blocked_issues?: DtoIssueBlockerLight[];
+  blocker_issues?: DtoIssueBlockerLight[];
+  blockers_list?: string[];
+  blocks_list?: string[];
+  comments_count?: number;
+  completed_at?: string | null;
+  created_at?: string;
+  description_html?: string;
+  description_json?: EditorDocument;
+  description_stripped?: string | null;
+  description_type?: number;
+  draft?: boolean;
+  estimate_point?: number;
+  id?: string;
+  issue_inline_attachments?: DtoFileAsset[];
+  issue_link?: DtoIssueLinkLight[] | null;
+  label_details?: DtoLabelLight[] | null;
+  labels_list?: string[];
+  link_count?: number;
+  linked_issues_count?: number;
+  llm_content?: boolean;
+  name?: string;
+  parent?: GithubComGofrsUuidNullUUID;
+  parent_detail?: DtoIssueLight | null;
+  /**
+   * Permissions — разрешённые текущему пользователю действия над задачей
+   * ({"issue.update": true, ...}). Заполняется при получении одной задачи.
+   * Действия, зависящие от объекта (правка чужого комментария), отсутствуют:
+   * решаются при обращении.
+   */
+  permissions?: Record<string, boolean> | null;
+  pinned?: boolean;
+  priority?: string | null;
+  project?: string;
+  project_detail?: DtoProjectLight | null;
+  sequence_id?: number;
+  short_url?: string;
+  sprints?: DtoSprintLight[];
+  start_date?: string | null;
+  state?: string;
+  state_detail?: DtoStateLight | null;
+  sub_issues_count?: number;
+  target_date?: string | null;
+  updated_at?: string;
+  updated_by?: GithubComGofrsUuidNullUUID | null;
+  url?: string;
+  watcher_details?: DtoUserLight[] | null;
+  watchers_list?: string[];
+  workspace?: string;
+  workspace_detail?: DtoWorkspaceLight | null;
+}
+
+export interface ServerIssueLinkRequest {
+  title?: string;
+  url?: string;
+}
+
+export interface ServerJiraInfoRequest {
+  block_link_id?: string;
+  jira_url?: string;
+  priorities_mapping?: EntityPrioritiesMapping;
+  relates_link_id?: string[];
+  target_workspace_id?: string;
+  token?: string;
+  username?: string;
+}
+
+export interface ServerJoinProjectsRequest {
+  /** @example ["[\"project1\""," \"project2\"]"] */
+  project_ids?: string[];
+}
+
+export interface ServerLinkedIssuesIds {
+  issue_ids?: string[];
+}
+
+export interface ServerLoginRequest {
+  captcha_payload?: string;
+  email?: string;
+  password?: string;
+}
+
+export interface ServerNewIssueParam {
+  assigner_ids?: string[] | null;
+  priority?: "urgent" | "high" | "medium" | "low" | null;
+  state_id?: string | null;
+  target_date?: string | null;
+  watcher_ids?: string[] | null;
+}
+
+export interface ServerNotificationViewRequest {
+  ids?: string[];
+  viewed_all?: boolean;
+}
+
+export interface ServerPasswordRequest {
+  confirm_password: string;
+  /** @minLength 8 */
+  new_password: string;
+}
+
+export interface ServerPersonDTO {
+  /** Дата */
+  date?: string;
+  /** Email */
+  email?: string;
+  /** Имя */
+  name?: string;
+}
+
+export interface ServerPostFeedbackRequest {
+  feedback?: string;
+  stars?: number;
+}
+
+export interface ServerReactionRequest {
+  reaction: string;
+}
+
+export interface ServerRepoInfoDTO {
+  /** Количество веток */
+  branches_count?: number;
+  /** Количество коммитов */
+  commits_count?: number;
+  /** Ветка по умолчанию */
+  default_branch?: string;
+  /** Последний коммит */
+  last_commit?: ServerCommitDTO;
+  /** Имя репозитория */
+  name?: string;
+  /** Размер репозитория (байты) */
+  size?: number;
+  /** Slug workspace */
+  workspace?: string;
+}
+
+export interface ServerSubIssuesIds {
+  sub_issue_ids?: string[];
+}
+
+export interface ServerTreeEntryDTO {
+  /** Режим файла (100644, 040000, etc.) */
+  mode?: string;
+  /** Имя файла/директории */
+  name?: string;
+  /** SHA объекта */
+  sha?: string;
+  /** Размер файла (только для файлов) */
+  size?: number;
+  /** "file" или "dir" */
+  type?: string;
+}
+
+export interface ServerTreeResponseDTO {
+  /** Список файлов и директорий */
+  entries?: ServerTreeEntryDTO[];
+  /** Путь в репозитории */
+  path?: string;
+  /** Ветка/тег/коммит */
+  ref?: string;
+}
+
+export interface ServerUpdateStateRequest {
+  color?: string;
+  default?: boolean;
+  description?: string;
+  group?: string;
+  group_seq_id?: number;
+  name?: string;
+  sequence?: number;
+}
+
+export interface ServerUserCreateRequest {
+  email?: string;
+  first_name?: string;
+  last_name?: string;
+  password?: string;
+  /** optional */
+  role?: number;
+  /** optional */
+  workspace_id?: string;
+}
+
+export interface ServerUserUpdateRequest {
+  first_name?: string | null;
+  last_name?: string | null;
+  settings?: TypesUserSettings | null;
+  status?: string | null;
+  status_emoji?: string | null;
+  status_end_date?: string | null;
+  telegram_id?: number | null;
+  theme?: TypesTheme | null;
+  user_timezone?: string | null;
+  username?: string | null;
+  view_props?: TypesViewProps | null;
+}
+
+export interface ServerProjectNotificationRequest {
+  notification_author_settings_app?: TypesProjectMemberNS;
+  notification_author_settings_email?: TypesProjectMemberNS;
+  notification_author_settings_tg?: TypesProjectMemberNS;
+  notification_settings_app?: TypesProjectMemberNS;
+  notification_settings_email?: TypesProjectMemberNS;
+  notification_settings_tg?: TypesProjectMemberNS;
+}
+
+export interface ServerReqForm {
+  auth_require?: boolean;
+  default_issue_priority?: "urgent" | "high" | "medium" | "low" | null;
+  description?: string;
+  end_date?: string | null;
+  fields?: TypesFormFields[];
+  notification_channels?: TypesFormAnswerNotify;
+  target_project_id?: string | null;
+  title: string;
+}
+
+export interface ServerRequestAddFavorite {
+  workspace?: string;
+}
+
+export interface ServerRequestEmailMember {
+  email?: string;
+}
+
+export interface ServerRequestMembersInvite {
+  emails?: {
+    email?: string;
+    role?: number;
+  }[];
+}
+
+export interface ServerRequestMessage {
+  members?: string[];
+  msg?: string;
+  send_at?: string;
+  title?: string;
+}
+
+export interface ServerRequestRoleMember {
+  role?: number;
+}
+
+export interface ServerRoleUpdRequest {
+  role: number;
+}
+
+export interface ServerWorkspaceNotificationRequest {
+  notification_author_settings_app?: TypesWorkspaceMemberNS;
+  notification_author_settings_email?: TypesWorkspaceMemberNS;
+  notification_author_settings_tg?: TypesWorkspaceMemberNS;
+  notification_settings_app?: TypesWorkspaceMemberNS;
+  notification_settings_email?: TypesWorkspaceMemberNS;
+  notification_settings_tg?: TypesWorkspaceMemberNS;
 }
 
 export type TypesActivityTable = Record<string, TypesActivityTableDay>;

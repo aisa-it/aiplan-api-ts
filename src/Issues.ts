@@ -11,11 +11,6 @@
  */
 
 import {
-  AiplanIssueCreateRequest,
-  AiplanIssueLinkRequest,
-  AiplanLinkedIssuesIds,
-  AiplanNewIssueParam,
-  AiplanSubIssuesIds,
   ApierrorsDefinedError,
   DaoPaginationResponse,
   DtoActivityEventFull,
@@ -30,6 +25,11 @@ import {
   DtoIssueSearchResult,
   DtoNewIssueID,
   DtoResponseSubIssueList,
+  ServerIssueCreateRequest,
+  ServerIssueLinkRequest,
+  ServerLinkedIssuesIds,
+  ServerNewIssueParam,
+  ServerSubIssuesIds,
   TypesIssuesListFilters,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
@@ -218,7 +218,7 @@ export class Issues<
        */
       create_entities?: boolean;
     },
-    data: AiplanNewIssueParam,
+    data: ServerNewIssueParam,
     params: RequestParams = {},
   ) =>
     this.request<DtoNewIssueID, Record<string, any> | ApierrorsDefinedError>({
@@ -309,7 +309,7 @@ export class Issues<
   createIssue = (
     workspaceSlug: string,
     projectId: string,
-    issue: AiplanIssueCreateRequest,
+    issue: ServerIssueCreateRequest,
     params: RequestParams = {},
   ) =>
     this.request<DtoNewIssueID, ApierrorsDefinedError>({
@@ -971,7 +971,7 @@ export class Issues<
     workspaceSlug: string,
     projectId: string,
     issueIdOrSeq: string,
-    data: AiplanIssueLinkRequest,
+    data: ServerIssueLinkRequest,
     params: RequestParams = {},
   ) =>
     this.request<DtoIssueLinkLight, ApierrorsDefinedError>({
@@ -1020,7 +1020,7 @@ export class Issues<
     projectId: string,
     issueIdOrSeq: string,
     linkId: string,
-    data: AiplanIssueLinkRequest,
+    data: ServerIssueLinkRequest,
     params: RequestParams = {},
   ) =>
     this.request<DtoIssueLinkLight, ApierrorsDefinedError>({
@@ -1068,7 +1068,7 @@ export class Issues<
     workspaceSlug: string,
     projectId: string,
     issueIdOrSeq: string,
-    data: AiplanLinkedIssuesIds,
+    data: ServerLinkedIssuesIds,
     params: RequestParams = {},
   ) =>
     this.request<DtoIssueLight[], ApierrorsDefinedError>({
@@ -1185,6 +1185,28 @@ export class Issues<
       ...params,
     });
   /**
+   * @description Возвращает разрешённые действия над задачей плоской картой вида {"issue.update": true, "issue.delete": false}. Действия, зависящие от объекта (правка чужого комментария), в карте отсутствуют и решаются при обращении. Ролей наружу не отдаёт.
+   *
+   * @tags Issues
+   * @name GetIssuePermissions
+   * @summary Задачи: права текущего пользователя на задачу
+   * @request GET:/api/auth/workspaces/{workspaceSlug}/projects/{projectId}/issues/{issueIdOrSeq}/permissions
+   * @secure
+   */
+  getIssuePermissions = (
+    workspaceSlug: string,
+    projectId: string,
+    issueIdOrSeq: string,
+    params: RequestParams = {},
+  ) =>
+    this.request<Record<string, boolean>, ApierrorsDefinedError>({
+      path: `/api/auth/workspaces/${workspaceSlug}/projects/${projectId}/issues/${issueIdOrSeq}/permissions`,
+      method: "GET",
+      secure: true,
+      format: "json",
+      ...params,
+    });
+  /**
    * No description
    *
    * @tags Issues
@@ -1241,7 +1263,7 @@ export class Issues<
     workspaceSlug: string,
     projectId: string,
     issueIdOrSeq: string,
-    data: AiplanSubIssuesIds,
+    data: ServerSubIssuesIds,
     params: RequestParams = {},
   ) =>
     this.request<DtoIssueLight[], ApierrorsDefinedError>({

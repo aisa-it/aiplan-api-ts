@@ -11,12 +11,12 @@
  */
 
 import {
-  AiplanBlobResponseDTO,
-  AiplanBranchesResponseDTO,
-  AiplanCommitsResponseDTO,
-  AiplanRepoInfoDTO,
-  AiplanTreeResponseDTO,
   ApierrorsDefinedError,
+  ServerBlobResponseDTO,
+  ServerBranchesResponseDTO,
+  ServerCommitsResponseDTO,
+  ServerRepoInfoDTO,
+  ServerTreeResponseDTO,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
@@ -43,7 +43,7 @@ export class GitBrowse<
     },
     params: RequestParams = {},
   ) =>
-    this.request<AiplanBlobResponseDTO, ApierrorsDefinedError>({
+    this.request<ServerBlobResponseDTO, ApierrorsDefinedError>({
       path: `/api/auth/git/${workspaceSlug}/repositories/${repoName}/blob`,
       method: "GET",
       query: query,
@@ -66,7 +66,7 @@ export class GitBrowse<
     repoName: string,
     params: RequestParams = {},
   ) =>
-    this.request<AiplanBranchesResponseDTO, ApierrorsDefinedError>({
+    this.request<ServerBranchesResponseDTO, ApierrorsDefinedError>({
       path: `/api/auth/git/${workspaceSlug}/repositories/${repoName}/branches`,
       method: "GET",
       secure: true,
@@ -96,7 +96,7 @@ export class GitBrowse<
     },
     params: RequestParams = {},
   ) =>
-    this.request<AiplanCommitsResponseDTO, ApierrorsDefinedError>({
+    this.request<ServerCommitsResponseDTO, ApierrorsDefinedError>({
       path: `/api/auth/git/${workspaceSlug}/repositories/${repoName}/commits`,
       method: "GET",
       query: query,
@@ -119,7 +119,7 @@ export class GitBrowse<
     repoName: string,
     params: RequestParams = {},
   ) =>
-    this.request<AiplanRepoInfoDTO, ApierrorsDefinedError>({
+    this.request<ServerRepoInfoDTO, ApierrorsDefinedError>({
       path: `/api/auth/git/${workspaceSlug}/repositories/${repoName}/info`,
       method: "GET",
       secure: true,
@@ -147,7 +147,7 @@ export class GitBrowse<
     },
     params: RequestParams = {},
   ) =>
-    this.request<AiplanTreeResponseDTO, ApierrorsDefinedError>({
+    this.request<ServerTreeResponseDTO, ApierrorsDefinedError>({
       path: `/api/auth/git/${workspaceSlug}/repositories/${repoName}/tree`,
       method: "GET",
       query: query,

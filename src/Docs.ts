@@ -11,8 +11,6 @@
  */
 
 import {
-  AiplanAddDocToFavoritesRequest,
-  AiplanReactionRequest,
   ApierrorsDefinedError,
   DaoPaginationResponse,
   DtoActivityEventFull,
@@ -25,6 +23,8 @@ import {
   DtoDocLight,
   DtoHistoryBody,
   DtoHistoryBodyLight,
+  ServerAddDocToFavoritesRequest,
+  ServerReactionRequest,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
@@ -474,7 +474,7 @@ export class Docs<
     workspaceSlug: string,
     docId: string,
     commentId: string,
-    data: AiplanReactionRequest,
+    data: ServerReactionRequest,
     params: RequestParams = {},
   ) =>
     this.request<DtoCommentReaction, ApierrorsDefinedError>({
@@ -715,7 +715,7 @@ export class Docs<
    */
   addDocToFavorites = (
     workspaceSlug: string,
-    project: AiplanAddDocToFavoritesRequest,
+    project: ServerAddDocToFavoritesRequest,
     params: RequestParams = {},
   ) =>
     this.request<DtoDocFavorites, ApierrorsDefinedError>({

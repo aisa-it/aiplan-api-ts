@@ -11,13 +11,6 @@
  */
 
 import {
-  AiplanEmailCaptchaRequest,
-  AiplanEmailRequest,
-  AiplanEmailVerifyRequest,
-  AiplanLoginRequest,
-  AiplanPasswordRequest,
-  AiplanPostFeedbackRequest,
-  AiplanUserUpdateRequest,
   AltchaChallenge,
   ApierrorsDefinedError,
   DaoPaginationResponse,
@@ -29,6 +22,13 @@ import {
   DtoUserFeedback,
   DtoUserLight,
   DtoWorkspaceMemberWithOwner,
+  ServerEmailCaptchaRequest,
+  ServerEmailRequest,
+  ServerEmailVerifyRequest,
+  ServerLoginRequest,
+  ServerPasswordRequest,
+  ServerPostFeedbackRequest,
+  ServerUserUpdateRequest,
   TypesActivityTable,
   TypesViewProps,
 } from "./data-contracts";
@@ -47,7 +47,7 @@ export class Users<
    * @secure
    */
   updateMyPassword = (
-    data: AiplanPasswordRequest,
+    data: ServerPasswordRequest,
     params: RequestParams = {},
   ) =>
     this.request<DtoPasswordResponse, ApierrorsDefinedError>({
@@ -68,7 +68,7 @@ export class Users<
    * @request POST:/api/auth/forgot-password/
    */
   forgotPassword = (
-    data: AiplanEmailCaptchaRequest,
+    data: ServerEmailCaptchaRequest,
     params: RequestParams = {},
   ) =>
     this.request<void, ApierrorsDefinedError>({
@@ -89,7 +89,7 @@ export class Users<
   resetPassword = (
     uidb64: string,
     token: string,
-    data: AiplanPasswordRequest,
+    data: ServerPasswordRequest,
     params: RequestParams = {},
   ) =>
     this.request<DtoPasswordResponse, ApierrorsDefinedError>({
@@ -111,7 +111,7 @@ export class Users<
    */
   resetUserPassword = (
     uidb64: string,
-    data: AiplanPasswordRequest,
+    data: ServerPasswordRequest,
     params: RequestParams = {},
   ) =>
     this.request<DtoPasswordResponse, ApierrorsDefinedError>({
@@ -225,7 +225,7 @@ export class Users<
    * @secure
    */
   updateCurrentUser = (
-    data: AiplanUserUpdateRequest,
+    data: ServerUserUpdateRequest,
     params: RequestParams = {},
   ) =>
     this.request<DtoUser, ApierrorsDefinedError>({
@@ -392,7 +392,7 @@ export class Users<
    * @request POST:/api/auth/users/me/change-email/
    * @secure
    */
-  changeMyEmail = (data: AiplanEmailRequest, params: RequestParams = {}) =>
+  changeMyEmail = (data: ServerEmailRequest, params: RequestParams = {}) =>
     this.request<void, ApierrorsDefinedError>({
       path: `/api/auth/users/me/change-email/`,
       method: "POST",
@@ -428,7 +428,7 @@ export class Users<
    * @secure
    */
   createMyFeedback = (
-    data: AiplanPostFeedbackRequest,
+    data: ServerPostFeedbackRequest,
     params: RequestParams = {},
   ) =>
     this.request<void, ApierrorsDefinedError>({
@@ -586,7 +586,7 @@ export class Users<
    */
   confirmEmail = (
     token: string,
-    data: AiplanEmailVerifyRequest,
+    data: ServerEmailVerifyRequest,
     params: RequestParams = {},
   ) =>
     this.request<void, ApierrorsDefinedError>({
@@ -685,7 +685,7 @@ export class Users<
    * @summary Пользователи (управление доступом): вход пользователя
    * @request POST:/api/sign-in
    */
-  emailLogin = (data: AiplanLoginRequest, params: RequestParams = {}) =>
+  emailLogin = (data: ServerLoginRequest, params: RequestParams = {}) =>
     this.request<Record<string, any>, ApierrorsDefinedError>({
       path: `/api/sign-in`,
       method: "POST",
@@ -702,7 +702,7 @@ export class Users<
    * @summary Пользователи (управление доступом): регистрация нового пользователя
    * @request POST:/api/sign-up/
    */
-  signUp = (data: AiplanEmailCaptchaRequest, params: RequestParams = {}) =>
+  signUp = (data: ServerEmailCaptchaRequest, params: RequestParams = {}) =>
     this.request<void, ApierrorsDefinedError>({
       path: `/api/sign-up/`,
       method: "POST",

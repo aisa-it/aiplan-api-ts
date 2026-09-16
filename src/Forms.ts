@@ -11,7 +11,6 @@
  */
 
 import {
-  AiplanReqForm,
   ApierrorsDefinedError,
   DaoPaginationResponse,
   DtoForm,
@@ -20,6 +19,7 @@ import {
   DtoFormLight,
   DtoRequestAnswer,
   DtoResponseAnswers,
+  ServerReqForm,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
@@ -121,7 +121,7 @@ export class Forms<
    */
   createForm = (
     workspaceSlug: string,
-    form: AiplanReqForm,
+    form: ServerReqForm,
     params: RequestParams = {},
   ) =>
     this.request<DtoForm, ApierrorsDefinedError>({
@@ -165,7 +165,7 @@ export class Forms<
   updateForm = (
     workspaceSlug: string,
     formSlug: string,
-    form: AiplanReqForm,
+    form: ServerReqForm,
     params: RequestParams = {},
   ) =>
     this.request<DtoForm, ApierrorsDefinedError>({
